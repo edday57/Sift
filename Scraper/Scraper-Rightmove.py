@@ -7,7 +7,7 @@ import json
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import re
-import time
+import pandas as pd
 # Use a service account.
 cred = credentials.Certificate('homeless3-firebase-adminsdk-v6ud8-acc2b83791.json')
 
@@ -45,7 +45,10 @@ Link - Str
 Agent Email - Str (O)(F)
 Floorplan - List of Str (O)
  """
+df = pd.read_json('data.json')
+
 newProperty= {"address": None, "price": None, "property_type": None, "bedrooms": None, "bathrooms": None, "sizesqft": None, "latitude": None, "longitude": None, "date_added": None, "description": None, "features": None, "rent_details": {"let_type": None, "deposit": None, "furnish_type": None}, "images": None, "link": None, "agent_email": None, "floorplan": None}
+sampleProperty= {"address": "123 Sample Street", "price": 3400, "property_type": "Flat", "bedrooms": 3, "bathrooms": 3, "sizesqft": 2000, "latitude": 50.0, "longitude": 10.1, "date_added": None, "description": "Description here", "features": None, "rent_details": {"let_type": "Long term", "deposit": 2000, "furnish_type": "Furnished"}, "images": ["link2.com/img"], "link": "rightmove.com/example", "agent_email": None, "floorplan": None}
 latest_link = "https://www.rightmove.co.uk/properties/130573373#/?channel=RES_LET"
 alldata=[]
 #upload data with a time stamp to find the most recent propertys
@@ -88,7 +91,7 @@ def property_data(propertylist):
         response = requests.get(link)
         soup = BeautifulSoup(response.text, 'html.parser')
         #dictionary containing all of the property data
-        property_data = newProperty= {"address": None, "price": None, "property_type": None, "bedrooms": None, "bathrooms": None, "sizesqft": None, "latitude": None, "longitude": None, "date_added": None, "description": None, "features": None, "rent_details": {"let_type": None, "deposit": None, "furnish_type": None}, "images": None, "link": None, "agent_email": None, "floorplan": None}
+        property_data = {"address": None, "price": None, "property_type": None, "bedrooms": None, "bathrooms": None, "sizesqft": None, "latitude": None, "longitude": None, "date_added": None, "description": None, "features": None, "rent_details": {"let_type": None, "deposit": None, "furnish_type": None}, "images": None, "link": None, "agent_email": None, "floorplan": None}
         #Name
         name = soup.find('h1', itemprop = "streetAddress").get_text()
         property_data["address"] = name
@@ -190,46 +193,53 @@ def property_data(propertylist):
         # agent_number = soup.find('div', class_ = "_3E1fAHUmQ27HFUFIBdrW0u")['href'].replace("https://www.rightmove.co.uk/properties/tel:", "")
         # agent_details["Agent Number"] = agent_number
         # property_data["Agent Details"] = agent_details
-        
+        print("Added "+property_data["address"])
         alldata.append(property_data.copy())
-    print(alldata)
     return alldata
 
 
 
 
-def propertyLinks(latest_link):
+def propertyLinks(latest_link, maxValues):
     index = -23
     property_links = []
-    while latest_link not in property_links:
+    foundLatest=False
+    while foundLatest == False and len(property_links) != maxValues:
         print("Getting more Property Links")
         index = index+24
         url =  'https://www.rightmove.co.uk/property-to-rent/find.html?locationIdentifier=REGION%5E87490&minBedrooms=2&maxPrice=80000&index='+str(index)+'&propertyTypes=&mustHave=&dontShow=&furnishTypes=&keywords='
         print(url)
         response = requests.get(url)
         soup = BeautifulSoup(response.text, 'html.parser')
-
         # Find the property listings
         listings = soup.select('.l-searchResult.is-list')
-# Extract the property page link from each listing        
+        # Extract the property page link from each listing        
         for listing in listings:
             link = listing.select_one('.propertyCard-link')['href']
-            property_links.append('https://www.rightmove.co.uk' + link)
-
-        #print(property_links)
+            link = 'https://www.rightmove.co.uk' + link
+            #Check we have not already got data (could modify this to update)
+            if link not in df.link.values and len(property_links) != maxValues:
+                property_links.append(link)
+            else:
+                foundLatest=True
     print("Latest Links Scraped")
-
-    #property_data(property_links)
-    
     return property_links
 
 def saveJson(data):
     with open('data.json', 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
-    
-saveJson(property_data(propertyLinks(latest_link)))
-#test2(latest_link)
 
+def getNewProperties(link):
+    data=property_data(propertyLinks(link, -1))
+    df_new = pd.concat([df, pd.DataFrame(alldata)], ignore_index=True)
+    out =df_new.to_dict('records')
+    saveJson(out)
+
+#saveJson(property_data(propertyLinks(latest_link)))
+#test2(latest_link)
+#link = "https://www.rightmove.co.uk/properties/130397504#/?channel=RES_LET"
+
+getNewProperties(df.iloc[-1].link)
 
 
 #url = 'https://www.rightmove.co.uk/property-to-rent/find.html?locationIdentifier=REGION%5E87490&maxPrice=80000&minBedrooms=2&propertyTypes=&includeSharedAccommodation=false&mustHave=&dontShow=&furnishTypes=&keywords='
