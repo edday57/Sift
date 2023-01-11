@@ -8,11 +8,12 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import re
 import pandas as pd
+from datetime import date
+from datetime import timedelta
+
 # Use a service account.
 cred = credentials.Certificate('homeless3-firebase-adminsdk-v6ud8-acc2b83791.json')
-
 app = firebase_admin.initialize_app(cred)
-
 db = firestore.client()
 
 import firebase_admin
@@ -31,7 +32,7 @@ Bathrooms - Int
 Size - Int (O)
 Latitude - Float 
 Longitude - Float
-Date Added - Str (O)
+Date Added - Str 
 Description - Str (O)
 Features - List of Str (O)
 Rent Details - Dict
@@ -49,7 +50,7 @@ df = pd.read_json('data.json')
 
 newProperty= {"address": None, "price": None, "property_type": None, "bedrooms": None, "bathrooms": None, "sizesqft": None, "latitude": None, "longitude": None, "date_added": None, "description": None, "features": None, "rent_details": {"let_type": None, "deposit": None, "furnish_type": None}, "images": None, "link": None, "agent_email": None, "floorplan": None}
 sampleProperty= {"address": "123 Sample Street", "price": 3400, "property_type": "Flat", "bedrooms": 3, "bathrooms": 3, "sizesqft": 2000, "latitude": 50.0, "longitude": 10.1, "date_added": None, "description": "Description here", "features": None, "rent_details": {"let_type": "Long term", "deposit": 2000, "furnish_type": "Furnished"}, "images": ["link2.com/img"], "link": "rightmove.com/example", "agent_email": None, "floorplan": None}
-latest_link = "https://www.rightmove.co.uk/properties/130573373#/?channel=RES_LET"
+latest_link = "https://www.rightmove.co.uk/properties/130433402#/?channel=RES_LET"
 alldata=[]
 #upload data with a time stamp to find the most recent propertys
 def data_upload(property_data):
@@ -103,7 +104,16 @@ def property_data(propertylist):
         #Date Added
         date_add = soup.find('div', class_ = "_2nk2x6QhNB1UrxdI5KpvaF").get_text()
         #Format today/yesterday to actual date
-        property_data["date_added"] = date_add
+        if "yesterday" in date_add.lower():
+            today = date.today()
+            yesterday = today - timedelta(days = 1)
+            property_data["date_added"] = yesterday.strftime("%d/%m/%Y")
+        elif "Added on " in date_add:
+            date_add.replace("Added on ", "")
+            property_data["date_added"] = date_add
+        else:
+            today = date.today()
+            property_data["date_added"] = today.strftime("%d/%m/%Y")
         #Specs
         specifications = {}
         specification = soup.find_all('div', class_="ZBWaPR-rIda6ikyKpB_E2")
@@ -193,8 +203,13 @@ def property_data(propertylist):
         # agent_number = soup.find('div', class_ = "_3E1fAHUmQ27HFUFIBdrW0u")['href'].replace("https://www.rightmove.co.uk/properties/tel:", "")
         # agent_details["Agent Number"] = agent_number
         # property_data["Agent Details"] = agent_details
-        print("Added "+property_data["address"])
-        alldata.append(property_data.copy())
+        
+        #check we have all nonoptional data
+        if None not in (property_data["address"], property_data["price"], property_data["property_type"], property_data["bedrooms"], property_data["bathrooms"], property_data["latitude"], property_data["longitude"], property_data["date_added"], property_data["images"], property_data["link"]):
+            print("Added "+property_data["address"])
+            alldata.append(property_data.copy())
+        else:
+            print("Insufficient data for "+property_data["address"])
     return alldata
 
 
@@ -218,7 +233,12 @@ def propertyLinks(latest_link, maxValues):
             link = listing.select_one('.propertyCard-link')['href']
             link = 'https://www.rightmove.co.uk' + link
             #Check we have not already got data (could modify this to update)
-            if link not in df.link.values and len(property_links) != maxValues:
+            #Case for new data file
+            if 'link' not in df.columns and len(property_links) != maxValues:
+                property_links.append(link)
+                if link == latest_link:
+                    foundLatest = True
+            elif link not in df.link.values and len(property_links) != maxValues:
                 property_links.append(link)
             else:
                 foundLatest=True
