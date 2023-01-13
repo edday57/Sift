@@ -23,12 +23,11 @@ struct CardLargeComponent: View {
                     .padding(7)
                     .shadow(color: .black.opacity(0.1), radius: 10, y:4)
                 HStack{
-                    Text("Tech")
+                    Text("£1,300 pcm")
                         .foregroundColor(Color("TextGreyLight"))
-                        .underline()
                         .font(.system(size: 14, weight: .medium))
                     Spacer()
-                    Text("4 hours ago")
+                    Text("Listed 20/01/23")
                         .foregroundColor(Color("TextGreyLight"))
                     
                         .font(.system(size: 14, weight: .medium))
@@ -36,7 +35,7 @@ struct CardLargeComponent: View {
                 .frame(width: 270)
                 .padding(.top, 6)
                 
-                Text("Irish Arrests In Global Anti-Fraud Operation")
+                Text("Hanover Terrace Regents Park NW1")
                     .font(.system(size: 18, weight: .bold))
                     .frame(width: 270, alignment: .leading)
                     .multilineTextAlignment(.leading)
@@ -46,7 +45,7 @@ struct CardLargeComponent: View {
                 Spacer()
                 HStack{
                     ProfileImageComponent(size: 30)
-                    Text("Ed Day")
+                    Text("Hamptons Lettings")
                         .foregroundColor(Color("TextGreyLight"))
                     
                         .font(.system(size: 14, weight: .medium))

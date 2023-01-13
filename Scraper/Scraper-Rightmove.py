@@ -4,6 +4,7 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 import json
+import simplejson
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import re
@@ -46,11 +47,11 @@ Link - Str
 Agent Email - Str (O)(F)
 Floorplan - List of Str (O)
  """
-df = pd.read_json('data.json')
+df = pd.read_json('data2.json')
 
 newProperty= {"address": None, "price": None, "property_type": None, "bedrooms": None, "bathrooms": None, "sizesqft": None, "latitude": None, "longitude": None, "date_added": None, "description": None, "features": None, "rent_details": {"let_type": None, "deposit": None, "furnish_type": None}, "images": None, "link": None, "agent_email": None, "floorplan": None}
 sampleProperty= {"address": "123 Sample Street", "price": 3400, "property_type": "Flat", "bedrooms": 3, "bathrooms": 3, "sizesqft": 2000, "latitude": 50.0, "longitude": 10.1, "date_added": None, "description": "Description here", "features": None, "rent_details": {"let_type": "Long term", "deposit": 2000, "furnish_type": "Furnished"}, "images": ["link2.com/img"], "link": "rightmove.com/example", "agent_email": None, "floorplan": None}
-latest_link = "https://www.rightmove.co.uk/properties/130433402#/?channel=RES_LET"
+latest_link = "https://www.rightmove.co.uk/properties/130670996#/?channel=RES_LET"
 alldata=[]
 #upload data with a time stamp to find the most recent propertys
 def data_upload(property_data):
@@ -235,7 +236,8 @@ def propertyLinks(latest_link, maxValues):
             #Check we have not already got data (could modify this to update)
             #Case for new data file
             if 'link' not in df.columns and len(property_links) != maxValues:
-                property_links.append(link)
+                if foundLatest == False:
+                    property_links.append(link)
                 if link == latest_link:
                     foundLatest = True
             elif link not in df.link.values and len(property_links) != maxValues:
@@ -246,8 +248,9 @@ def propertyLinks(latest_link, maxValues):
     return property_links
 
 def saveJson(data):
-    with open('data.json', 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=4)
+    with open('data2.json', 'w', encoding='utf-8') as f:
+        f.write(simplejson.dumps(data, ignore_nan=True, indent=4))
+        #json.dump(data, f, ensure_ascii=False, indent=4)
 
 def getNewProperties(link):
     data=property_data(propertyLinks(link, -1))
@@ -258,7 +261,7 @@ def getNewProperties(link):
 #saveJson(property_data(propertyLinks(latest_link)))
 #test2(latest_link)
 #link = "https://www.rightmove.co.uk/properties/130397504#/?channel=RES_LET"
-
+#getNewProperties(latest_link)
 getNewProperties(df.iloc[-1].link)
 
 

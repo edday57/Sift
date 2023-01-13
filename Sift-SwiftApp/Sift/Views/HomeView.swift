@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
+    @StateObject private var propertyModel = PropertyModel()
     var body: some View {
-    
+        
         ZStack {
             Color("Background")
                 .ignoresSafeArea()
@@ -42,43 +43,42 @@ struct HomeView: View {
                         
                         //Top Buttons
                         HStack(alignment: .center) {
-                            Spacer()
                             Text("All")
                                 .font(.system(size: 14))
                                 .foregroundColor(.white)
-                                .padding(7)
-                                .padding(.leading, 5)
-                                .padding(.trailing, 5)
+                                .padding(5)
+                                .padding(.leading, 7)
+                                .padding(.trailing, 7)
                                 .background(Capsule()
                                     .foregroundColor(Color("PrimaryBlue")))
                             Spacer()
                             Text("For You")
                                 .font(.system(size: 14))
                                 .foregroundColor(.black)
-                                .padding(7)
-                                .padding(.leading, 5)
-                                .padding(.trailing, 5)
+                                .padding(5)
+                                .padding(.leading, 7)
+                                .padding(.trailing, 7)
                                 .background(Capsule()
                                     .foregroundColor(Color("StrokeGrey")))
                             Spacer()
                             Text("Trending")
                                 .font(.system(size: 14))
                                 .foregroundColor(.black)
-                                .padding(7)
-                                .padding(.leading, 5)
-                                .padding(.trailing, 5)
+                                .padding(5)
+                                .padding(.leading, 7)
+                                .padding(.trailing, 7)
                                 .background(Capsule()
                                     .foregroundColor(Color("StrokeGrey")))
                             Spacer()
                             Text("Following")
                                 .font(.system(size: 14))
                                 .foregroundColor(.black)
-                                .padding(7)
-                                .padding(.leading, 5)
-                                .padding(.trailing, 5)
+                                .padding(5)
+                                .padding(.leading, 6)
+                                .padding(.trailing, 6)
                                 .background(Capsule()
                                     .foregroundColor(Color("StrokeGrey")))
-                            Spacer()
+
                         }
                         .padding(.leading, 20)
                         .padding(.trailing, 20)
@@ -118,7 +118,7 @@ struct HomeView: View {
                             Button {
                                 //for you
                             } label: {
-                                Text("See More")
+                                Text(propertyModel.properties[0].address)
                                     .underline()
                                     .font(.system(size: 14))
                                     .padding(20)
@@ -140,6 +140,9 @@ struct HomeView: View {
                     }
                 
             }
+        }
+        .onAppear{
+            propertyModel.getProperties()
         }
        
     }

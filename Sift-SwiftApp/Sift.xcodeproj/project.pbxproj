@@ -10,6 +10,8 @@
 		6424030C2937F9BB00F928F3 /* ArticulateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6424030B2937F9BB00F928F3 /* ArticulateTests.swift */; };
 		642403162937F9BB00F928F3 /* ArticulateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642403152937F9BB00F928F3 /* ArticulateUITests.swift */; };
 		642403182937F9BB00F928F3 /* ArticulateUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642403172937F9BB00F928F3 /* ArticulateUITestsLaunchTests.swift */; };
+		64B47D31296F91DE00E0F4D7 /* PropertyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B47D30296F91DE00E0F4D7 /* PropertyModel.swift */; };
+		64B47D33296F952500E0F4D7 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B47D32296F952500E0F4D7 /* UserModel.swift */; };
 		64B5F24B296F308E00315553 /* SiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F238296F308D00315553 /* SiftApp.swift */; };
 		64B5F24C296F308E00315553 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64B5F239296F308D00315553 /* Assets.xcassets */; };
 		64B5F24D296F308E00315553 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F23B296F308D00315553 /* LoginViewModel.swift */; };
@@ -50,6 +52,8 @@
 		642403112937F9BB00F928F3 /* SiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		642403152937F9BB00F928F3 /* ArticulateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticulateUITests.swift; sourceTree = "<group>"; };
 		642403172937F9BB00F928F3 /* ArticulateUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticulateUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		64B47D30296F91DE00E0F4D7 /* PropertyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyModel.swift; sourceTree = "<group>"; };
+		64B47D32296F952500E0F4D7 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		64B5F238296F308D00315553 /* SiftApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiftApp.swift; sourceTree = "<group>"; };
 		64B5F239296F308D00315553 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64B5F23B296F308D00315553 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -146,6 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				64B5F23B296F308D00315553 /* LoginViewModel.swift */,
+				64B47D30296F91DE00E0F4D7 /* PropertyModel.swift */,
+				64B47D32296F952500E0F4D7 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -327,7 +333,9 @@
 				64B5F250296F308E00315553 /* CardLargeComponent.swift in Sources */,
 				64B5F251296F308E00315553 /* ProfileImageComponent.swift in Sources */,
 				64B5F255296F308E00315553 /* HomeView.swift in Sources */,
+				64B47D33296F952500E0F4D7 /* UserModel.swift in Sources */,
 				64B5F253296F308E00315553 /* ArticleView.swift in Sources */,
+				64B47D31296F91DE00E0F4D7 /* PropertyModel.swift in Sources */,
 				64B5F256296F308E00315553 /* WelcomeView.swift in Sources */,
 				64B5F252296F308E00315553 /* NavBarComponent.swift in Sources */,
 				64B5F254296F308E00315553 /* LoginView.swift in Sources */,
@@ -502,7 +510,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.edwardday.Articulate;
+				PRODUCT_BUNDLE_IDENTIFIER = com.edwardday.Sift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -531,7 +539,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.edwardday.Articulate;
+				PRODUCT_BUNDLE_IDENTIFIER = com.edwardday.Sift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

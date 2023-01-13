@@ -12,19 +12,15 @@ enum AuthenticationError: Error {
     case custom(errorMessage: String)
 }
 
+enum NetworkError: Error {
+    case invalidURL
+    case noData
+    case decodingError
+}
+
 struct LoginRequestBody: Codable{
     let email: String
     let password: String
-}
-
-struct User: Codable{
-    let email: String?
-    let signedUp: Bool?
-    let name: String?
-    let about: String?
-    let image: String?
-    let dob: String?
-    var token: String?
 }
 
 struct LoginResponse: Codable{
@@ -65,6 +61,26 @@ class WebService{
             user.token = token
             //print(token)
             completion(.success(user))
+        }.resume()
+    }
+    
+    func getProperties(token: String, completion: @escaping (Result<[Property], NetworkError>)-> Void){
+        guard let url = URL(string: "http://localhost:5000/api/listings/") else{
+            completion(.failure(.invalidURL))
+            return
+        }
+        var request = URLRequest(url: url)
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data=data, error==nil else{
+                completion(.failure(.noData))
+                return
+            }
+            guard let properties = try? JSONDecoder().decode([Property].self, from: data) else {
+                completion(.failure(.decodingError))
+                return
+            }
+            completion(.success(properties))
         }.resume()
     }
     

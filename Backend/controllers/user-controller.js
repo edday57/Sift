@@ -32,7 +32,7 @@ export const signUp = async(req, res, next) => {
         email,
         password:  hashedPassword,
         signedUp: false,
-        posts: []
+        listings: []
     });
     try{
         await user.save();

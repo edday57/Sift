@@ -82,6 +82,7 @@ struct LoginView: View {
                 
                 Button {
                     loginVM.login()
+                    print (loginVM.isAuthenticated)
                 } label: {
                     RoundedRectangle(cornerRadius: 30)
                         .frame(height: 49)

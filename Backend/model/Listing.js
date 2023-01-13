@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
-const postSchema = Schema({
+const listingSchema = Schema({
     title : {
         type: String,
         required: true
@@ -27,4 +27,4 @@ const postSchema = Schema({
         required: true
     }
 });
-export default mongoose.model("Post", postSchema);
+export default mongoose.model("Listing", listingSchema);
