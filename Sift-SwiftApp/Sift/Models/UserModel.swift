@@ -7,12 +7,16 @@
 
 import Foundation
 
-struct User: Codable{
-    let email: String?
-    let signedUp: Bool?
-    let name: String?
-    let about: String?
-    let image: String?
-    let dob: String?
+struct User: Codable, Identifiable{
+    var id: String {
+        return _id
+    }
+    var _id: String
+    var email: String
+    var signedUp: Bool
+    var name: String?
+    var about: String?
+    var image: String?
+    var dob: String?
     var token: String?
 }

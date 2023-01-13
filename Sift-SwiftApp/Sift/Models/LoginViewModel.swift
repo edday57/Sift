@@ -8,20 +8,42 @@
 import Foundation
 
 class LoginViewModel: ObservableObject {
-    var email = ""
-    var password = ""
+    
     @Published var isAuthenticated = false
+    @Published var currentUser: User?
     
+    init() {
+        let defaults = UserDefaults.standard
+        let token = defaults.object(forKey: "jsonwebtoken")
+        
+        if token != nil {
+            isAuthenticated = true
+            
+            if let userId = defaults.object(forKey: "userid") {
+                fetchUser(userId: userId as! String)
+                print("User fetched")
+            }
+            
+        }
+        else {
+            isAuthenticated = false
+        }
+    }
     
-    func login(){
+    //Environment Object
+    static let shared = LoginViewModel()
+    
+    func login(email: String, password: String){
         let defaults = UserDefaults.standard
         WebService().login(email: email, password: password) { result in
             switch result {
                 case .success(let user):
-                    print(user.token!)
+                    print(user.token)
                     defaults.set(user.token, forKey: "jsonwebtoken")
+                    defaults.setValue(user.user.id, forKey: "userid")
                     DispatchQueue.main.async {
                         self.isAuthenticated = true
+                        self.currentUser = user.user
                     }
                     
                 case .failure(let error):
@@ -29,6 +51,21 @@ class LoginViewModel: ObservableObject {
             }
             
         
+        }
+    }
+    
+    func fetchUser(userId: String){
+        let defaults = UserDefaults.standard
+        WebService().fetchUser(id: userId) { result in
+            switch result {
+            case .success(let user):
+                print(user)
+                defaults.setValue(user.id, forKey: "userid")
+                self.isAuthenticated = true
+                self.currentUser = user
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
     }
 }

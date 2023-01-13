@@ -10,7 +10,7 @@ import SwiftUI
 struct LoginView: View {
     @State private var email = ""
     @State private var password=""
-    @StateObject private var loginVM = LoginViewModel()
+    @EnvironmentObject var loginVM: LoginViewModel
     var body: some View {
         ZStack {
             Color("Background")
@@ -46,7 +46,7 @@ struct LoginView: View {
                             HStack {
                                 Image(systemName: "envelope")
                                     .foregroundColor(Color("TextGreyLight"))
-                                TextField("Email Address", text: $loginVM.email)
+                                TextField("Email Address", text: $email)
                                     .foregroundColor(.black)
                             }
                             .padding(.leading, 10)
@@ -70,7 +70,7 @@ struct LoginView: View {
                             HStack {
                                 Image(systemName: "envelope")
                                     .foregroundColor(Color("TextGreyLight"))
-                                SecureField("Enter Password", text: $loginVM.password)
+                                SecureField("Enter Password", text: $password)
                                     .foregroundColor(.black)
                             }
                             .padding(.leading, 10)
@@ -81,7 +81,7 @@ struct LoginView: View {
                 .padding(.bottom, 20)
                 
                 Button {
-                    loginVM.login()
+                    loginVM.login(email: email, password: password)
                     print (loginVM.isAuthenticated)
                 } label: {
                     RoundedRectangle(cornerRadius: 30)

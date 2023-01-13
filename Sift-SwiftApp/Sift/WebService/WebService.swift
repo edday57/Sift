@@ -24,14 +24,16 @@ struct LoginRequestBody: Codable{
 }
 
 struct LoginResponse: Codable{
-    let success: Bool?
-    let user: User?
-    let token: String?
+    let success: Bool
+    let user: User
+    let token: String
     let message: String?
 }
 
 class WebService{
-    func login(email: String, password: String, completion: @escaping (Result<User, AuthenticationError>)-> Void){
+    
+    //Auth Functions
+    func login(email: String, password: String, completion: @escaping (Result<LoginResponse, AuthenticationError>)-> Void){
         guard let url = URL(string: "http://localhost:5000/api/user/login") else{
             completion(.failure(.custom(errorMessage: "URL is invalid")))
             return
@@ -50,22 +52,32 @@ class WebService{
                 completion(.failure(.invalidCredentials))
                 return
             }
-            guard let token=loginResponse.token else {
-                completion(.failure(.invalidCredentials))
+            completion(.success(loginResponse))
+        }.resume()
+    }
+    
+    func fetchUser(id: String, completion: @escaping (Result <User, AuthenticationError>) -> Void){
+        guard let url = URL(string: "http://localhost:5000/api/user/\(id)") else{
+            completion(.failure(.custom(errorMessage: "URL is invalid")))
+            return
+        }
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data=data, error==nil else{
+                completion(.failure(.custom(errorMessage: "No data recieved.")))
                 return
             }
-            guard var user=loginResponse.user else {
-                completion(.failure(.invalidCredentials))
+            guard let user = try? JSONDecoder().decode(User.self, from: data) else {
+                completion(.failure(.custom(errorMessage: "Error with user data.")))
                 return
             }
-            user.token = token
-            //print(token)
             completion(.success(user))
         }.resume()
     }
     
+    //Listing Functions
     func getProperties(token: String, completion: @escaping (Result<[Property], NetworkError>)-> Void){
-        guard let url = URL(string: "http://localhost:5000/api/listings/") else{
+        guard let url = URL(string: "http://localhost:5000/api/listing/") else{
             completion(.failure(.invalidURL))
             return
         }

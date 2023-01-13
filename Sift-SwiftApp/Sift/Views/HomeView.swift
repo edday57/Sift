@@ -118,7 +118,7 @@ struct HomeView: View {
                             Button {
                                 //for you
                             } label: {
-                                Text(propertyModel.properties[0].address)
+                                Text("text")
                                     .underline()
                                     .font(.system(size: 14))
                                     .padding(20)
@@ -143,6 +143,7 @@ struct HomeView: View {
         }
         .onAppear{
             propertyModel.getProperties()
+            print(propertyModel.properties)
         }
        
     }

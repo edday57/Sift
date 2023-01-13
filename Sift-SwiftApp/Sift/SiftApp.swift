@@ -12,6 +12,7 @@ struct ArticulateApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(LoginViewModel.shared)
         }
     }
 }
