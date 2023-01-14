@@ -17,7 +17,7 @@
             "furnish_type": "Furnished"
         },
         "images": [
-            "https://media.rightmove.co.uk/214k/213929/130460237/213929_25667754_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/211k/210110/117674516/210110_P235846_IMG_00_0000.jpeg",
             "https://media.rightmove.co.uk/214k/213929/130460237/213929_25667754_IMG_01_0000.jpeg",
             "https://media.rightmove.co.uk/214k/213929/130460237/213929_25667754_IMG_02_0000.jpeg",
             "https://media.rightmove.co.uk/214k/213929/130460237/213929_25667754_IMG_03_0000.jpeg",
@@ -33,12 +33,290 @@
         "floorplan": null
     },
     {
+        "address": "Northborough Road, London",
+        "price": 2200,
+        "property_type": "House",
+        "bedrooms": 3,
+        "bathrooms": 1,
+        "sizesqft": null,
+        "latitude": 51.4064,
+        "longitude": -0.12673,
+        "date_added": "12/01/2023",
+        "description": "Holding Deposit: \u00a3507.00SUMMARYA beautifully presented, three-bedroom house has been recently completely refurbished throughout and to the highest of standards. The living space and kitchen on the ground floor have been extended as well as the loft to provide a light and airy master bedroom. The ground floor is comprises of a beautiful kitchen / diner with bi-folding doors to the garden and workshop. There is also a ground floor shower room and WC. The first floor has 2 bedrooms and shower room with the final bedroom on the top floor.Northborough Road is located off the London Road in Norbury which is home to local shops, restaurants and coffee shops and also a short walk to Norbury Train Station with regular services to Clapham Junction and London Victoria.Available February 2023!DESCRIPTIONA beautifully presented, three-bedroom house has been recently completely refurbished throughout and to the highest of standards. The living space and kitchen on the ground floor have been extended as well as the loft to provide a light and airy master bedroom. The ground floor is comprises of a beautiful kitchen / diner with bi-folding doors to the garden and workshop. There is also a ground floor shower room and WC. The first floor has 2 bedrooms and shower room with the final bedroom on the top floor.Northborough Road is located off the London Road in Norbury which is home to local shops, restaurants and coffee shops and also a short walk to Norbury Train Station with regular services to Clapham Junction and London Victoria.Available February 2023!While every reasonable effort is made to ensure the accuracy of descriptions and content, we should make you aware of the following guidance or limitations.\r (1) MONEY LAUNDERING REGULATIONS \u2013 prospective tenants will be asked to produce identification documentation during the referencing process and we would ask for your co-operation in order that there will be no delay in agreeing a tenancy.\r(2) These particulars do not constitute part or all of an offer or contract.\r(3) The text, photographs and plans are for guidance only and are not necessarily comprehensive.\r(4) Measurements: These approximate room sizes are only intended as general guidance. You must verify the dimensions carefully to satisfy yourself of their accuracy.\r(5) You should make your own enquiries regarding the property, particularly in respect of furnishings to be included/excluded and what parking facilities are available.\r(6) Before you enter into any tenancy for one of the advertised properties, the condition and contents of the property will normally be set out in a tenancy agreement and inventory. Please make sure you carefully read and agree with the tenancy agreement and any inventory provided before signing these documents.BrochuresFull Details",
+        "features": [
+            "Recently Refurbished ",
+            "On Street Parking",
+            "Modern Finish Throughout",
+            "Three Bedrooms",
+            "Close to Local Amenities and Transport Links"
+        ],
+        "rent_details": {
+            "let_type": "Long term",
+            "deposit": 2030,
+            "furnish_type": "Ask agent"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/29k/28962/121446902/28962_9997158_EAF_95819_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/83k/82844/130671209/82844_P3915B3510_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/83k/82844/130671209/82844_P3915B3510_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/83k/82844/130671209/82844_P3915B3510_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/83k/82844/130671209/82844_P3915B3510_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/83k/82844/130671209/82844_P3915B3510_IMG_05_0000.jpeg",
+            "https://media.rightmove.co.uk/83k/82844/130671209/82844_P3915B3510_IMG_06_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130671209#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
+        "address": "Romney Mews, Marylebone, London, W1U",
+        "price": 3683,
+        "property_type": "House",
+        "bedrooms": 2,
+        "bathrooms": 1,
+        "sizesqft": 640.0,
+        "latitude": 51.52151,
+        "longitude": -0.15589,
+        "date_added": "12/01/2023",
+        "description": "A two double bedroom mews house with outside space in a gated mews moments from Marylebone High Street and Baker Street Station.\rThe property comprises; Entrance hallway, two double bedrooms, family bathroom, first floor reception room, fully fitted separate kicthen and balcony. EPC \u2013 D",
+        "features": [
+            "Gated Mews",
+            "Balcony",
+            "Council Tax (Westminster) Band F",
+            "Security Deposit \u00a34,250",
+            "Minimum Tenancy 12 months"
+        ],
+        "rent_details": {
+            "let_type": "Long term",
+            "deposit": null,
+            "furnish_type": "Part furnished"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/94k/93215/130671191/93215_MAL230002_L_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/94k/93215/130671191/93215_MAL230002_L_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/94k/93215/130671191/93215_MAL230002_L_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/94k/93215/130671191/93215_MAL230002_L_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/94k/93215/130671191/93215_MAL230002_L_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/94k/93215/130671191/93215_MAL230002_L_IMG_05_0000.jpeg",
+            "https://media.rightmove.co.uk/94k/93215/130671191/93215_MAL230002_L_IMG_06_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130671191#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
+        "address": "Balham Park Road, London, SW12",
+        "price": 2900,
+        "property_type": "Terraced",
+        "bedrooms": 3,
+        "bathrooms": 2,
+        "sizesqft": null,
+        "latitude": 51.442876,
+        "longitude": -0.157737,
+        "date_added": "12/01/2023",
+        "description": "A Three Double Bedroom Maisonette in the Heart of Balham.This fantastic three double bedroom maisonette is split over two floors and features three good sized double bedrooms one being an en suite, an additional bathroom, open plan living and dining area and an additional laundry room. The property is finished to good standard throughout and boasts a lot of natural light. Located on one of the most exclusive roads in Balham, Balham Park Road, the property is just 0.3 miles to Balham overland and underground station meaning there is a plethora of  amenities, shops, bars and restaurants just moments from your door.BrochuresWeb DetailsParticulars",
+        "features": [
+            "Three Double Bedrooms",
+            "Two Bathrooms",
+            "Close to Balham Station",
+            "Split Level",
+            "Permit Parking Available",
+            "Laundry Room"
+        ],
+        "rent_details": {
+            "let_type": "Long term",
+            "deposit": 3346,
+            "furnish_type": "Furnished or unfurnished, landlord is flexible"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/146k/145463/130671164/145463_HEA203069_L_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/146k/145463/130671164/145463_HEA203069_L_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/146k/145463/130671164/145463_HEA203069_L_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/146k/145463/130671164/145463_HEA203069_L_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/146k/145463/130671164/145463_HEA203069_L_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/146k/145463/130671164/145463_HEA203069_L_IMG_05_0000.jpeg",
+            "https://media.rightmove.co.uk/146k/145463/130671164/145463_HEA203069_L_IMG_06_0000.jpeg",
+            "https://media.rightmove.co.uk/146k/145463/130671164/145463_HEA203069_L_IMG_07_0000.jpeg",
+            "https://media.rightmove.co.uk/146k/145463/130671164/145463_HEA203069_L_IMG_08_0000.jpeg",
+            "https://media.rightmove.co.uk/146k/145463/130671164/145463_HEA203069_L_IMG_09_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130671164#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": "https://media.rightmove.co.uk/dir/146k/145463/130671164/145463_HEA203069_L_FLP_00_0000.jpeg"
+    },
+    {
+        "address": "Worple Road, Wimbledon, London, SW19",
+        "price": 4334,
+        "property_type": "Flat",
+        "bedrooms": 2,
+        "bathrooms": 2,
+        "sizesqft": 1083.0,
+        "latitude": 51.420904,
+        "longitude": -0.210282,
+        "date_added": "12/01/2023",
+        "description": "SHORT LET. A superb 2 bed flat situated on the 4th floor of a secure development and ideally located for the amenities and transport links of Wimbledon.Wimbledon Central is very conveniently located for the amenities of Wimbledon with a large range of shops, bars and restaurants. Excellent transport links can be found moments away. Please use the reference CHPK2616565 when contacting Foxtons.BrochuresProperty detailsSuper sized images",
+        "features": [
+            "Large reception room",
+            "Well-equipped kitchen",
+            "Main bedroom with en suite",
+            "Well proportioned second bedroom",
+            "Lift and Concierge",
+            "Great location"
+        ],
+        "rent_details": {
+            "let_type": "Short term",
+            "deposit": null,
+            "furnish_type": "Ask agent"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/16k/15975/130671107/15975_1225954_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15975/130671107/15975_1225954_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15975/130671107/15975_1225954_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15975/130671107/15975_1225954_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15975/130671107/15975_1225954_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15975/130671107/15975_1225954_IMG_05_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15975/130671107/15975_1225954_IMG_06_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15975/130671107/15975_1225954_IMG_07_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130671107#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
+        "address": "Ability Place, South Quay, Cross Harbour, Canary Wharf, London, E14 9HB",
+        "price": 3012,
+        "property_type": "Flat",
+        "bedrooms": 2,
+        "bathrooms": 2,
+        "sizesqft": null,
+        "latitude": 51.49838,
+        "longitude": -0.018395,
+        "date_added": "12/01/2023",
+        "description": "Jack Barclay Estates are offering this luxurious 2 bedroom 2 bathroom apartment situated on the 20th floor of an exclusive dock-side development moments from the bustling heart of Canary Wharf and South Quay DLR Station and benefits from lift access, balcony, concierge and a range of leisure facilities. The property comprises a vast open-plan reception/kitchen with glazed door to balcony, double bedroom and a chic bathroom.Transport links close to the property include South Quay and Crossharbour DLR Stations with Canary Wharf Station (Jubilee and DLR services) a short distance away.For the motorist, the property's location provides quick and easy access to the A1206, A12, A13 and both the Blackwall and Limehouse Link Tunnels for travel to and from Canary Wharf, the City, central London and beyond.",
+        "features": [
+            "Two Bedroom Apartments",
+            "Two Bathrooms",
+            "Open Kitchen Lounge",
+            "Balcony With Stunning Views",
+            "24hr Concierge & Gym",
+            "Min's To Amenites & Transport",
+            "Available FEBRUARY",
+            "Call Now To View On  "
+        ],
+        "rent_details": {
+            "let_type": "Long term",
+            "deposit": null,
+            "furnish_type": "Furnished"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/214k/213815/130671104/213815_528327_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/214k/213815/130671104/213815_528327_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/214k/213815/130671104/213815_528327_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/214k/213815/130671104/213815_528327_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/214k/213815/130671104/213815_528327_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/214k/213815/130671104/213815_528327_IMG_05_0000.jpeg",
+            "https://media.rightmove.co.uk/214k/213815/130671104/213815_528327_IMG_06_0000.jpeg",
+            "https://media.rightmove.co.uk/214k/213815/130671104/213815_528327_IMG_07_0000.jpeg",
+            "https://media.rightmove.co.uk/214k/213815/130671104/213815_528327_IMG_08_0000.jpeg",
+            "https://media.rightmove.co.uk/214k/213815/130671104/213815_528327_IMG_09_0000.jpeg",
+            "https://media.rightmove.co.uk/214k/213815/130671104/213815_528327_IMG_10_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130671104#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
+        "address": "Church Lane, Tooting Bec, London, SW17",
+        "price": 4117,
+        "property_type": "Flat",
+        "bedrooms": 3,
+        "bathrooms": 2,
+        "sizesqft": 711.0,
+        "latitude": 51.427173,
+        "longitude": -0.154158,
+        "date_added": "12/01/2023",
+        "description": "SHORT LET. This delightful 3 bedroom flat is situated on the 1st floor of converted period property and benefits from bright and spacious living space throughout.Church Lane is located close to the green open spaces of Tooting Bec Common and a good selection of shops, bars and restaurants on Upper Tooting Road. The nearest stations are Tooting (National Rail) and Tooting Bec (Northern Line). Please use the reference NWHM4143382 when contacting Foxtons.BrochuresProperty detailsSuper sized images",
+        "features": [
+            "Lovely 3 bedroom flat in a period conversion",
+            "Generously proportioned on the 1st floor",
+            "Modern open plan kitchen with integrated appliances",
+            "Nice finish throughout",
+            "Double size bedrooms",
+            "2 bathrooms, one of which is en-suite",
+            "Moments from Tooting Common",
+            "Very Energy efficient with a B-82 rating"
+        ],
+        "rent_details": {
+            "let_type": "Short term",
+            "deposit": null,
+            "furnish_type": "Ask agent"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/112k/111050/130671080/111050_1225965_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/112k/111050/130671080/111050_1225965_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/112k/111050/130671080/111050_1225965_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/112k/111050/130671080/111050_1225965_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/112k/111050/130671080/111050_1225965_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/112k/111050/130671080/111050_1225965_IMG_05_0000.jpeg",
+            "https://media.rightmove.co.uk/112k/111050/130671080/111050_1225965_IMG_06_0000.jpeg",
+            "https://media.rightmove.co.uk/112k/111050/130671080/111050_1225965_IMG_07_0000.jpeg",
+            "https://media.rightmove.co.uk/112k/111050/130671080/111050_1225965_IMG_08_0000.jpeg",
+            "https://media.rightmove.co.uk/112k/111050/130671080/111050_1225965_IMG_09_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130671080#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
+        "address": "Church Lane, Tooting Bec, London, SW17",
+        "price": 2600,
+        "property_type": "Flat",
+        "bedrooms": 3,
+        "bathrooms": 2,
+        "sizesqft": 711.0,
+        "latitude": 51.427173,
+        "longitude": -0.154158,
+        "date_added": "12/01/2023",
+        "description": "LONG LET. This delightful 3 bedroom flat is situated on the 1st floor of converted period property and benefits from bright and spacious living space throughout.Church Lane is located close to the green open spaces of Tooting Bec Common and a good selection of shops, bars and restaurants on Upper Tooting Road. The nearest stations are Tooting (National Rail) and Tooting Bec (Northern Line). Please use the reference NWHM4143382 when contacting Foxtons.BrochuresProperty detailsSuper sized images",
+        "features": [
+            "Lovely 3 bedroom flat in a period conversion",
+            "Generously proportioned on the 1st floor",
+            "Modern open plan kitchen with integrated appliances",
+            "Nice finish throughout",
+            "Double size bedrooms",
+            "2 bathrooms, one of which is en-suite",
+            "Moments from Tooting Common",
+            "Very Energy efficient with a B-82 rating",
+            "Available with Zero Deposit"
+        ],
+        "rent_details": {
+            "let_type": "Long term",
+            "deposit": null,
+            "furnish_type": "Part furnished"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/112k/111050/130671083/111050_1225964_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/112k/111050/130671083/111050_1225964_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/112k/111050/130671083/111050_1225964_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/112k/111050/130671083/111050_1225964_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/112k/111050/130671083/111050_1225964_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/112k/111050/130671083/111050_1225964_IMG_05_0000.jpeg",
+            "https://media.rightmove.co.uk/112k/111050/130671083/111050_1225964_IMG_06_0000.jpeg",
+            "https://media.rightmove.co.uk/112k/111050/130671083/111050_1225964_IMG_07_0000.jpeg",
+            "https://media.rightmove.co.uk/112k/111050/130671083/111050_1225964_IMG_08_0000.jpeg",
+            "https://media.rightmove.co.uk/112k/111050/130671083/111050_1225964_IMG_09_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130671083#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
         "address": "Roxburgh Road, West Norwood, London, SE27",
         "price": 3500,
         "property_type": "House",
         "bedrooms": 4,
         "bathrooms": 1,
-        "sizesqft": 1139,
+        "sizesqft": 1139.0,
         "latitude": 51.427244,
         "longitude": -0.106214,
         "date_added": "12/01/2023",
@@ -66,6 +344,657 @@
             "https://media.rightmove.co.uk/72k/71419/130671071/71419_1225806_IMG_05_0000.jpeg"
         ],
         "link": "https://www.rightmove.co.uk/properties/130671071#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
+        "address": "Alba Gardens, Golders Green, London, NW11",
+        "price": 3300,
+        "property_type": "Semi-Detached",
+        "bedrooms": 4,
+        "bathrooms": 2,
+        "sizesqft": 1854.0,
+        "latitude": 51.578734,
+        "longitude": -0.206701,
+        "date_added": "12/01/2023",
+        "description": "LONG LET. This spacious 4 bedroom semi-detached house is conveniently located close to the amenities of Golders Green and is well-presented throughout.Located close to amenities in Golders Green, the property is close to Brent Cross Shopping Centre with the green spaces of Brent River Park close by. Please use the reference CHPK0994723 when contacting Foxtons.BrochuresProperty detailsSuper sized images",
+        "features": [
+            "Great 4 bedroom house",
+            "Spacious layout",
+            "Well-presented throughout",
+            "Generous dining room with glass doors to garden",
+            "Bay-fronted reception room",
+            "Modern kitchen",
+            "4 well-proportioned bedrooms"
+        ],
+        "rent_details": {
+            "let_type": "Long term",
+            "deposit": null,
+            "furnish_type": "Unfurnished"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/88k/87812/130671077/87812_1225384_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/88k/87812/130671077/87812_1225384_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/88k/87812/130671077/87812_1225384_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/88k/87812/130671077/87812_1225384_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/88k/87812/130671077/87812_1225384_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/88k/87812/130671077/87812_1225384_IMG_05_0000.jpeg",
+            "https://media.rightmove.co.uk/88k/87812/130671077/87812_1225384_IMG_06_0000.jpeg",
+            "https://media.rightmove.co.uk/88k/87812/130671077/87812_1225384_IMG_07_0000.jpeg",
+            "https://media.rightmove.co.uk/88k/87812/130671077/87812_1225384_IMG_08_0000.jpeg",
+            "https://media.rightmove.co.uk/88k/87812/130671077/87812_1225384_IMG_09_0000.jpeg",
+            "https://media.rightmove.co.uk/88k/87812/130671077/87812_1225384_IMG_10_0000.jpeg",
+            "https://media.rightmove.co.uk/88k/87812/130671077/87812_1225384_IMG_11_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130671077#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
+        "address": "St Marys Gate, Kensington, London, W8",
+        "price": 4334,
+        "property_type": "Flat",
+        "bedrooms": 2,
+        "bathrooms": 2,
+        "sizesqft": 974.0,
+        "latitude": 51.496805,
+        "longitude": -0.191061,
+        "date_added": "12/01/2023",
+        "description": "LONG LET. A modern 2 bedroom 5th floor flat situated in prestigious Kensington Green, a secure development with 24-hour porterage, underground parking, communal gardens, on-site gym and library.Kensington Green is ideally situated moments from the boutiques found on Gloucester Road and Gloucester Road Underground Station (Piccadilly, Circle and District lines) is also close by. Please use the reference KNCL0034626 when contacting Foxtons.BrochuresProperty detailsSuper sized images",
+        "features": [
+            "Modern 2 bedroom flat",
+            "Set within a gated development",
+            "3 Private balconies",
+            "Well equipped kitchen",
+            "Main bedroom with en-suite",
+            "Excellent location"
+        ],
+        "rent_details": {
+            "let_type": "Long term",
+            "deposit": null,
+            "furnish_type": "Furnished"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/16k/15942/130671041/15942_1225129_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15942/130671041/15942_1225129_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15942/130671041/15942_1225129_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15942/130671041/15942_1225129_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15942/130671041/15942_1225129_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15942/130671041/15942_1225129_IMG_05_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130671041#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
+        "address": "Fulham Road, Chelsea, London, SW3",
+        "price": 4117,
+        "property_type": "Flat",
+        "bedrooms": 2,
+        "bathrooms": 2,
+        "sizesqft": 830.0,
+        "latitude": 51.492259,
+        "longitude": -0.170471,
+        "date_added": "12/01/2023",
+        "description": "LONG LET. Arranged on the 4th floor (with lift) of a prestigious building in Chelsea, this stunning 2 bedroom flat presented in excellent condition after a recent refurbishment within the heart of Chelsea.The flat is ideally positioned moments from a range of interesting shops, cafes and restaurants on Fulham Road. Both South Kensington and Knightsbridge are within easy walking distance, with Chelsea's King's Road also only moments away. Please use the reference CHPK2572547 when contacting Foxtons.BrochuresProperty detailsSuper sized images",
+        "features": [
+            "Gorgeous 2 bedroom flat with south facing rooms",
+            "Generous sized recpetion with ample space to dine",
+            "2 double bedrooms, the master bedroom with an en suite",
+            "Kitchen with a full compliment of integrated appliances",
+            "Smart bathroom and ample storage",
+            "Recently refurbished interior",
+            "Popular block with live-in porter and lift"
+        ],
+        "rent_details": {
+            "let_type": "Long term",
+            "deposit": null,
+            "furnish_type": "Furnished or unfurnished, landlord is flexible"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/17k/16023/130671032/16023_1225953_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671032/16023_1225953_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671032/16023_1225953_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671032/16023_1225953_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671032/16023_1225953_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671032/16023_1225953_IMG_05_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671032/16023_1225953_IMG_06_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671032/16023_1225953_IMG_07_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671032/16023_1225953_IMG_08_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671032/16023_1225953_IMG_09_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130671032#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
+        "address": "Lower Sloane Street, Sloane Square, London, SW1W",
+        "price": 3250,
+        "property_type": "Flat",
+        "bedrooms": 2,
+        "bathrooms": 1,
+        "sizesqft": 651.0,
+        "latitude": 51.491405,
+        "longitude": -0.157815,
+        "date_added": "12/01/2023",
+        "description": "LONG LET. Arranged on the 2nd floor of a handsome, mid terrace red brick conversion, this superb 2 bedroom apartment is presented in excellent condition, and boasts a superb location close to Sloane Square.Lower Sloane Street is ideally located for the many local boutiques and shops available around Sloane Square and Kings Road while Sloane Square underground station is nearby. Please use the reference CHPK2159463 when contacting Foxtons.BrochuresProperty detailsSuper sized images",
+        "features": [
+            "Smart 2 bedroom apartment",
+            "Red brick mansion building",
+            "Light reception with open plan kitchen",
+            "Bay fronted bedroom",
+            "2nd bedroom with mezzanine sleeping area",
+            "Close to boutiques and shops"
+        ],
+        "rent_details": {
+            "let_type": "Long term",
+            "deposit": null,
+            "furnish_type": "Furnished"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/17k/16023/130671035/16023_1226015_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671035/16023_1226015_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671035/16023_1226015_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671035/16023_1226015_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671035/16023_1226015_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671035/16023_1226015_IMG_05_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671035/16023_1226015_IMG_06_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671035/16023_1226015_IMG_07_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671035/16023_1226015_IMG_08_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671035/16023_1226015_IMG_09_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671035/16023_1226015_IMG_10_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130671035#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
+        "address": "Beaufort Gardens, Knightsbridge, London, SW3",
+        "price": 3250,
+        "property_type": "Flat",
+        "bedrooms": 2,
+        "bathrooms": 2,
+        "sizesqft": 716.0,
+        "latitude": 51.498232,
+        "longitude": -0.164873,
+        "date_added": "12/01/2023",
+        "description": "LONG LET. A wonderful two bedroom flat located on a secluded tree-lined street close to Harrods and Hyde Park, featuring a substantial reception/ dining room and a fitted kitchen.The property is situated mid-terrace on this secluded tree-lined street with an excellent range of bars, cafes and restaurants close by. Knightsbridge Underground Station (Piccadilly Line) is moments away and the A4 is also nearby. Please use the reference CHPK3406898 when contacting Foxtons.BrochuresProperty detailsSuper sized images",
+        "features": [
+            "A wonderful 2 bedroom flat",
+            "Located on the third floor",
+            "Well proportioned reception room with space to dine",
+            "Spacious and well equipped kitchen",
+            "Main bedroom with en suite bathroom and balcony",
+            "Second bedroom and shower room"
+        ],
+        "rent_details": {
+            "let_type": "Long term",
+            "deposit": null,
+            "furnish_type": "Furnished"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/17k/16023/130671038/16023_1225958_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671038/16023_1225958_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671038/16023_1225958_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671038/16023_1225958_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671038/16023_1225958_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671038/16023_1225958_IMG_05_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671038/16023_1225958_IMG_06_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671038/16023_1225958_IMG_07_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671038/16023_1225958_IMG_08_0000.jpeg",
+            "https://media.rightmove.co.uk/17k/16023/130671038/16023_1225958_IMG_09_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130671038#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
+        "address": "Coningham Road, Shepherd's Bush, London, W12",
+        "price": 3000,
+        "property_type": "Flat",
+        "bedrooms": 2,
+        "bathrooms": 1,
+        "sizesqft": 530.0,
+        "latitude": 51.504766,
+        "longitude": -0.23554,
+        "date_added": "12/01/2023",
+        "description": "SHORT LET. Set within a lovely period conversion, this modern 2 bedroom raised ground floor flat is presented in excellent condition boasting bright open-plan accommodation and high ceilings.Coningham Road is a striking residential location, which is well served by a number of local shops and services with the extensive selection of Uxbridge Road and Shepherds Bush nearby. Please use the reference CHPK2305692 when contacting Foxtons.BrochuresProperty detailsSuper sized images",
+        "features": [
+            "Modern 2 bedroom raised ground floor flat",
+            "Set within a fantastic period conversion",
+            "Bright and spacious reception room",
+            "Well equipped open plan kitchen",
+            "Main and 2nd bedrooms with fitted wardrobes",
+            "Shower room and separate WC",
+            "Great location close to amenities"
+        ],
+        "rent_details": {
+            "let_type": "Short term",
+            "deposit": null,
+            "furnish_type": "Ask agent"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/99k/98531/130671014/98531_1225982_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/99k/98531/130671014/98531_1225982_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/99k/98531/130671014/98531_1225982_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/99k/98531/130671014/98531_1225982_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/99k/98531/130671014/98531_1225982_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/99k/98531/130671014/98531_1225982_IMG_05_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130671014#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
+        "address": "Coningham Road, Shepherd's Bush, London, W12",
+        "price": 2200,
+        "property_type": "Flat",
+        "bedrooms": 2,
+        "bathrooms": 1,
+        "sizesqft": 530.0,
+        "latitude": 51.504766,
+        "longitude": -0.23554,
+        "date_added": "12/01/2023",
+        "description": "LONG LET. Set within a lovely period conversion, this modern 2 bedroom raised ground floor flat is presented in excellent condition boasting bright open-plan accommodation and high ceilings.Coningham Road is a striking residential location, which is well served by a number of local shops and services with the extensive selection of Uxbridge Road and Shepherds Bush nearby. Please use the reference CHPK2305692 when contacting Foxtons.BrochuresProperty detailsSuper sized images",
+        "features": [
+            "Modern 2 bedroom raised ground floor flat",
+            "Set within a fantastic period conversion",
+            "Bright and spacious reception room",
+            "Well equipped open plan kitchen",
+            "Main and 2nd bedrooms with fitted wardrobes",
+            "Shower room and separate WC",
+            "Great location close to amenities",
+            "Available with Zero Deposit"
+        ],
+        "rent_details": {
+            "let_type": "Long term",
+            "deposit": null,
+            "furnish_type": "Unfurnished"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/99k/98531/130671017/98531_1225983_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/99k/98531/130671017/98531_1225983_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/99k/98531/130671017/98531_1225983_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/99k/98531/130671017/98531_1225983_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/99k/98531/130671017/98531_1225983_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/99k/98531/130671017/98531_1225983_IMG_05_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130671017#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
+        "address": "Putney Hill, Putney, London, SW15",
+        "price": 3600,
+        "property_type": "Flat",
+        "bedrooms": 2,
+        "bathrooms": 2,
+        "sizesqft": 744.0,
+        "latitude": 51.457321,
+        "longitude": -0.219096,
+        "date_added": "12/01/2023",
+        "description": "SHORT LET. An exceptional and modern 3rd floor 2 bedroom apartment offering a great layout with reception room/kitchen, 2 bathrooms, a balcony and study.A modern architect designed building ideally located withing walking distance of the many amenities of Putney High St; transport via Putney Overground and a short walk to the green spaces of Putney Heath. Please use the reference CHPK3652161 when contacting Foxtons.BrochuresProperty detailsSuper sized images",
+        "features": [
+            "Exceptional modern 2 bedroom 3rd floor apartment",
+            "Great contemporary layout with balcony",
+            "Ensuite bathroom and 2nd bathroom",
+            "Kitchen / reception room",
+            "Sought after Modern development",
+            "Underground Parking",
+            "Concierge"
+        ],
+        "rent_details": {
+            "let_type": "Short term",
+            "deposit": null,
+            "furnish_type": "Ask agent"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/16k/15963/130671002/15963_1225904_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15963/130671002/15963_1225904_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15963/130671002/15963_1225904_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15963/130671002/15963_1225904_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15963/130671002/15963_1225904_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15963/130671002/15963_1225904_IMG_05_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15963/130671002/15963_1225904_IMG_06_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15963/130671002/15963_1225904_IMG_07_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15963/130671002/15963_1225904_IMG_08_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15963/130671002/15963_1225904_IMG_09_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15963/130671002/15963_1225904_IMG_10_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15963/130671002/15963_1225904_IMG_11_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15963/130671002/15963_1225904_IMG_12_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15963/130671002/15963_1225904_IMG_13_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130671002#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
+        "address": "Marsham Street, Westminster, London, SW1P",
+        "price": 5850,
+        "property_type": "Flat",
+        "bedrooms": 3,
+        "bathrooms": 2,
+        "sizesqft": 1619.0,
+        "latitude": 51.493249,
+        "longitude": -0.128904,
+        "date_added": "12/01/2023",
+        "description": "LONG LET. Finished to an immaculate standard throughout, this impressive 3 bedroom apartment features a superb living space close to a wealth of local amenities and transport links.Marsham Street is located moments from the River Thames and the many amenities of Westminster. The nearest underground stations are Pimlico, St James's Park and Westminster. Please use the reference CHPK2178263 when contacting Foxtons.BrochuresProperty detailsSuper sized images",
+        "features": [
+            "Charming 3 bedroom Seventh floor flat",
+            "Set within a secure purpose built development",
+            "Bright and spacious reception with room-to-dine",
+            "Well-equipped kitchen",
+            "Large master bedroom with en suite bathroom",
+            "2 further bedrooms, family bathroom and WC",
+            "Fantastic location"
+        ],
+        "rent_details": {
+            "let_type": "Long term",
+            "deposit": null,
+            "furnish_type": "Unfurnished"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_05_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_06_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_07_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_08_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_09_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_10_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_11_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_12_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_13_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_14_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_15_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_16_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_17_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_18_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_19_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_20_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_21_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_22_0000.jpeg",
+            "https://media.rightmove.co.uk/85k/84889/130670996/84889_1225986_IMG_23_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130670996#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
+        "address": "Discovery Dock East, 2 South Quay Square, Canary Wharf, London, E14 9RU",
+        "price": 2990,
+        "property_type": "Flat",
+        "bedrooms": 2,
+        "bathrooms": 2,
+        "sizesqft": null,
+        "latitude": 51.50123,
+        "longitude": -0.01809,
+        "date_added": "12/01/2023",
+        "description": "Jack Barclay Estates are pleased to offer a superb dock-side location moments from the bustling heart of Canary Wharf, this luxurious 2 bedroom flat benefits from a spacious interior, concierge, lift access and incredible views towards Canary Wharf. The property comprises a vast reception room/kitchen with floor-to-ceiling windows offering views towards Canary Wharf and the O2 Arena, spacious master bedroom with fitted wardrobes and dressing table plus en suite bathroom, second bedroom and chic bathroomThe development offer 24 hours concierge, onsite swimming pool, gymnasuim and spa treatments, also minutes walk to Canary Wharf's centre and Tube. Transport links close to the property include South Quay and Heron Quays DLR Station with Canary Wharf Station (DLR and Jubilee Line services) a short distance away. For the motorist, the property's location provides quick and easy access to the A1206, A12, A13 and both the Blackwall and Limehouse Link Tunnels for travel to and from Canary Wharf, the City, central London and beyond.",
+        "features": [
+            "2 Double Bedroom Apartment",
+            "2 Bathrooms",
+            "Open Plan Lounge and Kitchen",
+            "Furnished",
+            "24 Hours Concierge, Gym & Swimming Pool",
+            "Parking",
+            "Sec's From Transprt & Amenities",
+            "Available Now",
+            "Call Now To View  "
+        ],
+        "rent_details": {
+            "let_type": "Long term",
+            "deposit": null,
+            "furnish_type": "Furnished"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/214k/213815/130670990/213815_484577_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/214k/213815/130670990/213815_484577_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/214k/213815/130670990/213815_484577_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/214k/213815/130670990/213815_484577_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/214k/213815/130670990/213815_484577_IMG_04_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130670990#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
+        "address": "Clapham Common West Side, London, SW4",
+        "price": 1950,
+        "property_type": "Flat",
+        "bedrooms": 2,
+        "bathrooms": 1,
+        "sizesqft": null,
+        "latitude": 51.459643,
+        "longitude": -0.158067,
+        "date_added": "12/01/2023",
+        "description": "A spacious two double bedroom flat arranged over the top floor of a Victorian house overlooking Clapham Common. The property has been neutrally decorated throughout and benefits from two equally sized double bedrooms, bright reception room, separate fully fitted kitchen and tiled bathroom.The property is ideally located overlooking the green open spaces of Clapham Common and close to the many shops, bars and restaurants of Battersea Rise and Northcote Road. Clapham Junction Mainline Station is also within close proximity which provides easy access into Central London and The City.BrochuresWeb Details",
+        "features": [
+            "Two Bedrooms",
+            "Separate Kitchen",
+            "Victorian Conversion",
+            "Overlooking Clapham Common"
+        ],
+        "rent_details": {
+            "let_type": "Long term",
+            "deposit": 2250,
+            "furnish_type": "Furnished"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/45k/44538/130070468/44538_BCL030003_L_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/45k/44538/130070468/44538_BCL030003_L_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/45k/44538/130070468/44538_BCL030003_L_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/45k/44538/130070468/44538_BCL030003_L_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/45k/44538/130070468/44538_BCL030003_L_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/45k/44538/130070468/44538_BCL030003_L_IMG_05_0000.jpeg",
+            "https://media.rightmove.co.uk/45k/44538/130070468/44538_BCL030003_L_IMG_06_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130070468#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": "https://media.rightmove.co.uk/dir/45k/44538/130070468/44538_BCL030003_L_FLP_00_0000.jpeg"
+    },
+    {
+        "address": "Portobello Road, Portobello, London, W11",
+        "price": 2579,
+        "property_type": "Flat",
+        "bedrooms": 2,
+        "bathrooms": 2,
+        "sizesqft": 538.0,
+        "latitude": 51.515312,
+        "longitude": -0.205273,
+        "date_added": "12/01/2023",
+        "description": "LONG LET. Ideally positioned for the amenities on Portobello Road, this exceptional 2 bedroom flat boasts a stunning open-plan reception room with sleek modern kitchen and a lovely main bedroom with en suite.Wonderfully located on the Portobello Road with its caf\u00e9s, shops and market stalls the property is well served by the further amenities of Notting Hill Gate and Westbourne Park. Please use the reference NHGT0078798 when contacting Foxtons.BrochuresProperty detailsSuper sized images",
+        "features": [
+            "Contemporary 2 bedroom 1st floor flat",
+            "Situated on the world famous Portobello Road",
+            "Stunning open plan reception room",
+            "Sleek modern kitchen",
+            "Lovely main bedroom with en-suite",
+            "Ample sized 2nd bedroom",
+            "Available with Zero Deposit"
+        ],
+        "rent_details": {
+            "let_type": "Long term",
+            "deposit": null,
+            "furnish_type": "Furnished"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/16k/15945/130670987/15945_1225906_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15945/130670987/15945_1225906_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15945/130670987/15945_1225906_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15945/130670987/15945_1225906_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15945/130670987/15945_1225906_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15945/130670987/15945_1225906_IMG_05_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15945/130670987/15945_1225906_IMG_06_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15945/130670987/15945_1225906_IMG_07_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130670987#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
+        "address": "Sunderland Terrace, Westbourne Grove, London, W2",
+        "price": 2925,
+        "property_type": "Flat",
+        "bedrooms": 2,
+        "bathrooms": 1,
+        "sizesqft": 615.0,
+        "latitude": 51.51641,
+        "longitude": -0.191856,
+        "date_added": "12/01/2023",
+        "description": "LONG LET. Set on a lovely tree-lined street, this stylish 2 bedroom flat boasts contemporary open-plan living space with underfloor heating and a patio garden.Sunderland Terrace is ideally located for the restaurants, shops and bars of Westbourne Grove and Notting Hill. For transport, Royal Oak and Bayswater underground stations are close by. Please use the reference NHGT0197628 when contacting Foxtons.BrochuresProperty detailsSuper sized images",
+        "features": [
+            "A superb 2 bedroom lower ground floor flat",
+            "Stylish interior decor and fittings",
+            "Sleek tiled floor with under floor heating",
+            "Open plan kitchen with dining area",
+            "Bespoke bathroom with limestone finish",
+            "Private patio area",
+            "Great location close to amenities and transport links",
+            "Available with Zero Deposit"
+        ],
+        "rent_details": {
+            "let_type": "Long term",
+            "deposit": null,
+            "furnish_type": "Unfurnished"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/16k/15945/130670984/15945_1225907_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15945/130670984/15945_1225907_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15945/130670984/15945_1225907_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15945/130670984/15945_1225907_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15945/130670984/15945_1225907_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15945/130670984/15945_1225907_IMG_05_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15945/130670984/15945_1225907_IMG_06_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130670984#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
+        "address": "Eyre Court, St John's Wood, London, NW8",
+        "price": 5070,
+        "property_type": "Flat",
+        "bedrooms": 3,
+        "bathrooms": 2,
+        "sizesqft": 1099.0,
+        "latitude": 51.535102,
+        "longitude": -0.176092,
+        "date_added": "12/01/2023",
+        "description": "LONG LET. Arranged on the ground floor of a grand mansion block, this recently refurbished 3 bedroom flat boasts generously proportioned interiors and benefits from a stylish, well-equipped kitchen.Located close to Lords Cricket Ground and Regents Park, with amenities in St Johns Wood and South Hampstead all easily accessible. Please use the reference CHPK0893172 when contacting Foxtons.BrochuresProperty detailsSuper sized images",
+        "features": [
+            "Impressive 3 bedroom flat",
+            "Grand mansion block",
+            "Ground floor",
+            "Concierge services",
+            "Sought-after location",
+            "Recently refurbished",
+            "En suite main bedroom",
+            "Stylish, well-equipped kitchen"
+        ],
+        "rent_details": {
+            "let_type": "Long term",
+            "deposit": null,
+            "furnish_type": "Unfurnished"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/16k/15960/130627400/15960_1222155_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15960/130627400/15960_1222155_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15960/130627400/15960_1222155_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15960/130627400/15960_1222155_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15960/130627400/15960_1222155_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15960/130627400/15960_1222155_IMG_05_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15960/130627400/15960_1222155_IMG_06_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15960/130627400/15960_1222155_IMG_07_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130627400#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
+        "address": "Munster Road, Fulham, London, SW6",
+        "price": 2600,
+        "property_type": "Flat",
+        "bedrooms": 2,
+        "bathrooms": 1,
+        "sizesqft": 525.0,
+        "latitude": 51.479316,
+        "longitude": -0.212158,
+        "date_added": "12/01/2023",
+        "description": "LONG LET. Ideally located just moments from the many bars, shops and cafes on Munster Road, this delightful 2 bedroom flat also offers bright, open-plan living space with stylish interior decor throughout.Situated just moments from the local shops and cafes on Munster Road, ideally located from a wider range of bars, shops, restaurants and amenities on both Fulham Road and Fulham Broadway and within easy reach of the wide open spaces of Bishops Park. Please use the reference FULM0188835 when contacting Foxtons.BrochuresProperty detailsSuper sized images",
+        "features": [
+            "Superb 2 bedroom 1st floor flat",
+            "Bright living and entertaining accommodation",
+            "Substantial reception room",
+            "Flooded with natural light",
+            "Modern open-plan kitchen with tin appliances",
+            "2 generous double bedrooms",
+            "Great location on Munster Road",
+            "Available with Zero Deposit"
+        ],
+        "rent_details": {
+            "let_type": "Long term",
+            "deposit": null,
+            "furnish_type": "Unfurnished"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/16k/15948/130670894/15948_1225793_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15948/130670894/15948_1225793_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15948/130670894/15948_1225793_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15948/130670894/15948_1225793_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15948/130670894/15948_1225793_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15948/130670894/15948_1225793_IMG_05_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15948/130670894/15948_1225793_IMG_06_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15948/130670894/15948_1225793_IMG_07_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15948/130670894/15948_1225793_IMG_08_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130670894#/?channel=RES_LET",
+        "agent_email": null,
+        "floorplan": null
+    },
+    {
+        "address": "100 CARNWATH ROAD, Fulham, London, SW6",
+        "price": 13000,
+        "property_type": "Flat",
+        "bedrooms": 2,
+        "bathrooms": 2,
+        "sizesqft": 1114.0,
+        "latitude": 51.465548,
+        "longitude": -0.196185,
+        "date_added": "12/01/2023",
+        "description": "SHORT LET. An expansive 2 bedroom flat with a bright, modern interior presenting to a high standard including a sizeable open-plan reception room, a fantastic modern kitchen, and a spacious main bedroom with an en suite bathroom.The property is ideally situated on a quiet street moments from the River Thames, local amenities and the open green space of South Park. Please use the reference CHPK4337183 when contacting Foxtons.BrochuresProperty detailsSuper sized images",
+        "features": [
+            "Superb 2 bedroom flat",
+            "Bright and spacious interior presenting to a high standard",
+            "Sizeable open-plan reception room",
+            "Fantastic modern kitchen",
+            "Large private balcony",
+            "Generous main bedroom with an en suite bathroom",
+            "Ideal location moments from local amenities, the River Thames and South Park"
+        ],
+        "rent_details": {
+            "let_type": "Short term",
+            "deposit": null,
+            "furnish_type": "Ask agent"
+        },
+        "images": [
+            "https://media.rightmove.co.uk/16k/15948/130670891/15948_1225522_IMG_00_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15948/130670891/15948_1225522_IMG_01_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15948/130670891/15948_1225522_IMG_02_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15948/130670891/15948_1225522_IMG_03_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15948/130670891/15948_1225522_IMG_04_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15948/130670891/15948_1225522_IMG_05_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15948/130670891/15948_1225522_IMG_06_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15948/130670891/15948_1225522_IMG_07_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15948/130670891/15948_1225522_IMG_08_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15948/130670891/15948_1225522_IMG_09_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15948/130670891/15948_1225522_IMG_10_0000.jpeg",
+            "https://media.rightmove.co.uk/16k/15948/130670891/15948_1225522_IMG_11_0000.jpeg"
+        ],
+        "link": "https://www.rightmove.co.uk/properties/130670891#/?channel=RES_LET",
         "agent_email": null,
         "floorplan": null
     }

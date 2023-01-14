@@ -11,7 +11,10 @@ struct ContentView: View {
     @EnvironmentObject var loginVM: LoginViewModel
     var body: some View {
         if loginVM.isAuthenticated == true{
-            HomeView()
+            if let user = loginVM.currentUser{
+                HomeView(user:user)
+            }
+            
         }
         else{
             LoginView()

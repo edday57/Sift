@@ -24,7 +24,7 @@ struct LoginRequestBody: Codable{
 }
 
 struct LoginResponse: Codable{
-    let success: Bool
+    let success: Bool?
     let user: User
     let token: String
     let message: String?

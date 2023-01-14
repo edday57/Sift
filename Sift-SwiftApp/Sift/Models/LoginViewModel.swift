@@ -59,10 +59,11 @@ class LoginViewModel: ObservableObject {
         WebService().fetchUser(id: userId) { result in
             switch result {
             case .success(let user):
-                print(user)
                 defaults.setValue(user.id, forKey: "userid")
-                self.isAuthenticated = true
-                self.currentUser = user
+                DispatchQueue.main.async {
+                    self.isAuthenticated = true
+                    self.currentUser = user
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }

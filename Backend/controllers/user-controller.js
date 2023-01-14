@@ -15,6 +15,20 @@ export const getAllUser = async(req, res, next) => {
     return res.status(202).json({ users });
 };
 
+export const fetchUser = async(req,res,next) => {
+    let user;
+    const userId = req.params.id;
+    try {
+        user = await User.findById(userId);
+    } catch(err) {
+        return console.log(err);
+    }
+    if(!user){
+        return res.status(404).json({message: "No user found."});
+    }
+    return res.status(200).json(user);
+};
+
 export const signUp = async(req, res, next) => {
     let { email, password } = req.body;
     email = email.toLowerCase();

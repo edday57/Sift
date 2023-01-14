@@ -17,7 +17,7 @@
 		64B5F24D296F308E00315553 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F23B296F308D00315553 /* LoginViewModel.swift */; };
 		64B5F24E296F308E00315553 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64B5F23D296F308D00315553 /* Preview Assets.xcassets */; };
 		64B5F24F296F308E00315553 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F23F296F308D00315553 /* WebService.swift */; };
-		64B5F250296F308E00315553 /* CardLargeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F241296F308D00315553 /* CardLargeComponent.swift */; };
+		64B5F250296F308E00315553 /* CardComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F241296F308D00315553 /* CardComponents.swift */; };
 		64B5F251296F308E00315553 /* ProfileImageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F242296F308D00315553 /* ProfileImageComponent.swift */; };
 		64B5F252296F308E00315553 /* NavBarComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F243296F308D00315553 /* NavBarComponent.swift */; };
 		64B5F253296F308E00315553 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F245296F308D00315553 /* ArticleView.swift */; };
@@ -26,6 +26,8 @@
 		64B5F256296F308E00315553 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F248296F308D00315553 /* WelcomeView.swift */; };
 		64B5F257296F308E00315553 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F249296F308D00315553 /* SignUpView.swift */; };
 		64B5F258296F308E00315553 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F24A296F308D00315553 /* ContentView.swift */; };
+		64DBEE922972F16C0084BC13 /* PropertyCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DBEE912972F16C0084BC13 /* PropertyCardModel.swift */; };
+		64DBEE94297301330084BC13 /* FilterButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DBEE93297301330084BC13 /* FilterButtonComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,7 +61,7 @@
 		64B5F23B296F308D00315553 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		64B5F23D296F308D00315553 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		64B5F23F296F308D00315553 /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
-		64B5F241296F308D00315553 /* CardLargeComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardLargeComponent.swift; sourceTree = "<group>"; };
+		64B5F241296F308D00315553 /* CardComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardComponents.swift; sourceTree = "<group>"; };
 		64B5F242296F308D00315553 /* ProfileImageComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageComponent.swift; sourceTree = "<group>"; };
 		64B5F243296F308D00315553 /* NavBarComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarComponent.swift; sourceTree = "<group>"; };
 		64B5F245296F308D00315553 /* ArticleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
@@ -68,6 +70,9 @@
 		64B5F248296F308D00315553 /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		64B5F249296F308D00315553 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		64B5F24A296F308D00315553 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		64DBEE902972DDD70084BC13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		64DBEE912972F16C0084BC13 /* PropertyCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyCardModel.swift; sourceTree = "<group>"; };
+		64DBEE93297301330084BC13 /* FilterButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +140,7 @@
 		64B5F237296F308D00315553 /* Sift */ = {
 			isa = PBXGroup;
 			children = (
+				64DBEE902972DDD70084BC13 /* Info.plist */,
 				64B5F238296F308D00315553 /* SiftApp.swift */,
 				64B5F239296F308D00315553 /* Assets.xcassets */,
 				64B5F23A296F308D00315553 /* Models */,
@@ -152,6 +158,7 @@
 				64B5F23B296F308D00315553 /* LoginViewModel.swift */,
 				64B47D30296F91DE00E0F4D7 /* PropertyModel.swift */,
 				64B47D32296F952500E0F4D7 /* UserModel.swift */,
+				64DBEE912972F16C0084BC13 /* PropertyCardModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -175,7 +182,8 @@
 		64B5F240296F308D00315553 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				64B5F241296F308D00315553 /* CardLargeComponent.swift */,
+				64B5F241296F308D00315553 /* CardComponents.swift */,
+				64DBEE93297301330084BC13 /* FilterButtonComponent.swift */,
 				64B5F242296F308D00315553 /* ProfileImageComponent.swift */,
 				64B5F243296F308D00315553 /* NavBarComponent.swift */,
 			);
@@ -330,11 +338,13 @@
 				64B5F24F296F308E00315553 /* WebService.swift in Sources */,
 				64B5F257296F308E00315553 /* SignUpView.swift in Sources */,
 				64B5F24D296F308E00315553 /* LoginViewModel.swift in Sources */,
-				64B5F250296F308E00315553 /* CardLargeComponent.swift in Sources */,
+				64B5F250296F308E00315553 /* CardComponents.swift in Sources */,
 				64B5F251296F308E00315553 /* ProfileImageComponent.swift in Sources */,
 				64B5F255296F308E00315553 /* HomeView.swift in Sources */,
+				64DBEE922972F16C0084BC13 /* PropertyCardModel.swift in Sources */,
 				64B47D33296F952500E0F4D7 /* UserModel.swift in Sources */,
 				64B5F253296F308E00315553 /* ArticleView.swift in Sources */,
+				64DBEE94297301330084BC13 /* FilterButtonComponent.swift in Sources */,
 				64B47D31296F91DE00E0F4D7 /* PropertyModel.swift in Sources */,
 				64B5F256296F308E00315553 /* WelcomeView.swift in Sources */,
 				64B5F252296F308E00315553 /* NavBarComponent.swift in Sources */,
@@ -500,7 +510,7 @@
 				DEVELOPMENT_TEAM = ELD85TA58A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = Sift/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -529,7 +539,7 @@
 				DEVELOPMENT_TEAM = ELD85TA58A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = Sift/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

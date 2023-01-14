@@ -19,4 +19,7 @@ struct User: Codable, Identifiable{
     var image: String?
     var dob: String?
     var token: String?
+    
 }
+
+var userDemo: User = User(_id: "", email: "joe@apple.com", signedUp: true)

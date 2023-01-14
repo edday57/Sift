@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject private var propertyModel = PropertyModel()
+    @ObservedObject var propertyModel = PropertyModel()
+    let user: User
     var body: some View {
         
         ZStack {
@@ -84,9 +85,9 @@ struct HomeView: View {
                         .padding(.trailing, 20)
                         .padding(.bottom, 0)
                         
-                        //For You Section
+                        //Trending Section
                         HStack {
-                            Text("For You")
+                            Text("Trending")
                                 .font(.system(size: 24, weight: .bold))
                                 .padding(20)
                             Spacer()
@@ -100,50 +101,51 @@ struct HomeView: View {
                                     .foregroundColor(Color("TextGreyLight"))
                             }
                         }
+                        
+                        //Horizontal Large Cards
                         ScrollView(.horizontal, showsIndicators: false){
                             HStack(spacing: 16){
-                                CardLargeComponent()
-                                 CardLargeComponent()
+                                ForEach(Array(propertyModel.properties.prefix(5))){property in
+                                    CardLargeComponent(viewModel: PropertyCardModel(property: property, currentUser: user))
+                                }
                             }
                             .padding(.leading, 20)
                             .padding(.trailing, 20)
                            
                             
                         }
+                        
+                        //For You Section
                         HStack {
-                            Text("Following")
+                            Text("For You")
                                 .font(.system(size: 24, weight: .bold))
                                 .padding(20)
                             Spacer()
                             Button {
                                 //for you
                             } label: {
-                                Text("text")
+                                Text("See More")
                                     .underline()
                                     .font(.system(size: 14))
                                     .padding(20)
                                     .foregroundColor(Color("TextGreyLight"))
+                                    
                             }
                         }
-
                         
+                        //Filters
+                        FiltersHScroll()
 
-                        Image("UImockup")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(height: 250)
-                            .clipShape(RoundedRectangle(cornerRadius: 46))
-                            .padding(20)
-                            .shadow(color: .black.opacity(0.07), radius: 6, y:4)
-                        Spacer()
+                        //Vertical Cards
+                        VStack(spacing: -25){
+                            ForEach(Array(propertyModel.properties.prefix(5))){property in
+                                CardListComponent(viewModel: PropertyCardModel(property: property, currentUser: user))
+                            }
+                        }
                             
                     }
                 
             }
-        }
-        .onAppear{
-            propertyModel.getProperties()
-            print(propertyModel.properties)
         }
        
     }
@@ -151,6 +153,9 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        let viewModel = PropertyModel()
+        viewModel.properties=[propertyDemo, propertyDemo2]
+        return HomeView(propertyModel: viewModel, user: userDemo)
+            
     }
 }

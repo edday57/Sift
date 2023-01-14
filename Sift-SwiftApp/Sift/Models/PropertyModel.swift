@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Property: Codable {
+struct Property: Codable, Identifiable {
     var address: String
     var price: Float
     var property_type: String
@@ -16,7 +16,7 @@ struct Property: Codable {
     var sizesqft: Int?
     var latitude: Float
     var longitude: Float
-    var images: [String]?
+    var images: [String]
     var date_added: String
     var description: String?
     var features: [String]?
@@ -28,13 +28,18 @@ struct Property: Codable {
     var link: String
     var floorplan: String?
     var agent_email: String?
-    //var id: String?
-    
+    let id = UUID()
 }
 
+let propertyDemo: Property = Property(address: "Balham Park Road, London, SW12", price: 3000, property_type: "Flat", bedrooms: 2, bathrooms: 2, latitude: 100, longitude: 100, images: ["https://media.rightmove.co.uk/211k/210110/117674516/210110_P235846_IMG_00_0000.jpeg"], date_added: "12/01/23", link: "link.com")
+let propertyDemo2: Property = Property(address: "Alba Gardens, Golders Green, London, NW11", price: 7600, property_type: "Flat", bedrooms: 3, bathrooms: 4, latitude: 100, longitude: 100, images: ["https://media.rightmove.co.uk/29k/28962/121446902/28962_9997158_EAF_95819_IMG_00_0000.jpeg"], date_added: "12/01/23", link: "link.com")
 class PropertyModel: ObservableObject {
 
     @Published var properties: [Property] = []
+    
+    init(){
+        getProperties()
+    }
     
     func getProperties(){
         let defaults = UserDefaults.standard
@@ -46,7 +51,6 @@ class PropertyModel: ObservableObject {
                 case .success(let properties):
                     DispatchQueue.main.async {
                         self.properties = properties
-                        print(properties)
                     }
                 case .failure(let error):
                     print(error.localizedDescription)
