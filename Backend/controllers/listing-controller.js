@@ -2,11 +2,11 @@ import { json, response } from "express";
 import Listing from "../model/Listing"
 import User from "../model/User";
 import mongoose from "mongoose";
-import jsonData from '../../Scraper/data2.json'
+//import jsonData from '../../Scraper/data2.json'
 import jwt from 'jsonwebtoken'
-/* export const getAllListings = async(req, res, next) => {
+
+export const getAllListings = async(req, res, next) => {
     let listings;
-    var json_data = require('../../Scraper/data.json');
     try {
         listings = await Listing.find();
     } catch(err) {
@@ -15,8 +15,8 @@ import jwt from 'jsonwebtoken'
     if(!listings){
         return res.status(404).json({message: "No listings found"});
     }
-    return res.status(202).json({ listings });
-}; */
+    return res.status(202).json(listings);
+};
 export function authenticate(req, res, next) {
     
     const headers = req.headers['authorization']
@@ -48,10 +48,10 @@ export function authenticate(req, res, next) {
     
 }
   
-export const getAllListings = async(req, res, next) => {
+// export const getAllListings = async(req, res, next) => {
     
-    return res.status(202).json(jsonData);
-};
+//     return res.status(202).json(jsonData);
+// };
 
 export const newListing = async(req, res, next) => {
     const {title, body, images, user, category, tags} = req.body;
@@ -66,8 +66,8 @@ export const newListing = async(req, res, next) => {
         return res.status(400).json({message: "Unable to find user."});
     }
     const listing = Listing({
-        title, 
-        body, 
+        address, 
+        price, 
         images, 
         user, 
         category, 

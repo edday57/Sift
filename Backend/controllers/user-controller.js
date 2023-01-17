@@ -46,6 +46,7 @@ export const signUp = async(req, res, next) => {
         email,
         password:  hashedPassword,
         signedUp: false,
+        isAgent: false,
         listings: []
     });
     try{

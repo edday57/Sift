@@ -10,7 +10,7 @@ app.use("/api/user", router);
 app.use("/api/listing", listingRouter);
 
 mongoose
-.connect("mongodb+srv://admin:fltHUuMl1uLNnCC9@cluster0.vxxksfc.mongodb.net/?retryWrites=true&w=majority")
+.connect("mongodb+srv://admin:fltHUuMl1uLNnCC9@cluster0.vxxksfc.mongodb.net/db?retryWrites=true&w=majority")
 .then(()=>app.listen(5000))
 .then(()=>console.log("connected"))
 .catch((err)=>console.log(err));

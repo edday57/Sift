@@ -14,6 +14,7 @@ struct User: Codable, Identifiable{
     var _id: String
     var email: String
     var signedUp: Bool
+    var isAgent: Bool
     var name: String?
     var about: String?
     var image: String?
@@ -22,4 +23,4 @@ struct User: Codable, Identifiable{
     
 }
 
-var userDemo: User = User(_id: "", email: "joe@apple.com", signedUp: true)
+var userDemo: User = User(_id: "", email: "joe@apple.com", signedUp: true, isAgent: false)

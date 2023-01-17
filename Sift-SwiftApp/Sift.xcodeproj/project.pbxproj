@@ -10,6 +10,7 @@
 		6424030C2937F9BB00F928F3 /* ArticulateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6424030B2937F9BB00F928F3 /* ArticulateTests.swift */; };
 		642403162937F9BB00F928F3 /* ArticulateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642403152937F9BB00F928F3 /* ArticulateUITests.swift */; };
 		642403182937F9BB00F928F3 /* ArticulateUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642403172937F9BB00F928F3 /* ArticulateUITestsLaunchTests.swift */; };
+		649D7218297431D700E10D6B /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D7217297431D700E10D6B /* DiscoverView.swift */; };
 		64B47D31296F91DE00E0F4D7 /* PropertyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B47D30296F91DE00E0F4D7 /* PropertyModel.swift */; };
 		64B47D33296F952500E0F4D7 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B47D32296F952500E0F4D7 /* UserModel.swift */; };
 		64B5F24B296F308E00315553 /* SiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F238296F308D00315553 /* SiftApp.swift */; };
@@ -20,7 +21,7 @@
 		64B5F250296F308E00315553 /* CardComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F241296F308D00315553 /* CardComponents.swift */; };
 		64B5F251296F308E00315553 /* ProfileImageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F242296F308D00315553 /* ProfileImageComponent.swift */; };
 		64B5F252296F308E00315553 /* NavBarComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F243296F308D00315553 /* NavBarComponent.swift */; };
-		64B5F253296F308E00315553 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F245296F308D00315553 /* ArticleView.swift */; };
+		64B5F253296F308E00315553 /* ListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F245296F308D00315553 /* ListingView.swift */; };
 		64B5F254296F308E00315553 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F246296F308D00315553 /* LoginView.swift */; };
 		64B5F255296F308E00315553 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F247296F308D00315553 /* HomeView.swift */; };
 		64B5F256296F308E00315553 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F248296F308D00315553 /* WelcomeView.swift */; };
@@ -54,6 +55,7 @@
 		642403112937F9BB00F928F3 /* SiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		642403152937F9BB00F928F3 /* ArticulateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticulateUITests.swift; sourceTree = "<group>"; };
 		642403172937F9BB00F928F3 /* ArticulateUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticulateUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		649D7217297431D700E10D6B /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		64B47D30296F91DE00E0F4D7 /* PropertyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyModel.swift; sourceTree = "<group>"; };
 		64B47D32296F952500E0F4D7 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		64B5F238296F308D00315553 /* SiftApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiftApp.swift; sourceTree = "<group>"; };
@@ -64,7 +66,7 @@
 		64B5F241296F308D00315553 /* CardComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardComponents.swift; sourceTree = "<group>"; };
 		64B5F242296F308D00315553 /* ProfileImageComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageComponent.swift; sourceTree = "<group>"; };
 		64B5F243296F308D00315553 /* NavBarComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarComponent.swift; sourceTree = "<group>"; };
-		64B5F245296F308D00315553 /* ArticleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
+		64B5F245296F308D00315553 /* ListingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingView.swift; sourceTree = "<group>"; };
 		64B5F246296F308D00315553 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		64B5F247296F308D00315553 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		64B5F248296F308D00315553 /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -193,9 +195,10 @@
 		64B5F244296F308D00315553 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				64B5F245296F308D00315553 /* ArticleView.swift */,
+				64B5F245296F308D00315553 /* ListingView.swift */,
 				64B5F246296F308D00315553 /* LoginView.swift */,
 				64B5F247296F308D00315553 /* HomeView.swift */,
+				649D7217297431D700E10D6B /* DiscoverView.swift */,
 				64B5F248296F308D00315553 /* WelcomeView.swift */,
 				64B5F249296F308D00315553 /* SignUpView.swift */,
 				64B5F24A296F308D00315553 /* ContentView.swift */,
@@ -338,12 +341,13 @@
 				64B5F24F296F308E00315553 /* WebService.swift in Sources */,
 				64B5F257296F308E00315553 /* SignUpView.swift in Sources */,
 				64B5F24D296F308E00315553 /* LoginViewModel.swift in Sources */,
+				649D7218297431D700E10D6B /* DiscoverView.swift in Sources */,
 				64B5F250296F308E00315553 /* CardComponents.swift in Sources */,
 				64B5F251296F308E00315553 /* ProfileImageComponent.swift in Sources */,
 				64B5F255296F308E00315553 /* HomeView.swift in Sources */,
 				64DBEE922972F16C0084BC13 /* PropertyCardModel.swift in Sources */,
 				64B47D33296F952500E0F4D7 /* UserModel.swift in Sources */,
-				64B5F253296F308E00315553 /* ArticleView.swift in Sources */,
+				64B5F253296F308E00315553 /* ListingView.swift in Sources */,
 				64DBEE94297301330084BC13 /* FilterButtonComponent.swift in Sources */,
 				64B47D31296F91DE00E0F4D7 /* PropertyModel.swift in Sources */,
 				64B5F256296F308E00315553 /* WelcomeView.swift in Sources */,

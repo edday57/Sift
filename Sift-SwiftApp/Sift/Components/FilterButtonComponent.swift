@@ -19,7 +19,7 @@ struct FilterButtonComponent: View {
             .background(Rectangle()
                 .cornerRadius(13)
                 .foregroundColor(Color("PrimaryBlue")))
-                .shadow(color: Color("PrimaryBlue").opacity(0.65),radius: 12)
+                .shadow(color: Color("PrimaryBlue").opacity(0.7),radius: 7)
     }
 }
 

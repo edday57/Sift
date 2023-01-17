@@ -35,6 +35,10 @@ const userSchema = Schema({
         type: String,
         required: false
     },
+    isAgent: {
+        type: Boolean,
+        required: true
+    },
     listings:[{type: mongoose.Types.ObjectId, ref: "Listing", required: true}]
 });
 export default mongoose.model("User", userSchema);
