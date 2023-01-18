@@ -79,8 +79,8 @@ struct ListingView: View {
                                     .multilineTextAlignment(.center)
                                     
                                 HStack(alignment: .center){
-                                    ProfileImageComponent(size: 30)
-                                    Text("Ed Day")
+                                    ProfileImageComponent(size: 30, image: viewModel.agent?.image ?? "")
+                                    Text(viewModel.agent?.name ?? "")
                                         .foregroundColor(Color("TextGreyLight"))
                                     
                                         .font(.system(size: 14, weight: .medium))

@@ -15,11 +15,25 @@ struct ProfileImageComponent: View {
             Circle()
                 .frame(width: size, height: size, alignment: .center)
                 .foregroundColor(Color("StrokeGrey"))
-            Image(image)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
+            if(self.image==""){
+                Image(systemName: "person.fill")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: size-2, height: size-2)
+                    .clipShape(RoundedRectangle(cornerRadius: 46))
+                    .foregroundColor(.white)
+            }
+            else{
+                AsyncImage(url: URL(string: image)){ image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                } placeholder: {
+                    
+                }
                 .frame(width: size-2, height: size-2)
-            .clipShape(RoundedRectangle(cornerRadius: 46))
+                .clipShape(RoundedRectangle(cornerRadius: 46))
+            }
         }
 
     }

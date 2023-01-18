@@ -70,7 +70,7 @@ const listingSchema = Schema({
         required: true
     },
     floorplan: {
-        type: [String],
+        type: String,
         required: false
     },
     agent: {

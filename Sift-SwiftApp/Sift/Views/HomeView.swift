@@ -46,7 +46,7 @@ struct HomeView: View {
                                 Button {
                                     //
                                 } label: {
-                                    ProfileImageComponent(size: 44)
+                                    ProfileImageComponent(size: 44, image: self.user.image ?? "")
                                         .padding(.trailing, 20)
                                 }
                             }

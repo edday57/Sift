@@ -48,18 +48,18 @@ Link - Str
 Agent ID - Object
 Floorplan - List of Str (O)
  """
-df = pd.read_json('data2.json')
+df = GetAgent.getListings()
 
 newProperty= {"address": None, "price": None, "property_type": None, "bedrooms": None, "bathrooms": None, "sizesqft": None, "latitude": None, "longitude": None, "date_added": None, "description": None, "features": None, "let_type": None, "deposit": None, "furnish_type": None, "images": None, "link": None, "agent": None, "floorplan": None}
 sampleProperty= {"address": "123 Sample Street", "price": 3400, "property_type": "Flat", "bedrooms": 3, "bathrooms": 3, "sizesqft": 2000, "latitude": 50.0, "longitude": 10.1, "date_added": None, "description": "Description here", "features": None, "let_type": "Long term", "deposit": 2000, "furnish_type": "Furnished", "images": ["link2.com/img"], "link": "rightmove.com/example", "agent": None, "floorplan": None}
-latest_link = "https://www.rightmove.co.uk/properties/130670996#/?channel=RES_LET"
+latest_link = "https://www.rightmove.co.uk/properties/130814711#/?channel=RES_LET"
 alldata=[]
 
 def processLinks(propertylist):
     for link in propertylist:
         data = scrapeData(link)
         if data != None:
-            alldata.append(data)
+            GetAgent.addListing(data)
 
 def scrapeData(link):
     response = requests.get(link)
@@ -160,27 +160,12 @@ def scrapeData(link):
     if floorplan is not None:
         property_data["floorplan"] = floorplan['src'].replace('_max_296x197', '')
     #Agent Details
-    # agent_details = {}
     agent_name = soup.find('div', class_ = "RPNfwwZBarvBLs58-mdN8").find("a").get_text()
-    
     agentId = GetAgent.getAgent(agent_name)
     if agentId == None:
-        agentId = GetAgent.createAgent(agent_name, "x.com")
+        agent_img = soup.find("a", class_="_3uq285qlcTkSZrCuXYW-zQ").find("img")['src']
+        agentId = GetAgent.createAgent(agent_name, agent_img)
     property_data["agent"]= agentId
-    # print("Agent Name: " + agent_name)
-    # agent_details["Name"] = agent_name
-    # agent_link = soup.find('div', class_ = "RPNfwwZBarvBLs58-mdN8").find("a")['href']
-    # print("agent link: " + agent_link)
-    # agent_details["Link"] = agent_link
-    # agent_address = soup.find('div', class_ = "OojFk4MTxFDKIfqreGNt0").get_text()
-    # print("agent link: " + agent_address)
-    # agent_details["Agent Adress"] = agent_address
-    #agent_email = soup.find('a', class_ = "_3RZrxRVj_9Dn-Ot3w1ZjcX _2h_CLrxx_xWQuAjkQU3S12")['href']
-    # agent_details["Agent Email"] = agent_email
-    # agent_number = soup.find('div', class_ = "_3E1fAHUmQ27HFUFIBdrW0u")['href'].replace("https://www.rightmove.co.uk/properties/tel:", "")
-    # agent_details["Agent Number"] = agent_number
-    # property_data["Agent Details"] = agent_details
-
     #check we have all nonoptional data
     if None not in (property_data["address"], property_data["price"], property_data["description"], property_data["property_type"], property_data["bedrooms"], property_data["bathrooms"], property_data["latitude"], property_data["longitude"], property_data["date_added"], property_data["images"], property_data["link"], property_data["agent"]):
         print("Scraped "+property_data["address"])
@@ -211,12 +196,7 @@ def propertyLinks(latest_link, maxValues):
             link = 'https://www.rightmove.co.uk' + link
             #Check we have not already got data (could modify this to update)
             #Case for new data file
-            if 'link' not in df.columns and len(property_links) != maxValues:
-                if foundLatest == False:
-                    property_links.append(link)
-                if link == latest_link:
-                    foundLatest = True
-            elif link not in df.link.values and len(property_links) != maxValues:
+            if link not in df.link.values and len(property_links) != maxValues:
                 property_links.append(link)
             else:
                 foundLatest=True
@@ -228,11 +208,10 @@ def saveJson(data):
         f.write(simplejson.dumps(data, ignore_nan=True, indent=4))
         #json.dump(data, f, ensure_ascii=False, indent=4)
 
-def getNewProperties(link):
-    data=processLinks(propertyLinks(link, -1))
-    df_new = pd.concat([df, pd.DataFrame(alldata)], ignore_index=True)
-    out =df_new.to_dict('records')
-    saveJson(out)
+def getNewProperties(link, count):
+    links=propertyLinks(link, count)
+    processLinks(links)
+
 
 #saveJson(property_data(propertyLinks(latest_link)))
 #test2(latest_link)
@@ -241,6 +220,7 @@ def getNewProperties(link):
 
 #getNewProperties(df.iloc[-1].link)
 #scrapeData(latest_link)
-GetAgent.addListing(scrapeData(latest_link))
+#GetAgent.addListing(scrapeData(latest_link))
 
+getNewProperties(latest_link, 5)
 #url = 'https://www.rightmove.co.uk/property-to-rent/find.html?locationIdentifier=REGION%5E87490&maxPrice=80000&minBedrooms=2&propertyTypes=&includeSharedAccommodation=false&mustHave=&dontShow=&furnishTypes=&keywords='
