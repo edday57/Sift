@@ -13,6 +13,8 @@ export const getAllListings = async(req, res, next) => {
         console.log(err);
     }
     if(!listings){
+
+        
         return res.status(404).json({message: "No listings found"});
     }
     return res.status(202).json(listings);

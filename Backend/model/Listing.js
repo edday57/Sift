@@ -34,7 +34,7 @@ const listingSchema = Schema({
         required: true
     },
     date_added: {
-        type: String,
+        type: Date,
         required: true
     },
     description: {

@@ -10,6 +10,7 @@ from selenium.webdriver.chrome.options import Options
 import re
 import pandas as pd
 from datetime import date
+from datetime import datetime
 from datetime import timedelta
 import GetAgent 
 
@@ -78,15 +79,15 @@ def scrapeData(link):
     date_add = soup.find('div', class_ = "_2nk2x6QhNB1UrxdI5KpvaF").get_text()
     #Format today/yesterday to actual date
     if "yesterday" in date_add.lower():
-        today = date.today()
+        today = datetime.today()
         yesterday = today - timedelta(days = 1)
         property_data["date_added"] = yesterday.strftime("%d/%m/%Y")
     elif "Added on " in date_add:
         date_add = date_add.replace("Added on ", "")
-        property_data["date_added"] = date_add
+        property_data["date_added"] = datetime.strptime(date_add, "%d/%m/%Y")
     else:
-        today = date.today()
-        property_data["date_added"] = today.strftime("%d/%m/%Y")
+        today = datetime.today()
+        property_data["date_added"] = today
     #Specs
     specifications = {}
     specification = soup.find_all('div', class_="ZBWaPR-rIda6ikyKpB_E2")
@@ -222,5 +223,5 @@ def getNewProperties(link, count):
 #scrapeData(latest_link)
 #GetAgent.addListing(scrapeData(latest_link))
 
-getNewProperties(latest_link, 5)
+getNewProperties(latest_link, 2)
 #url = 'https://www.rightmove.co.uk/property-to-rent/find.html?locationIdentifier=REGION%5E87490&maxPrice=80000&minBedrooms=2&propertyTypes=&includeSharedAccommodation=false&mustHave=&dontShow=&furnishTypes=&keywords='

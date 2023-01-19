@@ -21,7 +21,7 @@ struct Property: Codable, Identifiable {
     var latitude: Float
     var longitude: Float
     var images: [String]
-    var date_added: String
+    var date_added: Date
     var description: String?
     var features: [String]?
     var let_type: String?
@@ -32,8 +32,8 @@ struct Property: Codable, Identifiable {
     var floorplan: String?
 }
 
-let propertyDemo: Property = Property(_id: "x", address: "Balham Park Road, London, SW12", price: 3000, property_type: "Flat", bedrooms: 2, bathrooms: 2, latitude: 100, longitude: 100, images: ["https://media.rightmove.co.uk/211k/210110/117674516/210110_P235846_IMG_00_0000.jpeg"], date_added: "12/01/23", link: "link.com", agent:"x")
-let propertyDemo2: Property = Property(_id: "xx", address: "Alba Gardens, Golders Green, London, NW11", price: 7600, property_type: "Flat", bedrooms: 3, bathrooms: 4, latitude: 100, longitude: 100, images: ["https://media.rightmove.co.uk/29k/28962/121446902/28962_9997158_EAF_95819_IMG_00_0000.jpeg"], date_added: "12/01/23", link: "link.com", agent:"x")
+let propertyDemo: Property = Property(_id: "x", address: "Balham Park Road, London, SW12", price: 3000, property_type: "Flat", bedrooms: 2, bathrooms: 2, latitude: 100, longitude: 100, images: ["https://media.rightmove.co.uk/211k/210110/117674516/210110_P235846_IMG_00_0000.jpeg"], date_added: Date(timeIntervalSinceNow: 0), link: "link.com", agent:"x")
+let propertyDemo2: Property = Property(_id: "xx", address: "Alba Gardens, Golders Green, London, NW11", price: 7600, property_type: "Flat", bedrooms: 3, bathrooms: 4, latitude: 100, longitude: 100, images: ["https://media.rightmove.co.uk/29k/28962/121446902/28962_9997158_EAF_95819_IMG_00_0000.jpeg"], date_added: Date(timeIntervalSinceNow: 0), link: "link.com", agent:"x")
 class PropertyModel: ObservableObject {
 
     @Published var properties: [Property] = []

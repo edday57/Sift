@@ -88,7 +88,9 @@ class WebService{
                 completion(.failure(.noData))
                 return
             }
-            guard let properties = try? JSONDecoder().decode([Property].self, from: data) else {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601WithFractionalSeconds
+            guard let properties = try? decoder.decode([Property].self, from: data) else {
                 completion(.failure(.decodingError))
                 return
             }
@@ -96,4 +98,24 @@ class WebService{
         }.resume()
     }
     
+}
+extension Formatter {
+   static var customISO8601DateFormatter: ISO8601DateFormatter = {
+      let formatter = ISO8601DateFormatter()
+      formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+      return formatter
+   }()
+}
+
+extension JSONDecoder.DateDecodingStrategy {
+   static var iso8601WithFractionalSeconds = custom { decoder in
+      let dateStr = try decoder.singleValueContainer().decode(String.self)
+      let customIsoFormatter = Formatter.customISO8601DateFormatter
+      if let date = customIsoFormatter.date(from: dateStr) {
+         return date
+      }
+      throw DecodingError.dataCorrupted(
+               DecodingError.Context(codingPath: decoder.codingPath,
+                                     debugDescription: "Invalid date"))
+   }
 }

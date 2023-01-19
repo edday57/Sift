@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct CardLargeComponent: View {
     @ObservedObject var viewModel: PropertyCardModel
     
@@ -15,6 +16,7 @@ struct CardLargeComponent: View {
     }
     var body: some View {
         let formattedPrice = String(format: "£%.0f pcm", viewModel.property.price)
+        
         ZStack {
             RoundedRectangle(cornerRadius: 30)
                 .frame(width: 290, height: 320)
@@ -40,7 +42,7 @@ struct CardLargeComponent: View {
                         .foregroundColor(Color("TextGreyLight"))
                         .font(.system(size: 14, weight: .medium))
                     Spacer()
-                    Text("Listed \(viewModel.property.date_added)")
+                    Text("Listed \(viewModel.property.date_added.formatDate())")
                         .foregroundColor(Color("TextGreyLight"))
                     
                         .font(.system(size: 14, weight: .medium))
@@ -227,4 +229,12 @@ struct CardLargeComponent_Previews: PreviewProvider {
     static var previews: some View {
         CardDiscoverComponent(viewModel: PropertyCardModel(property: propertyDemo, currentUser: userDemo))
     }
+}
+
+extension Date {
+        func formatDate() -> String {
+                let dateFormatter = DateFormatter()
+            dateFormatter.setLocalizedDateFormatFromTemplate("d MM yy")
+            return dateFormatter.string(from: self)
+        }
 }
