@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6421960B297EF5550096EE3E /* FiltersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6421960A297EF5550096EE3E /* FiltersModel.swift */; };
 		6424030C2937F9BB00F928F3 /* ArticulateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6424030B2937F9BB00F928F3 /* ArticulateTests.swift */; };
 		642403162937F9BB00F928F3 /* ArticulateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642403152937F9BB00F928F3 /* ArticulateUITests.swift */; };
 		642403182937F9BB00F928F3 /* ArticulateUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642403172937F9BB00F928F3 /* ArticulateUITestsLaunchTests.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6421960A297EF5550096EE3E /* FiltersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersModel.swift; sourceTree = "<group>"; };
 		642402F72937F9B900F928F3 /* Sift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		642403072937F9BB00F928F3 /* SiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6424030B2937F9BB00F928F3 /* ArticulateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticulateTests.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				64B5F23B296F308D00315553 /* LoginViewModel.swift */,
 				64B47D30296F91DE00E0F4D7 /* PropertyModel.swift */,
 				64B47D32296F952500E0F4D7 /* UserModel.swift */,
+				6421960A297EF5550096EE3E /* FiltersModel.swift */,
 				64DBEE912972F16C0084BC13 /* PropertyCardModel.swift */,
 			);
 			path = Models;
@@ -345,6 +348,7 @@
 				64B5F250296F308E00315553 /* CardComponents.swift in Sources */,
 				64B5F251296F308E00315553 /* ProfileImageComponent.swift in Sources */,
 				64B5F255296F308E00315553 /* HomeView.swift in Sources */,
+				6421960B297EF5550096EE3E /* FiltersModel.swift in Sources */,
 				64DBEE922972F16C0084BC13 /* PropertyCardModel.swift in Sources */,
 				64B47D33296F952500E0F4D7 /* UserModel.swift in Sources */,
 				64B5F253296F308E00315553 /* ListingView.swift in Sources */,

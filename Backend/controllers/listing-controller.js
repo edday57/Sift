@@ -1,14 +1,14 @@
 import { json, response } from "express";
 import Listing from "../model/Listing"
 import User from "../model/User";
+import Like from "../model/Like";
 import mongoose from "mongoose";
-//import jsonData from '../../Scraper/data2.json'
 import jwt from 'jsonwebtoken'
 
 export const getAllListings = async(req, res, next) => {
     let listings;
     try {
-        listings = await Listing.find();
+        listings = await Listing.find().sort({date_added: -1});
     } catch(err) {
         console.log(err);
     }
@@ -19,6 +19,27 @@ export const getAllListings = async(req, res, next) => {
     }
     return res.status(202).json(listings);
 };
+
+export const recommender = async(req,res,next) => {
+    const userId = req.params.id;
+    let likes;
+    try {
+        likes = await Like.find({user: userId}).sort({timestamp: -1}).limit(5);
+    }
+    catch(err){
+        return console.log(err);
+    }
+    if (likes.length > 0) {
+        likes = likes.map(item => item.listing);
+    } else {
+        likes =[];
+    }
+    
+    //look at user filters to pass to python
+    //Look at 5 most recent liked properties from like table to pass to python function
+    //Take viewed as parameter when we make this call, add to users viewed in database and pass to python 
+}
+
 export function authenticate(req, res, next) {
     
     const headers = req.headers['authorization']
@@ -94,7 +115,7 @@ export const updateListing = async(req, res, next) => {
     const listingId = req.params.id;
     let listing;
     try{
-        listing = await Listing.findByIdAndUpdate(listingtId, {
+        listing = await Listing.findByIdAndUpdate(listingId, {
             title,
             body
         });

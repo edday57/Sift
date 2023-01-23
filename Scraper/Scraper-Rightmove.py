@@ -1,8 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import firestore
 import json
 import simplejson
 from selenium import webdriver
@@ -12,18 +9,7 @@ import pandas as pd
 from datetime import date
 from datetime import datetime
 from datetime import timedelta
-import GetAgent 
-
-# Use a service account.
-cred = credentials.Certificate('homeless3-firebase-adminsdk-v6ud8-acc2b83791.json')
-app = firebase_admin.initialize_app(cred)
-db = firestore.client()
-
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import firestore
-
-# Use the private key file of the service account directly and initialise the firestore
+import MongoHelper 
 
 """ 
 Properties stored in following format:
@@ -38,18 +24,15 @@ Longitude - Float
 Date Added - Str 
 Description - Str
 Features - List of Str (O)
-Rent Details - Dict
-    -> Let Type - Str (O)
-    -> Deposit - Int (O) 
-    -> Furnish Type - Str (O)
-    -> Min Tenancy - (O) REMOVED
-    -> Let Date - Str (O) REMOVED
+Let Type - Str (O)
+Deposit - Int (O) 
+Furnish Type - Str (O)
 Images - List of Str 
 Link - Str
 Agent ID - Object
 Floorplan - List of Str (O)
  """
-df = GetAgent.getListings()
+df = MongoHelper.getListings()
 
 newProperty= {"address": None, "price": None, "property_type": None, "bedrooms": None, "bathrooms": None, "sizesqft": None, "latitude": None, "longitude": None, "date_added": None, "description": None, "features": None, "let_type": None, "deposit": None, "furnish_type": None, "images": None, "link": None, "agent": None, "floorplan": None}
 sampleProperty= {"address": "123 Sample Street", "price": 3400, "property_type": "Flat", "bedrooms": 3, "bathrooms": 3, "sizesqft": 2000, "latitude": 50.0, "longitude": 10.1, "date_added": None, "description": "Description here", "features": None, "let_type": "Long term", "deposit": 2000, "furnish_type": "Furnished", "images": ["link2.com/img"], "link": "rightmove.com/example", "agent": None, "floorplan": None}
@@ -60,7 +43,7 @@ def processLinks(propertylist):
     for link in propertylist:
         data = scrapeData(link)
         if data != None:
-            GetAgent.addListing(data)
+            MongoHelper.addListing(data)
 
 def scrapeData(link):
     response = requests.get(link)
@@ -81,7 +64,7 @@ def scrapeData(link):
     if "yesterday" in date_add.lower():
         today = datetime.today()
         yesterday = today - timedelta(days = 1)
-        property_data["date_added"] = yesterday.strftime("%d/%m/%Y")
+        property_data["date_added"] = yesterday
     elif "Added on " in date_add:
         date_add = date_add.replace("Added on ", "")
         property_data["date_added"] = datetime.strptime(date_add, "%d/%m/%Y")
@@ -162,10 +145,10 @@ def scrapeData(link):
         property_data["floorplan"] = floorplan['src'].replace('_max_296x197', '')
     #Agent Details
     agent_name = soup.find('div', class_ = "RPNfwwZBarvBLs58-mdN8").find("a").get_text()
-    agentId = GetAgent.getAgent(agent_name)
+    agentId = MongoHelper.getAgent(agent_name)
     if agentId == None:
         agent_img = soup.find("a", class_="_3uq285qlcTkSZrCuXYW-zQ").find("img")['src']
-        agentId = GetAgent.createAgent(agent_name, agent_img)
+        agentId = MongoHelper.createAgent(agent_name, agent_img)
     property_data["agent"]= agentId
     #check we have all nonoptional data
     if None not in (property_data["address"], property_data["price"], property_data["description"], property_data["property_type"], property_data["bedrooms"], property_data["bathrooms"], property_data["latitude"], property_data["longitude"], property_data["date_added"], property_data["images"], property_data["link"], property_data["agent"]):
@@ -197,8 +180,9 @@ def propertyLinks(latest_link, maxValues):
             link = 'https://www.rightmove.co.uk' + link
             #Check we have not already got data (could modify this to update)
             #Case for new data file
-            if link not in df.link.values and len(property_links) != maxValues:
-                property_links.append(link)
+            if len(property_links) != maxValues:
+                if link not in df.link.values:
+                    property_links.append(link)
             else:
                 foundLatest=True
     print("Latest Links Scraped")
@@ -223,5 +207,5 @@ def getNewProperties(link, count):
 #scrapeData(latest_link)
 #GetAgent.addListing(scrapeData(latest_link))
 
-getNewProperties(latest_link, 2)
+getNewProperties(latest_link, 500)
 #url = 'https://www.rightmove.co.uk/property-to-rent/find.html?locationIdentifier=REGION%5E87490&maxPrice=80000&minBedrooms=2&propertyTypes=&includeSharedAccommodation=false&mustHave=&dontShow=&furnishTypes=&keywords='

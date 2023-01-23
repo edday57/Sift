@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
+    @ObservedObject var filtersModel = FiltersModel()
     @ObservedObject var propertyModel = PropertyModel()
     let user: User
+    
     var body: some View {
         
         NavigationView {
@@ -98,7 +100,7 @@ struct HomeView: View {
                             
                             //Trending Section
                             HStack {
-                                Text("Trending")
+                                Text("Your Collection")
                                     .font(.system(size: 24, weight: .bold))
                                     .padding(20)
                                 Spacer()

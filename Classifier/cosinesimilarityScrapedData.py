@@ -101,10 +101,10 @@ def calculate_cosine_similarity(listingID, df=listings_data):
     df.fillna(0, inplace=True)
 
     # do not include artificial listing id as a feature
-    new = df.drop(columns=['artificial_listing_id'])
+    new = df.drop(columns=['artificial_listing_id', 'correlation'], errors='ignore')
     # calculate the cosine similarity matrix
     similar = cosine_similarity(new.values)
-
+    print(similar)
     # put the correlation back into the original dataset
     df['correlation'] = similar[idx]
     # corr_similar = pd.DataFrame(df)
@@ -114,13 +114,13 @@ def calculate_cosine_similarity(listingID, df=listings_data):
 
     return result
     
-print(calculate_cosine_similarity(1, listings_data))
-
+print(calculate_cosine_similarity(0, listings_data))
+print(calculate_cosine_similarity(0, listings_data))
 # store the cosine similarities into a dictionary
 cosine_similarity_matrix_dict = {}
 for i in range(10):
     similarity_dict = calculate_cosine_similarity(i, listings_data)[['correlation', 'artificial_listing_id']].set_index('artificial_listing_id')['correlation'].to_dict()
     cosine_similarity_matrix_dict[i] = similarity_dict
-#print(cosine_similarity_matrix_dict[3][0])
+print(cosine_similarity_matrix_dict[0][3])
 print (df.iloc[1])
 print (df.iloc[238])

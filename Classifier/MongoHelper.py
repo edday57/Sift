@@ -5,8 +5,6 @@ import uuid
 import bcrypt
 import pandas as pd
 
-CONNECTION_STRING = "mongodb+srv://admin:fltHUuMl1uLNnCC9@cluster0.vxxksfc.mongodb.net/?retryWrites=true&w=majority"
- 
 # Create a connection using MongoClient. You can import MongoClient or use pymongo.MongoClient
 client = start_client()
 db= client.db

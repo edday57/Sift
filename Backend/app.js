@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import listingRouter from './routes/listing-routes';
 import router from './routes/user-routes';
 import jwt from 'jsonwebtoken';
+import likeRouter from './routes/like-routes';
 const app = express();
 
 
@@ -10,6 +11,7 @@ const app = express();
 app.use(express.json());
 app.use("/api/user", router);
 app.use("/api/listing", listingRouter);
+app.use("/api/like", likeRouter);
 
 
 mongoose
