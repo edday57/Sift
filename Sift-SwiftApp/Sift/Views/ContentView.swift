@@ -12,7 +12,7 @@ struct ContentView: View {
     var body: some View {
         if loginVM.isAuthenticated == true{
             if let user = loginVM.currentUser{
-                HomeView(user:user)
+                Home(user:user)
             }
             
         }

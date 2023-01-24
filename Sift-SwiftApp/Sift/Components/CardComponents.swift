@@ -195,13 +195,14 @@ struct CardDiscoverComponent: View {
                         .font(.system(size: 16))
                         .padding(.horizontal, 20)
                     HStack{
-                        ProfileImageComponent(size: 30)
-                        Text("Chestertons")
+                        ProfileImageComponent(size: 30, image: viewModel.agent?.image ?? "")
+                        Text(viewModel.agent?.name ?? "")
                             .foregroundColor(Color("TextGreyLight"))
-                        
+                            .lineLimit(1)
+                            .multilineTextAlignment(.leading)
                             .font(.system(size: 14, weight: .medium))
                         Spacer()
-                        Text("Listed \(viewModel.property.date_added)")
+                        Text("Listed \(viewModel.property.date_added.formatDate())")
                             .foregroundColor(Color("TextGreyLight"))
                         
                             .font(.system(size: 14))
