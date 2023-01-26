@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from random import sample
-from sklearn.metrics.pairwise import cosine_similarity
+#from sklearn.metrics.pairwise import cosine_similarity
 import MongoHelper
 from operator import itemgetter
 import sys
@@ -189,6 +189,7 @@ def recommender(df, filters, liked, viewed):
             chosenArtificialIds.append(result)
             if len(discoverIds) == 5:
                 break
+    discoverIds.append("*")
     #Add extra properties
     extraIds = []
     for result in filter_results:
@@ -199,7 +200,7 @@ def recommender(df, filters, liked, viewed):
                 if len(extraIds) == 6:
                     break
     discoverIds.extend(extraIds)
-    discoverIds.reverse()
+    #discoverIds.reverse()
     #Merge extra with discover properties
     #discoverIds = mergeIds(discoverIds, extraIds)
     return discoverIds
