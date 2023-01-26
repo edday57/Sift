@@ -13,9 +13,10 @@ app.use("/api/user", router);
 app.use("/api/listing", listingRouter);
 app.use("/api/like", likeRouter);
 
+const port = process.env.PORT || 5000;
 
 mongoose
 .connect("mongodb+srv://admin:fltHUuMl1uLNnCC9@cluster0.vxxksfc.mongodb.net/db?retryWrites=true&w=majority")
-.then(()=>app.listen(5000))
+.then(()=>app.listen(port, () => console.log(`Listening on ${port}`)))
 .then(()=>console.log("connected"))
 .catch((err)=>console.log(err));
