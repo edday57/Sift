@@ -58,5 +58,5 @@ export const getLikes = async(req, res, next) => {
     } else {
         return res.status(200).json([]);
     }
-    r;
+    
 };

@@ -30,4 +30,15 @@ class PropertyCardModel: ObservableObject {
             }
         }
     }
+    func addLike(){
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "jsonwebtoken") else {
+                    return
+                }
+        WebService().addLike(user: currentUser.id, listing: property.id, token: token) { response in
+            if response == 200{
+                print("Like added")
+            }
+        }
+    }
 }

@@ -12,15 +12,19 @@ class DiscoverViewModel: ObservableObject {
     @Published var properties: [Property] = []
     
     init(){
-        getProperties()
+        getProperties(viewed:[""])
     }
     
-    func getProperties(){
+    func getProperties(viewed: [String]){
         let defaults = UserDefaults.standard
         guard let token = defaults.string(forKey: "jsonwebtoken") else {
                     return
                 }
-        WebService().getProperties(token: token) { (result) in
+        guard let id = defaults.string(forKey: "userid") else {
+                    return
+                }
+        print(id)
+        WebService().getDiscover(id: id, token: token, viewed: viewed) { (result) in
             switch result {
                 case .success(let properties):
                     DispatchQueue.main.async {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject var filtersModel = FiltersModel()
+    @EnvironmentObject var filtersModel: FiltersModel
     @ObservedObject var propertyModel = PropertyModel()
     let user: User
     

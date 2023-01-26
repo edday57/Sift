@@ -10,6 +10,7 @@ import SwiftUI
 struct DiscoverView: View {
     @ObservedObject var viewModel = DiscoverViewModel()
     let user: User
+    @State var viewedProperties: [String] = ["63c8279a5b061b24d6897c5d"]
     var body: some View {
             VStack{
                 ZStack {
@@ -18,13 +19,24 @@ struct DiscoverView: View {
                             .animation(.spring())
                             .gesture(DragGesture()
                                                         .onEnded { value in
+                                                            
                                                             if value.translation.width < -100 {
+                                                                self.viewedProperties.append(property.id)
                                                                 //self.viewedCards.append(card)
                                                                 self.viewModel.properties.remove(at: self.viewModel.properties.firstIndex(where:  {$0.id == property.id})!)
+                                                                if viewModel.properties.isEmpty{
+                                                                    viewModel.getProperties(viewed: viewedProperties)
+                                                                }
                                                             }
                                                             if value.translation.width > 100 {
-                                                                //self.viewedCards.append(card)
+                                                                self.viewedProperties.append(property.id)
+                                                                //Add like
+                                                                PropertyCardModel(property: property, currentUser: user).addLike()
+                                                                //Get properties
                                                                 self.viewModel.properties.remove(at: self.viewModel.properties.firstIndex(where:  {$0.id == property.id})!)
+                                                                if viewModel.properties.isEmpty{
+                                                                    viewModel.getProperties(viewed: viewedProperties)
+                                                                }
                                                             }
                                                         }
                                                     )

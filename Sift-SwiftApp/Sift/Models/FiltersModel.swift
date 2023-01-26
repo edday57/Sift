@@ -9,7 +9,7 @@ import Foundation
 
 class FiltersModel: ObservableObject{
     @Published var filters = Filters.loadFiltersFromUserDefaults()
-
+    static let shared = FiltersModel()
 }
 struct Filters: Codable{
     var minPrice: Int?

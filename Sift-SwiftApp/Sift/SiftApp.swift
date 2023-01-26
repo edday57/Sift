@@ -13,6 +13,7 @@ struct ArticulateApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(LoginViewModel.shared)
+                .environmentObject(FiltersModel.shared)
         }
     }
 }

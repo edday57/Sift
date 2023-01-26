@@ -4,7 +4,7 @@ import User from "../model/User";
 import Like from "../model/Like";
 import mongoose from "mongoose";
 import jwt from 'jsonwebtoken'
-
+import { spawn } from 'child_process';
 export const getAllListings = async(req, res, next) => {
     let listings;
     try {
@@ -22,6 +22,10 @@ export const getAllListings = async(req, res, next) => {
 
 export const recommender = async(req,res,next) => {
     const userId = req.params.id;
+    var viewed = req.body;
+    if (req.body ==""){
+        viewed="None"
+    }
     let likes;
     try {
         likes = await Like.find({user: userId}).sort({timestamp: -1}).limit(5);
@@ -34,7 +38,34 @@ export const recommender = async(req,res,next) => {
     } else {
         likes =[];
     }
-    
+    let recommendations;
+    let recommendationIDs;
+    console.log(viewed)
+    var process = spawn('python3',["./Classifier/cosinesimilarityMongoData.py", likes.toString(), viewed ],{shell: true} );
+
+    for await (const data of process.stdout) {
+        console.log(data.toString())
+        //Python returns object IDs as array in string datatype
+        recommendationIDs= data.toString();
+        recommendationIDs = recommendationIDs.replace(/'/g, '"');
+        //Convert to actual array
+        recommendationIDs = JSON.parse(recommendationIDs);
+        //Change IDs to object ID type
+        var oids = [];
+        recommendationIDs.forEach(function(item){
+        oids.push(new mongoose.Types.ObjectId(item));
+        });
+        //Get property data and return
+        try{
+            recommendations = await Listing.find({_id: { $in: oids }}); 
+        } catch(err) {
+            console.log(err);
+        }
+        if(!recommendations){
+            return res.status(404).json({message: "No listings found"});
+        }
+        return res.status(202).json(recommendations);
+      };
     //look at user filters to pass to python
     //Look at 5 most recent liked properties from like table to pass to python function
     //Take viewed as parameter when we make this call, add to users viewed in database and pass to python 
