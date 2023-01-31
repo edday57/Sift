@@ -60,7 +60,10 @@ export const getLikedPosts = async(req, res, next) => {
         } catch(err) {
             console.log(err);
         }
-        return res.status(200).json(likedListings);
+        let obj = {}
+        likedListings.forEach(x => obj[x._id]=x)
+        const ordered = listingIds.map(key => obj[key])
+        return res.status(200).json(ordered);
     } else {
         return res.status(200).json([]);
     }
