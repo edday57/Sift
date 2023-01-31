@@ -1,21 +1,21 @@
 //
-//  DiscoverViewModel.swift
+//  SavedViewModel.swift
 //  Sift
 //
-//  Created by Edward Day on 24/01/2023.
+//  Created by Edward Day on 30/01/2023.
 //
 
 import Foundation
 
-class DiscoverViewModel: ObservableObject {
+class SavedViewModel: ObservableObject {
 
-    @Published var properties: [Property] = []
+    @Published var savedProperties: [Property] = []
     
     init(){
-        getProperties(viewed:[""])
+        getProperties()
     }
     
-    func getProperties(viewed: [String]){
+    func getProperties(){
         let defaults = UserDefaults.standard
         guard let token = defaults.string(forKey: "jsonwebtoken") else {
                     return
@@ -23,11 +23,11 @@ class DiscoverViewModel: ObservableObject {
         guard let id = defaults.string(forKey: "userid") else {
                     return
                 }
-        WebService().getDiscover(id: id, token: token, viewed: viewed) { (result) in
+        WebService().getSavedProperties(id: id, token: token) { (result) in
             switch result {
                 case .success(let properties):
                     DispatchQueue.main.async {
-                        self.properties = properties
+                        self.savedProperties = properties
                     }
                 case .failure(let error):
                     print(error.localizedDescription)

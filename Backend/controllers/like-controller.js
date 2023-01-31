@@ -43,6 +43,30 @@ export const removeLike = async(req, res, next) => {
     return res.status(200).json({message: "Like successfully deleted."});
 };
 
+export const getLikedPosts = async(req, res, next) => {
+    const userId = req.params.id;
+    let likes;
+    try {
+        likes = await Like.find({user: userId}).sort({timestamp: -1});
+    }
+    catch(err){
+        return console.log(err);
+    }
+    if (likes.length > 0) {
+        let listingIds = likes.map(item => item.listing);
+        let likedListings;
+        try{
+            likedListings = await Listing.find({_id: { $in: listingIds }}); 
+        } catch(err) {
+            console.log(err);
+        }
+        return res.status(200).json(likedListings);
+    } else {
+        return res.status(200).json([]);
+    }
+    
+};
+
 export const getLikes = async(req, res, next) => {
     const userId = req.params.id;
     let likes;
@@ -54,6 +78,7 @@ export const getLikes = async(req, res, next) => {
     }
     if (likes.length > 0) {
         let listingIds = likes.map(item => item.listing)
+
         return res.status(200).json(listingIds);
     } else {
         return res.status(200).json([]);

@@ -194,6 +194,8 @@ struct CardDiscoverComponent: View {
                     Text(viewModel.property.description ?? "No details added.")
                         .font(.system(size: 16))
                         .padding(.horizontal, 20)
+                        .multilineTextAlignment(.leading)
+                        .foregroundColor(.black)
                     HStack{
                         ProfileImageComponent(size: 30, image: viewModel.agent?.image ?? "")
                         Text(viewModel.agent?.name ?? "")
@@ -213,9 +215,10 @@ struct CardDiscoverComponent: View {
                 }
                 .background(Color(.white))
                 .cornerRadius(30)
-                .padding(16)
+                //.padding(.bottom, 20)
+                .padding(.horizontal, 16)
                 .shadow(color: .black.opacity(0.1),radius: 5)
-                .frame(height: 600)
+                .frame(height: 570)
             }
  
             

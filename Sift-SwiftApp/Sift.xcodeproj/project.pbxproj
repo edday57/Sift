@@ -13,7 +13,11 @@
 		642403182937F9BB00F928F3 /* ArticulateUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642403172937F9BB00F928F3 /* ArticulateUITestsLaunchTests.swift */; };
 		644B0002298065C4002561FC /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B0001298065C4002561FC /* Home.swift */; };
 		644B000429806B05002561FC /* DiscoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B000329806B05002561FC /* DiscoverViewModel.swift */; };
+		644B0006298418F8002561FC /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B0005298418F8002561FC /* UserView.swift */; };
+		644B00082984194B002561FC /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B00072984194B002561FC /* UserViewModel.swift */; };
+		647D4C00298991680082C868 /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647D4BFF298991680082C868 /* SavedView.swift */; };
 		649D7218297431D700E10D6B /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D7217297431D700E10D6B /* DiscoverView.swift */; };
+		64AD68F429887C3E004EB52F /* SavedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AD68F329887C3E004EB52F /* SavedViewModel.swift */; };
 		64B47D31296F91DE00E0F4D7 /* PropertyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B47D30296F91DE00E0F4D7 /* PropertyModel.swift */; };
 		64B47D33296F952500E0F4D7 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B47D32296F952500E0F4D7 /* UserModel.swift */; };
 		64B5F24B296F308E00315553 /* SiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F238296F308D00315553 /* SiftApp.swift */; };
@@ -61,7 +65,11 @@
 		642403172937F9BB00F928F3 /* ArticulateUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticulateUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		644B0001298065C4002561FC /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		644B000329806B05002561FC /* DiscoverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewModel.swift; sourceTree = "<group>"; };
+		644B0005298418F8002561FC /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		644B00072984194B002561FC /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		647D4BFF298991680082C868 /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
 		649D7217297431D700E10D6B /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
+		64AD68F329887C3E004EB52F /* SavedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewModel.swift; sourceTree = "<group>"; };
 		64B47D30296F91DE00E0F4D7 /* PropertyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyModel.swift; sourceTree = "<group>"; };
 		64B47D32296F952500E0F4D7 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		64B5F238296F308D00315553 /* SiftApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiftApp.swift; sourceTree = "<group>"; };
@@ -165,10 +173,12 @@
 			children = (
 				64B5F23B296F308D00315553 /* LoginViewModel.swift */,
 				64B47D30296F91DE00E0F4D7 /* PropertyModel.swift */,
+				64AD68F329887C3E004EB52F /* SavedViewModel.swift */,
 				644B000329806B05002561FC /* DiscoverViewModel.swift */,
 				64B47D32296F952500E0F4D7 /* UserModel.swift */,
 				6421960A297EF5550096EE3E /* FiltersModel.swift */,
 				64DBEE912972F16C0084BC13 /* PropertyCardModel.swift */,
+				644B00072984194B002561FC /* UserViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -207,7 +217,9 @@
 				64B5F246296F308D00315553 /* LoginView.swift */,
 				64B5F247296F308D00315553 /* HomeView.swift */,
 				644B0001298065C4002561FC /* Home.swift */,
+				647D4BFF298991680082C868 /* SavedView.swift */,
 				649D7217297431D700E10D6B /* DiscoverView.swift */,
+				644B0005298418F8002561FC /* UserView.swift */,
 				64B5F248296F308D00315553 /* WelcomeView.swift */,
 				64B5F249296F308D00315553 /* SignUpView.swift */,
 				64B5F24A296F308D00315553 /* ContentView.swift */,
@@ -346,24 +358,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				64B5F258296F308E00315553 /* ContentView.swift in Sources */,
+				644B00082984194B002561FC /* UserViewModel.swift in Sources */,
 				64B5F24B296F308E00315553 /* SiftApp.swift in Sources */,
 				64B5F24F296F308E00315553 /* WebService.swift in Sources */,
 				64B5F257296F308E00315553 /* SignUpView.swift in Sources */,
 				64B5F24D296F308E00315553 /* LoginViewModel.swift in Sources */,
 				649D7218297431D700E10D6B /* DiscoverView.swift in Sources */,
 				64B5F250296F308E00315553 /* CardComponents.swift in Sources */,
+				647D4C00298991680082C868 /* SavedView.swift in Sources */,
 				64B5F251296F308E00315553 /* ProfileImageComponent.swift in Sources */,
 				64B5F255296F308E00315553 /* HomeView.swift in Sources */,
 				644B0002298065C4002561FC /* Home.swift in Sources */,
 				6421960B297EF5550096EE3E /* FiltersModel.swift in Sources */,
 				64DBEE922972F16C0084BC13 /* PropertyCardModel.swift in Sources */,
 				64B47D33296F952500E0F4D7 /* UserModel.swift in Sources */,
+				644B0006298418F8002561FC /* UserView.swift in Sources */,
 				64B5F253296F308E00315553 /* ListingView.swift in Sources */,
 				64DBEE94297301330084BC13 /* FilterButtonComponent.swift in Sources */,
 				64B47D31296F91DE00E0F4D7 /* PropertyModel.swift in Sources */,
 				64B5F256296F308E00315553 /* WelcomeView.swift in Sources */,
 				644B000429806B05002561FC /* DiscoverViewModel.swift in Sources */,
 				64B5F252296F308E00315553 /* NavBarComponent.swift in Sources */,
+				64AD68F429887C3E004EB52F /* SavedViewModel.swift in Sources */,
 				64B5F254296F308E00315553 /* LoginView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

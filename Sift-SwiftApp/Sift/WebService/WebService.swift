@@ -35,10 +35,10 @@ struct LoginResponse: Codable{
 }
 
 class WebService{
-    
+    let hostname = "159.65.51.173"
     //Auth Functions
     func login(email: String, password: String, completion: @escaping (Result<LoginResponse, AuthenticationError>)-> Void){
-        guard let url = URL(string: "http://localhost:5000/api/user/login") else{
+        guard let url = URL(string: "http://\(hostname):5000/api/user/login") else{
             completion(.failure(.custom(errorMessage: "URL is invalid")))
             return
         }
@@ -61,7 +61,7 @@ class WebService{
     }
     
     func fetchUser(id: String, completion: @escaping (Result <User, AuthenticationError>) -> Void){
-        guard let url = URL(string: "http://localhost:5000/api/user/\(id)") else{
+        guard let url = URL(string: "http://\(hostname):5000/api/user/\(id)") else{
             completion(.failure(.custom(errorMessage: "URL is invalid")))
             return
         }
@@ -80,7 +80,7 @@ class WebService{
     }
     
     func addLike(user: String, listing: String, token: String, completion: @escaping (Int)-> Void){
-        guard let url = URL(string: "http://localhost:5000/api/like/add") else{
+        guard let url = URL(string: "http://\(hostname):5000/api/like/add") else{
             completion(404)
             return
         }
@@ -107,7 +107,29 @@ class WebService{
     
     //Listing Functions
     func getProperties( token: String, completion: @escaping (Result<[Property], NetworkError>)-> Void){
-        guard let url = URL(string: "http://localhost:5000/api/listing/") else{
+        guard let url = URL(string: "http://\(hostname):5000/api/listing/") else{
+            completion(.failure(.invalidURL))
+            return
+        }
+        var request = URLRequest(url: url)
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data=data, error==nil else{
+                completion(.failure(.noData))
+                return
+            }
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601WithFractionalSeconds
+            guard let properties = try? decoder.decode([Property].self, from: data) else {
+                completion(.failure(.decodingError))
+                return
+            }
+            completion(.success(properties))
+        }.resume()
+    }
+    
+    func getSavedProperties(id: String, token: String, completion: @escaping (Result<[Property], NetworkError>)-> Void){
+        guard let url = URL(string: "http://\(hostname):5000/api/like/posts/\(id)") else{
             completion(.failure(.invalidURL))
             return
         }
@@ -129,7 +151,7 @@ class WebService{
     }
     
     func getDiscover(id: String, token: String, viewed: [String], completion: @escaping (Result<[Property], NetworkError>)-> Void){
-        guard let url = URL(string: "http://localhost:5000/api/listing/discover/\(id)") else{
+        guard let url = URL(string: "http://\(hostname):5000/api/listing/discover/\(id)") else{
             completion(.failure(.invalidURL))
             return
         }

@@ -18,7 +18,6 @@ class PropertyCardModel: ObservableObject {
     }
     
     func fetchUser(userId: String){
-        let defaults = UserDefaults.standard
         WebService().fetchUser(id: userId) { result in
             switch result {
             case .success(let user):

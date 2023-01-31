@@ -12,39 +12,44 @@ struct DiscoverView: View {
     let user: User
     @State var viewedProperties: [String] = ["63c8279a5b061b24d6897c5d"]
     var body: some View {
-            VStack{
+        VStack(spacing: 30){
+
                 ZStack {
                     ForEach(Array(viewModel.properties.prefix(1))){ property in
-                        CardDiscoverComponent(viewModel: PropertyCardModel(property: property, currentUser: user))
-                            .animation(.spring())
-                            .gesture(DragGesture()
-                                                        .onEnded { value in
-                                                            
-                                                            if value.translation.width < -100 {
-                                                                self.viewedProperties.append(property.id)
-                                                                //self.viewedCards.append(card)
-                                                                self.viewModel.properties.remove(at: self.viewModel.properties.firstIndex(where:  {$0.id == property.id})!)
-                                                                if viewModel.properties.isEmpty{
-                                                                    viewModel.getProperties(viewed: viewedProperties)
+                        NavigationLink{
+                            ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
+                        } label: {
+                            CardDiscoverComponent(viewModel: PropertyCardModel(property: property, currentUser: user))
+                                .animation(.spring())
+                                .gesture(DragGesture()
+                                                            .onEnded { value in
+                                                                
+                                                                if value.translation.width < -100 {
+                                                                    self.viewedProperties.append(property.id)
+                                                                    //self.viewedCards.append(card)
+                                                                    self.viewModel.properties.remove(at: self.viewModel.properties.firstIndex(where:  {$0.id == property.id})!)
+                                                                    if viewModel.properties.isEmpty{
+                                                                        viewModel.getProperties(viewed: viewedProperties)
+                                                                    }
+                                                                }
+                                                                if value.translation.width > 100 {
+                                                                    self.viewedProperties.append(property.id)
+                                                                    //Add like
+                                                                    PropertyCardModel(property: property, currentUser: user).addLike()
+                                                                    //Get properties
+                                                                    self.viewModel.properties.remove(at: self.viewModel.properties.firstIndex(where:  {$0.id == property.id})!)
+                                                                    if viewModel.properties.isEmpty{
+                                                                        viewModel.getProperties(viewed: viewedProperties)
+                                                                    }
                                                                 }
                                                             }
-                                                            if value.translation.width > 100 {
-                                                                self.viewedProperties.append(property.id)
-                                                                //Add like
-                                                                PropertyCardModel(property: property, currentUser: user).addLike()
-                                                                //Get properties
-                                                                self.viewModel.properties.remove(at: self.viewModel.properties.firstIndex(where:  {$0.id == property.id})!)
-                                                                if viewModel.properties.isEmpty{
-                                                                    viewModel.getProperties(viewed: viewedProperties)
-                                                                }
-                                                            }
-                                                        }
-                                                    )
-                            .transition(.slide)
-                            .animation(.spring())
+                                                        )
+                                .transition(.slide)
+                                .animation(.spring())
+                        }
+
                     }
                 }
-                
                 HStack(spacing: 30){
                     Image(systemName: "arrow.uturn.left")
                         .labelStyle(.titleAndIcon)
@@ -76,8 +81,7 @@ struct DiscoverView: View {
                 }
                 .padding(20)
             }
-            
-        
+
         
     }
 }
