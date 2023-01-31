@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var filtersModel: FiltersModel
     @ObservedObject var propertyModel = PropertyModel()
+    @ObservedObject var savedModel = SavedViewModel()
     let user: User
     
     var body: some View {
@@ -85,7 +86,7 @@ struct HomeView: View {
                             //Horizontal Large Cards
                             ScrollView(.horizontal, showsIndicators: false){
                                 HStack(spacing: 16){
-                                    ForEach(Array(propertyModel.properties.prefix(5))){property in
+                                    ForEach(Array(savedModel.savedProperties.prefix(5))){property in
                                         NavigationLink{
                                             ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
                                         } label: {
@@ -102,7 +103,7 @@ struct HomeView: View {
                             
                             //For You Section
                             HStack {
-                                Text("For You")
+                                Text("Recently Added")
                                     .font(.system(size: 24, weight: .bold))
                                     .padding(20)
                                 Spacer()
@@ -149,6 +150,8 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = PropertyModel()
+        let savedModel = SavedViewModel()
+        savedModel.savedProperties=[propertyDemo, propertyDemo2]
         viewModel.properties=[propertyDemo, propertyDemo2]
         return HomeView(propertyModel: viewModel, user: userDemo)
             
