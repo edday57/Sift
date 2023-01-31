@@ -13,18 +13,29 @@ struct SavedView: View {
     @ObservedObject var viewModel = SavedViewModel()
     let user: User
     var body: some View {
-        HStack(spacing: 16){
-            ForEach(Array(viewModel.savedProperties.prefix(5))){property in
-                NavigationLink{
-                    ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
-                } label: {
-                    CardLargeComponent(viewModel: PropertyCardModel(property: property, currentUser: user))
+        ZStack{
+            ScrollView{
+                VStack{
+                    Text("Your Collection")
+                        .font(.system(size: 24, weight: .bold))
+                        .padding(20)
+                    VStack(spacing: -25){
+                        ForEach(Array(viewModel.savedProperties.prefix(5))){property in
+                            NavigationLink{
+                                ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
+                            } label: {
+                                CardListComponent(viewModel: PropertyCardModel(property: property, currentUser: user))
+                            }
+                            
+                        }
+                    }
                 }
-                
+            }
+            .refreshable {
+                viewModel.getProperties()
             }
         }
-        .padding(.leading, 20)
-        .padding(.trailing, 20)
+
        
         
     }

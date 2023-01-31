@@ -20,33 +20,35 @@ struct DiscoverView: View {
                             ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
                         } label: {
                             CardDiscoverComponent(viewModel: PropertyCardModel(property: property, currentUser: user))
-                                .animation(.spring())
-                                .gesture(DragGesture()
-                                                            .onEnded { value in
-                                                                
-                                                                if value.translation.width < -100 {
-                                                                    self.viewedProperties.append(property.id)
-                                                                    //self.viewedCards.append(card)
-                                                                    self.viewModel.properties.remove(at: self.viewModel.properties.firstIndex(where:  {$0.id == property.id})!)
-                                                                    if viewModel.properties.isEmpty{
-                                                                        viewModel.getProperties(viewed: viewedProperties)
-                                                                    }
-                                                                }
-                                                                if value.translation.width > 100 {
-                                                                    self.viewedProperties.append(property.id)
-                                                                    //Add like
-                                                                    PropertyCardModel(property: property, currentUser: user).addLike()
-                                                                    //Get properties
-                                                                    self.viewModel.properties.remove(at: self.viewModel.properties.firstIndex(where:  {$0.id == property.id})!)
-                                                                    if viewModel.properties.isEmpty{
-                                                                        viewModel.getProperties(viewed: viewedProperties)
-                                                                    }
-                                                                }
-                                                            }
-                                                        )
-                                .transition(.slide)
-                                .animation(.spring())
+                                
                         }
+                        .buttonStyle(FlatLinkStyle())
+                        .animation(.spring())
+                        .simultaneousGesture(DragGesture()
+                                                    .onEnded { value in
+                                                        
+                                                        if value.translation.width < -100 {
+                                                            self.viewedProperties.append(property.id)
+                                                            //self.viewedCards.append(card)
+                                                            self.viewModel.properties.remove(at: self.viewModel.properties.firstIndex(where:  {$0.id == property.id})!)
+                                                            if viewModel.properties.isEmpty{
+                                                                viewModel.getProperties(viewed: viewedProperties)
+                                                            }
+                                                        }
+                                                        if value.translation.width > 100 {
+                                                            self.viewedProperties.append(property.id)
+                                                            //Add like
+                                                            PropertyCardModel(property: property, currentUser: user).addLike()
+                                                            //Get properties
+                                                            self.viewModel.properties.remove(at: self.viewModel.properties.firstIndex(where:  {$0.id == property.id})!)
+                                                            if viewModel.properties.isEmpty{
+                                                                viewModel.getProperties(viewed: viewedProperties)
+                                                            }
+                                                        }
+                                                    }
+                                                )
+                        .transition(.slide)
+                        .animation(.spring())
 
                     }
                 }
@@ -91,5 +93,11 @@ struct DiscoverView_Previews: PreviewProvider {
         let viewModel = DiscoverViewModel()
         viewModel.properties=[propertyDemo, propertyDemo2]
         return DiscoverView(viewModel: viewModel, user: userDemo)
+    }
+}
+
+struct FlatLinkStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
     }
 }
