@@ -38,6 +38,7 @@ struct DiscoverView: View {
                                                         if value.translation.width > 100 {
                                                             self.viewedProperties.append(property.id)
                                                             //Add like
+                                                            print("add like")
                                                             PropertyCardModel(property: property, currentUser: user).addLike()
                                                             //Get properties
                                                             self.viewModel.properties.remove(at: self.viewModel.properties.firstIndex(where:  {$0.id == property.id})!)
