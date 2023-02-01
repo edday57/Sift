@@ -20,7 +20,7 @@ struct SavedView: View {
                         .font(.system(size: 24, weight: .bold))
                         .padding(20)
                     VStack(spacing: -25){
-                        ForEach(Array(viewModel.savedProperties.prefix(5))){property in
+                        ForEach(Array(viewModel.savedProperties.prefix(10))){property in
                             NavigationLink{
                                 ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
                             } label: {

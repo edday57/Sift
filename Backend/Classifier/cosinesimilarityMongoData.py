@@ -174,7 +174,7 @@ def recommender(df, filters, liked, viewed):
     resultScores =[]
     for result in filter_results:
         scores=[]
-        for liked_id in liked_ids:
+        for liked_id in liked_ids[:5]:
             scores.append(cosine_similarity_matrix_dict[liked_id][result])
         averageScore = np.mean(np.array(scores))
         resultScores.append([result, averageScore])

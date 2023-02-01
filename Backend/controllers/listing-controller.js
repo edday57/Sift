@@ -28,7 +28,7 @@ export const recommender = async(req,res,next) => {
     }
     let likes;
     try {
-        likes = await Like.find({user: userId}).sort({timestamp: -1}).limit(5);
+        likes = await Like.find({user: userId}).sort({timestamp: -1});
     }
     catch(err){
         return console.log(err);
@@ -41,7 +41,7 @@ export const recommender = async(req,res,next) => {
     let discoverrecommendations;
     let extrarecommendations;
     let recommendationIDs;
-    console.log(viewed)
+    console.log(likes.toString())
     var process = spawn('python3',["./Classifier/cosinesimilarityMongoData.py", likes.toString(), viewed ],{shell: true} );
 
     for await (const data of process.stdout) {
