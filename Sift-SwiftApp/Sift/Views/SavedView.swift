@@ -10,7 +10,7 @@ import SwiftUI
 import SwiftUI
 
 struct SavedView: View {
-    @ObservedObject var viewModel = SavedViewModel()
+    @ObservedObject var viewModel: PropertyModel
     let user: User
     var body: some View {
         ZStack{
@@ -43,7 +43,7 @@ struct SavedView: View {
 
 struct SavedView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = SavedViewModel()
+        let viewModel = PropertyModel()
         viewModel.savedProperties=[propertyDemo, propertyDemo2]
         return SavedView(viewModel: viewModel, user: userDemo)
     }

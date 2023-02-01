@@ -9,6 +9,8 @@ import SwiftUI
 
 struct Home: View {
     let user: User
+    @State var selectedTab = "Home"
+    @ObservedObject var viewModel = PropertyModel()
     var body: some View {
         NavigationView {
             ZStack {
@@ -24,30 +26,9 @@ struct Home: View {
                     .font(.system(size: 500))
                     .opacity(0.05)
                 VStack{
-                    HStack(){
-                        Button {
-                            //
-                        } label: {
-                            NavBarComponent(symbol: "list.bullet")
-                        }
-                        
-                        Spacer()
-                        Button {
-                            //
-                        } label: {
-                            NavBarComponent(symbol: "magnifyingglass")
-                        }
-                        Button {
-                            //
-                        } label: {
-                            ProfileImageComponent(size: 44, image: self.user.image ?? "")
-                                .padding(.trailing, 20)
-                        }
-                    }
-                    .padding(.leading, 20)
-                    .padding(.bottom,8)
+                    
                     ZStack{
-                        TabView{
+                        TabView(selection: $selectedTab){
                             ZStack {
                                 Image(systemName: "house")
                                     .resizable()
@@ -58,12 +39,13 @@ struct Home: View {
                                     .offset(x: -80, y: 300)
                                     .font(.system(size: 500))
                                     .opacity(0.05)
-                                HomeView(user: user)
+                                HomeView(selectedTab: $selectedTab, viewModel: viewModel, user: user)
                                     
                             }
                             .tabItem{
                                 Image(systemName: "house")
                             }
+                            .tag("Home")
                             .background(Color("Background"))
                             //.navigationBarHidden(true)
                             ZStack {
@@ -81,6 +63,7 @@ struct Home: View {
                             .tabItem{
                                 Image(systemName: "heart.text.square")
                             }
+                            .tag("Discover")
                             .background(Color("Background"))
                             ZStack {
                                 Image(systemName: "house")
@@ -92,11 +75,30 @@ struct Home: View {
                                     .offset(x: -80, y: 300)
                                     .font(.system(size: 500))
                                     .opacity(0.05)
-                                SavedView(user:user)
+                                BrowseView()
+                                    
                             }
                             .tabItem{
-                                Image(systemName: "bookmark")
+                                Image(systemName: "magnifyingglass")
                             }
+                            .tag("Browse")
+                            .background(Color("Background"))
+                            ZStack {
+                                Image(systemName: "house")
+                                    .resizable()
+                                    .fixedSize()
+                                    .aspectRatio( contentMode: .fill)
+                                    .ignoresSafeArea()
+                                    .frame(maxWidth: UIScreen.main.bounds.width, maxHeight:UIScreen.main.bounds.height)
+                                    .offset(x: -80, y: 300)
+                                    .font(.system(size: 500))
+                                    .opacity(0.05)
+                                UserView(user:user, propertyModel: viewModel)
+                            }
+                            .tabItem{
+                                Image(systemName: "person.fill")
+                            }
+                            .tag("Saved")
                             .background(Color("Background"))
                         }
                         .background(Color("Background"))

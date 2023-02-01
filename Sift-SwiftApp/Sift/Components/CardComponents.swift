@@ -237,7 +237,7 @@ struct CardLargeComponent_Previews: PreviewProvider {
 
 extension Date {
         func formatDate() -> String {
-                let dateFormatter = DateFormatter()
+            let dateFormatter = DateFormatter()
             dateFormatter.setLocalizedDateFormatFromTemplate("d MM yy")
             return dateFormatter.string(from: self)
         }

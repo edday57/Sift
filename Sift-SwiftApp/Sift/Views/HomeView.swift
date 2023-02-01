@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
+    @Binding var selectedTab: String
     @EnvironmentObject var filtersModel: FiltersModel
-    @ObservedObject var propertyModel = PropertyModel()
-    @ObservedObject var savedModel = SavedViewModel()
+    @ObservedObject var viewModel: PropertyModel
     let user: User
     
     var body: some View {
@@ -21,58 +21,41 @@ struct HomeView: View {
                         
                         VStack(alignment: .center, spacing: 8) {
                             //Nav
-
-                            
-                            //Top Buttons
-                            HStack(alignment: .center) {
-                                Text("All")
-                                    .font(.system(size: 14))
-                                    .foregroundColor(.white)
-                                    .padding(5)
-                                    .padding(.leading, 7)
-                                    .padding(.trailing, 7)
-                                    .background(Capsule()
-                                        .foregroundColor(Color("PrimaryBlue")))
+                            HStack(){
+                                Button {
+                                    //
+                                } label: {
+                                    NavBarComponent(symbol: "list.bullet")
+                                }
+                                
                                 Spacer()
-                                Text("For You")
-                                    .font(.system(size: 14))
-                                    .foregroundColor(.black)
-                                    .padding(5)
-                                    .padding(.leading, 7)
-                                    .padding(.trailing, 7)
-                                    .background(Capsule()
-                                        .foregroundColor(Color("StrokeGrey")))
-                                Spacer()
-                                Text("Trending")
-                                    .font(.system(size: 14))
-                                    .foregroundColor(.black)
-                                    .padding(5)
-                                    .padding(.leading, 7)
-                                    .padding(.trailing, 7)
-                                    .background(Capsule()
-                                        .foregroundColor(Color("StrokeGrey")))
-                                Spacer()
-                                Text("Following")
-                                    .font(.system(size: 14))
-                                    .foregroundColor(.black)
-                                    .padding(5)
-                                    .padding(.leading, 6)
-                                    .padding(.trailing, 6)
-                                    .background(Capsule()
-                                        .foregroundColor(Color("StrokeGrey")))
+//                                Button {
+//                                    //
+//                                } label: {
+//                                    NavBarComponent(symbol: "magnifyingglass")
+//                                }
+                                NavigationLink {
+                                    UserView(user: user, propertyModel: viewModel)
+                                    
+                                } label: {
+                                    ProfileImageComponent(size: 44, image: self.user.image ?? "")
+                                        .padding(.trailing, 20)
+                                }
+                                
 
                             }
                             .padding(.leading, 20)
-                            .padding(.trailing, 20)
-                            .padding(.bottom, 0)
+                            .padding(.top,20)
+
                             
                             //Trending Section
                             HStack {
-                                Text("Your Collection")
+                                Text("My Collection")
                                     .font(.system(size: 24, weight: .bold))
                                     .padding(20)
                                 Spacer()
                                 Button {
+                                    selectedTab = "Saved"
                                     //for you
                                 } label: {
                                     Text("See More")
@@ -86,7 +69,7 @@ struct HomeView: View {
                             //Horizontal Large Cards
                             ScrollView(.horizontal, showsIndicators: false){
                                 HStack(spacing: 16){
-                                    ForEach(Array(savedModel.savedProperties.prefix(5))){property in
+                                    ForEach(Array(viewModel.savedProperties.prefix(5))){property in
                                         NavigationLink{
                                             ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
                                         } label: {
@@ -124,7 +107,7 @@ struct HomeView: View {
 
                             //Vertical Cards
                             VStack(spacing: -25){
-                                ForEach(Array(propertyModel.properties.prefix(5))){property in
+                                ForEach(Array(viewModel.properties.prefix(5))){property in
                                     NavigationLink{
                                         ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
                                     } label: {
@@ -150,10 +133,9 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = PropertyModel()
-        let savedModel = SavedViewModel()
-        savedModel.savedProperties=[propertyDemo, propertyDemo2]
+        viewModel.savedProperties=[propertyDemo, propertyDemo2]
         viewModel.properties=[propertyDemo, propertyDemo2]
-        return HomeView(propertyModel: viewModel, user: userDemo)
+        return HomeView(selectedTab: .constant("Home"), viewModel: viewModel, user: userDemo)
             
     }
 }

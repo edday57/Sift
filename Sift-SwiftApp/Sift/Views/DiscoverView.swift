@@ -12,8 +12,16 @@ struct DiscoverView: View {
     let user: User
     @State var viewedProperties: [String] = ["63c8279a5b061b24d6897c5d"]
     var body: some View {
-        VStack(spacing: 30){
-
+        VStack(spacing: 20){
+            HStack{
+                Text("For You")
+                    .font(.system(size: 30, weight: .bold))
+                    
+                Spacer()
+                Image(systemName: "info.circle")
+            }
+            .padding(.horizontal,30)
+            .padding(.top,20)
                 ZStack {
                     ForEach(Array(viewModel.properties.prefix(1))){ property in
                         NavigationLink{

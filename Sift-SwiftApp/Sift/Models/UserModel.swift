@@ -23,4 +23,4 @@ struct User: Codable, Identifiable{
     
 }
 
-var userDemo: User = User(_id: "", email: "joe@apple.com", signedUp: true, isAgent: false, name: "Ed")
+var userDemo: User = User(_id: "", email: "joe@apple.com", signedUp: true, isAgent: false, name: "Jenny Phillips", about: "Post-Grad Student | London")

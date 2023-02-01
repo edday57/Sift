@@ -37,9 +37,11 @@ let propertyDemo2: Property = Property(_id: "xx", address: "Alba Gardens, Golder
 class PropertyModel: ObservableObject {
 
     @Published var properties: [Property] = []
+    @Published var savedProperties: [Property] = []
     
     init(){
         getProperties()
+        getSavedProperties()
     }
     
     func getProperties(){
@@ -52,6 +54,27 @@ class PropertyModel: ObservableObject {
                 case .success(let properties):
                     DispatchQueue.main.async {
                         self.properties = properties
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+            }
+            
+        
+        }
+    }
+    func getSavedProperties(){
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "jsonwebtoken") else {
+                    return
+                }
+        guard let id = defaults.string(forKey: "userid") else {
+                    return
+                }
+        WebService().getSavedProperties(id: id, token: token) { (result) in
+            switch result {
+                case .success(let properties):
+                    DispatchQueue.main.async {
+                        self.savedProperties = properties
                     }
                 case .failure(let error):
                     print(error.localizedDescription)

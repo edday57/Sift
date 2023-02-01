@@ -9,6 +9,7 @@ import Foundation
 
 class UserViewModel: ObservableObject {
     @Published var user: User?
+    
     var userLoaded: Bool = false
     
     init(userid: String?, user: User?){
