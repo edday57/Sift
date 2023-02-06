@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserView: View {
     let user: User
+    @EnvironmentObject var filtersModel: FiltersModel
     @ObservedObject var propertyModel: PropertyModel
     @State private var showingFilters = false
     var body: some View {
@@ -69,40 +70,67 @@ struct UserView: View {
                                 FiltersView()
                                     
                             }
-                            Button {
-                                
-                            } label: {
-                                
-                                Label("Apartment", systemImage: "xmark")
-                                    .foregroundColor(Color("TextGreyDark"))
-                                    .padding(11)
-                                    .font(.system(size: 14, weight: .bold))
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 11)
-                                            .strokeBorder(Color("StrokeGrey"), lineWidth: 1)
-                                            .background(RoundedRectangle(cornerRadius: 11)
-                                                .fill(Color.white)
-                                                .shadow(color: .black.opacity(0.05), radius: 3)
-                                            )
-                                    )
-                            }
-                            Button {
-                                
-                            } label: {
-                                
-                                Label("Price", systemImage: "xmark")
-                                    .foregroundColor(Color("TextGreyDark"))
-                                    .padding(11)
-                                    .font(.system(size: 14, weight: .bold))
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 11)
-                                            .strokeBorder(Color("StrokeGrey"), lineWidth: 1)
-                                            .background(RoundedRectangle(cornerRadius: 11)
-                                                .fill(Color.white)
-                                                .shadow(color: .black.opacity(0.05), radius: 3)
-                                            )
-                                    )
+                            if filtersModel.filters.property_type.count != 0{
+                                ForEach(Array((filtersModel.filters.property_type)), id: (\.self)){ type in
+                                    Button {
+                                        filtersModel.filters.property_type.remove(object: type)
+                                        filtersModel.filters.saveFiltersToUserDefaults()
+                                    } label: {
+                                        
+                                        Label(type, systemImage: "xmark")
+                                            .filterTag()
 
+                                    }
+                                }
+                            }
+                            if filtersModel.filters.minPrice != 100 || filtersModel.filters.maxPrice != 20000{
+                                Button {
+                                    filtersModel.filters.minPrice = 100
+                                    filtersModel.filters.maxPrice = 20000
+                                    filtersModel.filters.saveFiltersToUserDefaults()
+                                } label: {
+                                    
+                                    Label("Price", systemImage: "xmark")
+                                        .filterTag()
+
+                                }
+                            }
+                            
+                            if filtersModel.filters.maxBeds != -1{
+                                Button {
+                                    filtersModel.filters.minBeds = -1
+                                    filtersModel.filters.maxBeds = -1
+                                    filtersModel.filters.saveFiltersToUserDefaults()
+                                } label: {
+                                    
+                                    Label("Bedrooms", systemImage: "xmark")
+                                        .filterTag()
+
+                                }
+                            }
+                            if filtersModel.filters.maxBaths != -1 {
+                                Button {
+                                    filtersModel.filters.minBaths = -1
+                                    filtersModel.filters.maxBaths = -1
+                                    filtersModel.filters.saveFiltersToUserDefaults()
+                                } label: {
+                                    
+                                    Label("Bathrooms", systemImage: "xmark")
+                                        .filterTag()
+
+                                }
+                            }
+                            if filtersModel.filters.minSize != 0 || filtersModel.filters.maxSize != 300{
+                                Button {
+                                    filtersModel.filters.minSize = 0
+                                    filtersModel.filters.maxSize = 300
+                                    filtersModel.filters.saveFiltersToUserDefaults()
+                                } label: {
+                                    
+                                    Label("Size", systemImage: "xmark")
+                                        .filterTag()
+
+                                }
                             }
                         }
                         .padding(.horizontal, 20)
@@ -134,9 +162,26 @@ struct UserView: View {
     }
 }
 
+extension Label {
+    func filterTag() -> some View {
+        self.foregroundColor(Color("TextGreyDark"))
+            .padding(11)
+            .font(.system(size: 14, weight: .bold))
+            .background(
+                RoundedRectangle(cornerRadius: 11)
+                    .strokeBorder(Color("StrokeGrey"), lineWidth: 1)
+                    .background(RoundedRectangle(cornerRadius: 11)
+                        .fill(Color.white)
+                        .shadow(color: .black.opacity(0.05), radius: 3)
+                    )
+            )
+                
+    }
+    
+}
+
 struct UserView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = UserViewModel(userid: nil, user: userDemo)
         let propertyModel = PropertyModel()
         propertyModel.savedProperties=[propertyDemo, propertyDemo2]
         return UserView(user: userDemo, propertyModel: propertyModel)

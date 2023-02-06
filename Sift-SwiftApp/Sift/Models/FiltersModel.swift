@@ -8,17 +8,19 @@
 import Foundation
 
 class FiltersModel: ObservableObject{
-    @Published var filters = Filters.loadFiltersFromUserDefaults()
-    static let shared = FiltersModel()
+    @Published var filters: Filters = Filters.loadFiltersFromUserDefaults()
+    //static let shared = FiltersModel()
 }
 struct Filters: Codable{
-    var minPrice: Int?
-    var maxPrice: Int?
-    var minBeds: Int?
-    var maxBeds: Int?
-    var minBaths: Int?
-    var maxBaths: Int?
-    var property_type: [String]?
+    var minPrice: Int = 100
+    var maxPrice: Int = 20000
+    var minSize: Int = 0
+    var maxSize: Int = 300
+    var minBeds: Int = -1
+    var maxBeds: Int = -1
+    var minBaths: Int = -1
+    var maxBaths: Int = -1
+    var property_type: [String] = []
 }
 
 extension Filters {
@@ -29,7 +31,7 @@ extension Filters {
         }
     }
     
-    static func loadFiltersFromUserDefaults() -> Filters? {
+    static func loadFiltersFromUserDefaults() -> Filters {
         if let data = UserDefaults.standard.data(forKey: "searchFilters"),
             let filters = try? JSONDecoder().decode(Filters.self, from: data) {
             return filters
