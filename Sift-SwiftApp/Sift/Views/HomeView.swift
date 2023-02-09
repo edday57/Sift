@@ -106,8 +106,8 @@ struct HomeView: View {
                             FiltersHScroll()
 
                             //Vertical Cards
-                            VStack(spacing: -25){
-                                ForEach(Array(viewModel.properties.prefix(5))){property in
+                            LazyVStack(spacing: -25){
+                                ForEach(Array(viewModel.properties)){property in
                                     NavigationLink{
                                         ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
                                     } label: {

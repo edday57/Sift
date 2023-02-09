@@ -97,9 +97,9 @@ def scrapeData(link):
     lat = re.search('"latitude":(.*?),"longitude":', script[6].text)
     long = re.search('"longitude":(.*?),"circleRadiusOnMap"', script[6].text)
     if lat != None:
-        property_data["latitude"] = lat.group(1)
+        property_data["latitude"] = float(lat.group(1))
     if long != None:
-        property_data["longitude"] = long.group(1)
+        property_data["longitude"] = float(long.group(1))
     #Description
     description = soup.find('div', class_ = "STw8udCxUaBUMfOOZu0iL _3nPVwR0HZYQah5tkVJHFh5").get_text()
     property_data["description"] = description     

@@ -75,7 +75,7 @@ struct Home: View {
                                     .offset(x: -80, y: 300)
                                     .font(.system(size: 500))
                                     .opacity(0.05)
-                                BrowseView()
+                                BrowseView(user: user, viewModel: viewModel)
                                     
                             }
                             .tabItem{

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FiltersView: View {
     //@State var filters = Filters.
+    var refreshParent: () -> Void
     @EnvironmentObject var filtersModel: FiltersModel
     @State var filters: Filters
     @Environment(\.dismiss) var dismiss
@@ -18,7 +19,8 @@ struct FiltersView: View {
     @State var bedrooms: [Int] = [1, 2, 3, 4]
     @State var bathrooms: [Int] = [1, 2, 3, 4]
 
-    init(){
+    init(parent: @escaping () -> Void){
+        refreshParent = parent
         _filters = State(initialValue: Filters.loadFiltersFromUserDefaults())
         _priceSliderPosition = State(initialValue: Float(_filters.wrappedValue.minPrice)...Float(_filters.wrappedValue.maxPrice))
         _sizeSliderPosition = State(initialValue: Float(_filters.wrappedValue.minSize)...Float(_filters.wrappedValue.maxSize))
@@ -31,6 +33,7 @@ struct FiltersView: View {
                     HStack{
                         Button(action: {
                             dismiss()
+                            
                         }, label: {
                             Image(systemName: "xmark")
                                 .bold()
@@ -46,7 +49,7 @@ struct FiltersView: View {
                             filters.maxBeds = -1
                             filters.property_type.removeAll()
                             priceSliderPosition = 100...20000
-                            sizeSliderPosition = 0...300
+                            sizeSliderPosition = 100...5000
                         } label: {
                             Text("Reset")
                                 .foregroundColor(.white)
@@ -257,7 +260,7 @@ struct FiltersView: View {
                                 .font(.system(size: 14, weight: .bold))
                                 .foregroundColor(Color("PrimaryBlue"))
                         }
-                        RangedSliderView(value: $sizeSliderPosition, bounds: 0...300)
+                        RangedSliderView(value: $sizeSliderPosition, bounds: 100...5000)
                             .padding(.horizontal, 30)
                             .padding(.bottom, 300)
                     }
@@ -273,6 +276,7 @@ struct FiltersView: View {
                 Spacer()
                 Button {
                     saveFilters()
+                    refreshParent()
                     dismiss()
                 } label: {
                     ZStack{
@@ -304,7 +308,7 @@ struct FiltersView: View {
 
     
     func deselectNumber(numberToDeselect: Int, filter: String){
-        if filter == "Baths"{
+        if filter == "Bath"{
             if numberToDeselect == filters.minBaths && numberToDeselect == filters.maxBaths{
                 filters.minBaths = -1
                 filters.maxBaths = -1
@@ -330,7 +334,7 @@ struct FiltersView: View {
                 }
             }
         }
-        else if filter == "Beds"{
+        else if filter == "Bed"{
             if numberToDeselect == filters.minBeds && numberToDeselect == filters.maxBeds{
                 filters.minBeds = -1
                 filters.maxBeds = -1
@@ -391,7 +395,10 @@ extension Text {
 
 struct FiltersView_Previews: PreviewProvider {
     static var previews: some View {
-        return FiltersView()
+        func refresh(){
+            
+        }
+        return FiltersView(parent: refresh)
     }
 }
 extension Array where Element: Equatable {

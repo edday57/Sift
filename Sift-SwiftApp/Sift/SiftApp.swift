@@ -26,12 +26,11 @@ import SwiftUI
 
 @main
 struct ArticulateApp: App {
-    @StateObject var filtersModel: FiltersModel = FiltersModel()
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(LoginViewModel.shared)
-                .environmentObject(filtersModel)
+                .environmentObject(FiltersModel.shared)
         }
     }
 }

@@ -38,7 +38,7 @@ class PropertyModel: ObservableObject {
 
     @Published var properties: [Property] = []
     @Published var savedProperties: [Property] = []
-    
+   
     init(){
         getProperties()
         getSavedProperties()
@@ -49,7 +49,8 @@ class PropertyModel: ObservableObject {
         guard let token = defaults.string(forKey: "jsonwebtoken") else {
                     return
                 }
-        WebService().getProperties(token: token) { (result) in
+        let filters = Filters.loadFiltersFromUserDefaults()
+        WebService().getProperties(filters: filters, token: token) { (result) in
             switch result {
                 case .success(let properties):
                     DispatchQueue.main.async {

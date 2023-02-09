@@ -2,7 +2,7 @@ import express from 'express';
 import { getAllListings, newListing, updateListing, getListing, deleteListing, getUserListings, authenticate, recommender} from '../controllers/listing-controller';
 const listingRouter = express.Router();
 
-listingRouter.get("/", authenticate, getAllListings);
+listingRouter.post("/", authenticate, getAllListings);
 listingRouter.post("/new", newListing);
 listingRouter.put("/update/:id",updateListing);
 listingRouter.get("/:id",getListing);

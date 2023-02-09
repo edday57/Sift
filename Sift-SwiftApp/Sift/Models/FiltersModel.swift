@@ -9,13 +9,13 @@ import Foundation
 
 class FiltersModel: ObservableObject{
     @Published var filters: Filters = Filters.loadFiltersFromUserDefaults()
-    //static let shared = FiltersModel()
+    static let shared = FiltersModel()
 }
 struct Filters: Codable{
     var minPrice: Int = 100
     var maxPrice: Int = 20000
-    var minSize: Int = 0
-    var maxSize: Int = 300
+    var minSize: Int = 100
+    var maxSize: Int = 5000
     var minBeds: Int = -1
     var maxBeds: Int = -1
     var minBaths: Int = -1

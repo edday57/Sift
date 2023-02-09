@@ -67,7 +67,7 @@ struct UserView: View {
                                         .font(.system(size: 14, weight: .bold))
                             }
                             .fullScreenCover(isPresented: $showingFilters) {
-                                FiltersView()
+                                FiltersView(parent: refresh)
                                     
                             }
                             if filtersModel.filters.property_type.count != 0{
@@ -120,10 +120,10 @@ struct UserView: View {
 
                                 }
                             }
-                            if filtersModel.filters.minSize != 0 || filtersModel.filters.maxSize != 300{
+                            if filtersModel.filters.minSize != 100 || filtersModel.filters.maxSize != 5000{
                                 Button {
-                                    filtersModel.filters.minSize = 0
-                                    filtersModel.filters.maxSize = 300
+                                    filtersModel.filters.minSize = 100
+                                    filtersModel.filters.maxSize = 5000
                                     filtersModel.filters.saveFiltersToUserDefaults()
                                 } label: {
                                     
@@ -141,7 +141,7 @@ struct UserView: View {
                     }
 
                     //Liked Property Cards
-                    VStack(spacing: -20){
+                    LazyVStack(spacing: -20){
                         ForEach(Array(propertyModel.savedProperties.prefix(10))){property in
                             NavigationLink{
                                 ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
@@ -159,6 +159,9 @@ struct UserView: View {
         }
         
 
+    }
+    func refresh(){
+        propertyModel.getSavedProperties()
     }
 }
 

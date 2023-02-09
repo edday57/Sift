@@ -6,9 +6,51 @@ import mongoose from "mongoose";
 import jwt from 'jsonwebtoken'
 import { spawn } from 'child_process';
 export const getAllListings = async(req, res, next) => {
+    let {filters} =req.body;
+    console.log(filters);
     let listings;
+    let skip = 0;
+    let limit = 10;
+    var match = {};
+    //Filters
+    //Price
+    if (filters.minPrice != 100 || filters.maxPrice != 20000) {
+        match.price = { $gte: filters.minPrice, $lte: filters.maxPrice };
+    }
+    
+    //Size
+    if (filters.minSize != 100 || filters.maxSize != 5000) {
+        match.sizesqft = { $gte: filters.minSize, $lte: filters.maxSize };
+    }
+    //Bedrooms
+    if (filters.minBeds != -1) {
+        if (filters.maxBeds != 4){
+            //match.push()
+            match.bedrooms = { $gte: filters.minBeds, $lte: filters.maxBeds };
+        }
+        else {
+            match.bedrooms = { $gte: filters.minBeds};
+        }
+    }
+
+    //Bathrooms
+    if (filters.minBaths != -1) {
+        if (filters.maxBaths != 4){
+            match.bathrooms = { $gte: filters.minBaths, $lte: filters.maxBaths };
+        }
+        else {
+            match.bathrooms = { $gte: filters.minBaths};
+        }
+    }
     try {
-        listings = await Listing.find().sort({date_added: -1});
+        
+        listings = await Listing.aggregate([
+            { $match: match },
+            { $sort: { "date_added": -1 }},
+            //To implement sort and skip
+            { $skip: skip },
+            { $limit: limit },
+        ]);
     } catch(err) {
         console.log(err);
     }

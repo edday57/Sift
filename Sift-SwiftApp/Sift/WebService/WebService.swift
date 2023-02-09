@@ -26,6 +26,9 @@ struct LikeRequestBody: Codable{
     let user: String
     let listing: String
 }
+struct ListingRequestBody: Codable{
+    let filters: Filters
+}
 
 struct LoginResponse: Codable{
     let success: Bool?
@@ -35,8 +38,8 @@ struct LoginResponse: Codable{
 }
 
 class WebService{
-    let hostname = "159.65.51.173"
-    //let hostname = "localhost"
+    //let hostname = "159.65.51.173"
+    let hostname = "localhost"
     //Auth Functions
     func login(email: String, password: String, completion: @escaping (Result<LoginResponse, AuthenticationError>)-> Void){
         guard let url = URL(string: "http://\(hostname):5000/api/user/login") else{
@@ -107,13 +110,17 @@ class WebService{
     }
     
     //Listing Functions
-    func getProperties( token: String, completion: @escaping (Result<[Property], NetworkError>)-> Void){
+    func getProperties(filters: Filters, token: String, completion: @escaping (Result<[Property], NetworkError>)-> Void){
         guard let url = URL(string: "http://\(hostname):5000/api/listing/") else{
             completion(.failure(.invalidURL))
             return
         }
+        let body = ListingRequestBody(filters: filters)
         var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.httpBody = try? JSONEncoder().encode(body)
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data=data, error==nil else{
                 completion(.failure(.noData))
