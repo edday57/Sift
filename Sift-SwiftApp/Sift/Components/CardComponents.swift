@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import Kingfisher
 
 struct CardLargeComponent: View {
     @ObservedObject var viewModel: PropertyCardModel
@@ -25,13 +25,9 @@ struct CardLargeComponent: View {
             
             VStack(alignment: .center){
                 
-                AsyncImage(url: URL(string: viewModel.property.images[0])){ image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                } placeholder: {
-                    
-                }
+                KFImage(URL(string: viewModel.property.images[0]))
+                    .resizable()
+                    .scaledToFill()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 276, height: 165)
                     .clipShape(RoundedRectangle(cornerRadius: 24))
@@ -81,12 +77,14 @@ struct CardLargeComponent: View {
                     .foregroundColor(.black)
                 Spacer()
                 HStack{
-                    ProfileImageComponent(size: 30, image: viewModel.agent?.image ?? "")
-                    Text(viewModel.agent?.name ?? "")
-                        .foregroundColor(Color("TextGreyLight"))
-                        .lineLimit(1)
-                        .multilineTextAlignment(.leading)
-                        .font(.system(size: 14, weight: .medium))
+                    if let agent = viewModel.agent{
+                        ProfileImageComponent(size: 30, image: agent.image!)
+                        Text(agent.name)
+                            .foregroundColor(Color("TextGreyLight"))
+                            .lineLimit(1)
+                            .multilineTextAlignment(.leading)
+                            .font(.system(size: 14, weight: .medium))
+                    }
                     Spacer()
                     Text("...")
                         .foregroundColor(Color("TextGreyLight"))
@@ -128,12 +126,14 @@ struct CardListComponent: View {
                     .multilineTextAlignment(.leading)
                 Spacer()
                 HStack{
-                    ProfileImageComponent(size: 30, image: viewModel.agent?.image ?? "")
-                    Text(viewModel.agent?.name ?? "")
-                        .foregroundColor(Color("TextGreyLight"))
-                        .font(.system(size: 12, weight: .medium))
-                        .lineLimit(1)
-                        .multilineTextAlignment(.leading)
+                    if let agent = viewModel.agent{
+                        ProfileImageComponent(size: 30, image: agent.image!)
+                        Text(agent.name)
+                            .foregroundColor(Color("TextGreyLight"))
+                            .lineLimit(1)
+                            .multilineTextAlignment(.leading)
+                            .font(.system(size: 12, weight: .medium))
+                    }
                     Spacer()
 //                    Text("...")
 //                        .foregroundColor(Color("TextGreyLight"))
@@ -145,13 +145,9 @@ struct CardListComponent: View {
             }
             .padding(12)
             Spacer()
-            AsyncImage(url: URL(string: viewModel.property.images[0])){ image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-            } placeholder: {
-                
-            }
+            KFImage(URL(string: viewModel.property.images[0]))
+                .resizable()
+                .scaledToFill()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 135, height: 125)
                 .clipShape(RoundedRectangle(cornerRadius: 19))
@@ -180,14 +176,9 @@ struct CardDiscoverComponent: View {
             GeometryReader { geo in
                 VStack(alignment: .leading){
                     //Image
-                    AsyncImage(url: URL(string: viewModel.property.images[0])){ image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                        
-                    } placeholder: {
-                        
-                    }
+                    KFImage(URL(string: viewModel.property.images[0]))
+                        .resizable()
+                        .scaledToFill()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: geo.size.width-44,height: 270)
                     .clipShape(RoundedRectangle(cornerRadius: 24))
@@ -260,13 +251,9 @@ struct CardFullWidthListComponent: View {
     var body: some View {
         let formattedPrice = String(format: "£%.0f pcm", viewModel.property.price)
         VStack(alignment: .leading){
-            AsyncImage(url: URL(string: viewModel.property.images[0])){ image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-            } placeholder: {
-                
-            }
+            KFImage(URL(string: viewModel.property.images[0]))
+                .resizable()
+                .scaledToFill()
             .frame(height: 165)
             .clipShape(RoundedRectangle(cornerRadius: 24))
             .shadow(color: .black.opacity(0.1), radius: 10, y:4)
@@ -308,12 +295,16 @@ struct CardFullWidthListComponent: View {
                 .multilineTextAlignment(.leading)
                 .foregroundColor(.black)
             HStack{
-                ProfileImageComponent(size: 30, image: viewModel.agent?.image ?? "")
-                Text(viewModel.agent?.name ?? "")
-                    .foregroundColor(Color("TextGreyLight"))
-                    .lineLimit(1)
-                    .multilineTextAlignment(.leading)
-                    .font(.system(size: 14, weight: .medium))
+
+                if let agent = viewModel.agent{
+                    ProfileImageComponent(size: 30, image: agent.image!)
+                    Text(agent.name)
+                        .foregroundColor(Color("TextGreyLight"))
+                        .lineLimit(1)
+                        .multilineTextAlignment(.leading)
+                        .font(.system(size: 14, weight: .medium))
+                }
+                
                 Spacer()
                 Text("...")
                     .foregroundColor(Color("TextGreyLight"))

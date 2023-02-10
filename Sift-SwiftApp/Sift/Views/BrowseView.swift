@@ -17,23 +17,7 @@ struct BrowseView: View {
         
         ScrollView(){
             VStack{
-                ZStack {
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color("StrokeGrey"), lineWidth: 2)
-                        .frame(height: 42)
-                        .foregroundColor(.white)
-                        .overlay {
-                            HStack {
-                                Image(systemName: "magnifying.glass")
-                                    .foregroundColor(Color("TextGreyLight"))
-                                TextField("Search", text: $searchTerm)
-                                    .foregroundColor(.black)
-                            }
-                            .padding(.leading, 10)
-                        }
-                        .padding(.leading,20)
-                        .padding(.trailing,20)
-                }
+                SearchBar(searchTerm: $searchTerm)
                 .padding(.vertical, 8)
                 ScrollView(.horizontal){
                     HStack(spacing:12) {
@@ -139,6 +123,10 @@ struct BrowseView: View {
                         CardFullWidthListComponent(viewModel: PropertyCardModel(property: property, currentUser: user))
                             .padding(.horizontal, 20)
                             .padding(.vertical, 5)
+                            
+                    }
+                    .onAppear(){
+                        loadMore(currentListing: property)
                     }
                     
                 }
@@ -149,11 +137,24 @@ struct BrowseView: View {
         .refreshable {
             viewModel.getProperties()
         }
+        
 
 
     }
+        
+        
     func refresh(){
         viewModel.getProperties()
+        
+    }
+    
+    func loadMore(currentListing: Property){
+        if viewModel.properties.count >= 10 {
+            if viewModel.properties[viewModel.properties.count - 2].id == currentListing.id{
+                print("load more")
+                print(currentListing.address)
+            }
+        }
     }
 }
 

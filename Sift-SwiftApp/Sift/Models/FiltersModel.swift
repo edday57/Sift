@@ -9,6 +9,12 @@ import Foundation
 
 class FiltersModel: ObservableObject{
     @Published var filters: Filters = Filters.loadFiltersFromUserDefaults()
+    init(){
+        print("init filters")
+    }
+    deinit{
+        print("deinit filters")
+    }
     static let shared = FiltersModel()
 }
 struct Filters: Codable{

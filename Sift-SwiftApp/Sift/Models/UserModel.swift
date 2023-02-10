@@ -15,7 +15,7 @@ struct User: Codable, Identifiable{
     var email: String
     var signedUp: Bool
     var isAgent: Bool
-    var name: String?
+    var name: String
     var about: String?
     var image: String?
     var dob: String?

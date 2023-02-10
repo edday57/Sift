@@ -38,6 +38,7 @@ class PropertyModel: ObservableObject {
 
     @Published var properties: [Property] = []
     @Published var savedProperties: [Property] = []
+    var browseSkip = 0
    
     init(){
         getProperties()
