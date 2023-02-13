@@ -16,7 +16,7 @@ struct BrowseView: View {
     var body: some View {
         
         ScrollView(){
-            VStack{
+            LazyVStack{
                 SearchBar(searchTerm: $searchTerm)
                 .padding(.vertical, 8)
                 ScrollView(.horizontal){
@@ -42,6 +42,7 @@ struct BrowseView: View {
                                 Button {
                                     filtersModel.filters.property_type.remove(object: type)
                                     filtersModel.filters.saveFiltersToUserDefaults()
+                                    viewModel.refreshProperties()
                                 } label: {
                                     
                                     Label(type, systemImage: "xmark")
@@ -55,6 +56,7 @@ struct BrowseView: View {
                                 filtersModel.filters.minPrice = 100
                                 filtersModel.filters.maxPrice = 20000
                                 filtersModel.filters.saveFiltersToUserDefaults()
+                                viewModel.refreshProperties()
                             } label: {
                                 
                                 Label("Price", systemImage: "xmark")
@@ -68,6 +70,7 @@ struct BrowseView: View {
                                 filtersModel.filters.minBeds = -1
                                 filtersModel.filters.maxBeds = -1
                                 filtersModel.filters.saveFiltersToUserDefaults()
+                                viewModel.refreshProperties()
                             } label: {
                                 
                                 Label("Bedrooms", systemImage: "xmark")
@@ -80,6 +83,7 @@ struct BrowseView: View {
                                 filtersModel.filters.minBaths = -1
                                 filtersModel.filters.maxBaths = -1
                                 filtersModel.filters.saveFiltersToUserDefaults()
+                                viewModel.refreshProperties()
                             } label: {
                                 
                                 Label("Bathrooms", systemImage: "xmark")
@@ -92,6 +96,7 @@ struct BrowseView: View {
                                 filtersModel.filters.minSize = 100
                                 filtersModel.filters.maxSize = 5000
                                 filtersModel.filters.saveFiltersToUserDefaults()
+                                viewModel.refreshProperties()
                             } label: {
                                 
                                 Label("Size", systemImage: "xmark")
@@ -120,13 +125,15 @@ struct BrowseView: View {
                     NavigationLink{
                         ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
                     } label: {
-                        CardFullWidthListComponent(viewModel: PropertyCardModel(property: property, currentUser: user))
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 5)
-                            
-                    }
-                    .onAppear(){
-                        loadMore(currentListing: property)
+                        LazyVStack{
+                            CardFullWidthListComponent(viewModel: PropertyCardModel(property: property, currentUser: user))
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 5)
+                                .onAppear(){
+                                    loadMore(currentListing: property)
+                                }
+                        }
+                                         
                     }
                     
                 }
@@ -135,7 +142,7 @@ struct BrowseView: View {
             
         }// Scroll View
         .refreshable {
-            viewModel.getProperties()
+            viewModel.refreshProperties()
         }
         
 
@@ -144,7 +151,7 @@ struct BrowseView: View {
         
         
     func refresh(){
-        viewModel.getProperties()
+        viewModel.refreshProperties()
         
     }
     
@@ -152,11 +159,14 @@ struct BrowseView: View {
         if viewModel.properties.count >= 10 {
             if viewModel.properties[viewModel.properties.count - 2].id == currentListing.id{
                 print("load more")
-                print(currentListing.address)
+                viewModel.browseSkip += 10
+                viewModel.getProperties()
+                //print(currentListing.address)
             }
         }
     }
 }
+
 
 struct BrowseView_Previews: PreviewProvider {
     static var previews: some View {

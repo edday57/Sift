@@ -110,11 +110,13 @@ class WebService{
     }
     
     //Listing Functions
-    func getProperties(filters: Filters, token: String, completion: @escaping (Result<[Property], NetworkError>)-> Void){
-        guard let url = URL(string: "http://\(hostname):5000/api/listing/") else{
+    func getProperties(filters: Filters, skip: Int, token: String, completion: @escaping (Result<[Property], NetworkError>)-> Void){
+        guard var url = URL(string: "http://\(hostname):5000/api/listing/") else{
             completion(.failure(.invalidURL))
             return
         }
+        let skip = URLQueryItem(name: "skip", value: String(skip))
+        url = url.appending(queryItems: [skip])
         let body = ListingRequestBody(filters: filters)
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -135,6 +137,7 @@ class WebService{
             completion(.success(properties))
         }.resume()
     }
+    
     
     func getSavedProperties(id: String, token: String, completion: @escaping (Result<[Property], NetworkError>)-> Void){
         guard let url = URL(string: "http://\(hostname):5000/api/like/posts/\(id)") else{

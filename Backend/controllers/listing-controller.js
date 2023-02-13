@@ -9,7 +9,8 @@ export const getAllListings = async(req, res, next) => {
     let {filters} =req.body;
     console.log(filters);
     let listings;
-    let skip = 0;
+    console.log(req.query.skip)
+    let skip = Number(req.query.skip)
     let limit = 10;
     var match = {};
     //Filters

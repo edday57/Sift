@@ -75,6 +75,7 @@ struct UserView: View {
                                     Button {
                                         filtersModel.filters.property_type.remove(object: type)
                                         filtersModel.filters.saveFiltersToUserDefaults()
+                                        propertyModel.refreshSavedProperties()
                                     } label: {
                                         
                                         Label(type, systemImage: "xmark")
@@ -88,6 +89,7 @@ struct UserView: View {
                                     filtersModel.filters.minPrice = 100
                                     filtersModel.filters.maxPrice = 20000
                                     filtersModel.filters.saveFiltersToUserDefaults()
+                                    propertyModel.refreshSavedProperties()
                                 } label: {
                                     
                                     Label("Price", systemImage: "xmark")
@@ -101,6 +103,7 @@ struct UserView: View {
                                     filtersModel.filters.minBeds = -1
                                     filtersModel.filters.maxBeds = -1
                                     filtersModel.filters.saveFiltersToUserDefaults()
+                                    propertyModel.refreshSavedProperties()
                                 } label: {
                                     
                                     Label("Bedrooms", systemImage: "xmark")
@@ -113,6 +116,7 @@ struct UserView: View {
                                     filtersModel.filters.minBaths = -1
                                     filtersModel.filters.maxBaths = -1
                                     filtersModel.filters.saveFiltersToUserDefaults()
+                                    propertyModel.refreshSavedProperties()
                                 } label: {
                                     
                                     Label("Bathrooms", systemImage: "xmark")
@@ -125,6 +129,7 @@ struct UserView: View {
                                     filtersModel.filters.minSize = 100
                                     filtersModel.filters.maxSize = 5000
                                     filtersModel.filters.saveFiltersToUserDefaults()
+                                    propertyModel.refreshSavedProperties()
                                 } label: {
                                     
                                     Label("Size", systemImage: "xmark")
@@ -154,14 +159,14 @@ struct UserView: View {
                 }
             }
             .refreshable {
-                propertyModel.getSavedProperties()
+                propertyModel.refreshSavedProperties()
             }
         }
         
 
     }
     func refresh(){
-        propertyModel.getSavedProperties()
+        propertyModel.refreshSavedProperties()
     }
 }
 

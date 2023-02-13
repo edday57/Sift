@@ -39,9 +39,21 @@ class PropertyModel: ObservableObject {
     @Published var properties: [Property] = []
     @Published var savedProperties: [Property] = []
     var browseSkip = 0
-   
+    var savedSkip = 0
+    
     init(){
+        
         getProperties()
+        getSavedProperties()
+    }
+    
+    func refreshProperties(){
+        browseSkip = 0
+        getProperties()
+    }
+    
+    func refreshSavedProperties(){
+        savedSkip = 0
         getSavedProperties()
     }
     
@@ -51,11 +63,16 @@ class PropertyModel: ObservableObject {
                     return
                 }
         let filters = Filters.loadFiltersFromUserDefaults()
-        WebService().getProperties(filters: filters, token: token) { (result) in
+        WebService().getProperties(filters: filters, skip: self.browseSkip, token: token) { (result) in
             switch result {
                 case .success(let properties):
                     DispatchQueue.main.async {
-                        self.properties = properties
+                        if self.browseSkip == 0{
+                            self.properties = properties
+                        }
+                        else {
+                            self.properties.append(contentsOf: properties)
+                        }
                     }
                 case .failure(let error):
                     print(error.localizedDescription)
@@ -64,6 +81,8 @@ class PropertyModel: ObservableObject {
         
         }
     }
+
+    
     func getSavedProperties(){
         let defaults = UserDefaults.standard
         guard let token = defaults.string(forKey: "jsonwebtoken") else {
