@@ -7,6 +7,6 @@ const likeRouter = express.Router();
 likeRouter.post("/add",authenticate, addLike);
 likeRouter.delete("/remove",authenticate, removeLike);
 likeRouter.get("/:id",authenticate, getLikes);
-likeRouter.get("/posts/:id",authenticate, getLikedPosts);
+likeRouter.post("/posts/:id",authenticate, getLikedPosts);
 
 export default likeRouter;

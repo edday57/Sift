@@ -116,7 +116,7 @@ class WebService{
             return
         }
         let skip = URLQueryItem(name: "skip", value: String(skip))
-        url = url.appending(queryItems: [skip])
+        url.append(queryItems: [skip])
         let body = ListingRequestBody(filters: filters)
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -139,13 +139,19 @@ class WebService{
     }
     
     
-    func getSavedProperties(id: String, token: String, completion: @escaping (Result<[Property], NetworkError>)-> Void){
-        guard let url = URL(string: "http://\(hostname):5000/api/like/posts/\(id)") else{
+    func getSavedProperties(id: String, filters: Filters, skip: Int, token: String, completion: @escaping (Result<[Property], NetworkError>)-> Void){
+        guard var url = URL(string: "http://\(hostname):5000/api/like/posts/\(id)") else{
             completion(.failure(.invalidURL))
             return
         }
+        let skip = URLQueryItem(name: "skip", value: String(skip))
+        url.append(queryItems: [skip])
+        let body = ListingRequestBody(filters: filters)
         var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.httpBody = try? JSONEncoder().encode(body)
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data=data, error==nil else{
                 completion(.failure(.noData))

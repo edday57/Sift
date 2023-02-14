@@ -16,7 +16,7 @@ struct UserView: View {
 
         ZStack{
             ScrollView{
-                VStack(){
+                LazyVStack(){
                     //Profile Section
                     HStack{
                         ProfileImageComponent(size: 80, image: user.image ?? "")
@@ -147,11 +147,17 @@ struct UserView: View {
 
                     //Liked Property Cards
                     LazyVStack(spacing: -20){
-                        ForEach(Array(propertyModel.savedProperties.prefix(10))){property in
+                        ForEach(Array(propertyModel.savedProperties)){property in
                             NavigationLink{
                                 ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
                             } label: {
-                                CardListComponent(viewModel: PropertyCardModel(property: property, currentUser: user))
+                                LazyVStack{
+                                    CardListComponent(viewModel: PropertyCardModel(property: property, currentUser: user))
+                                        .onAppear(){
+                                            loadMore(currentListing: property)
+                                        }
+                                }
+                                
                             }
                             
                         }
@@ -167,6 +173,17 @@ struct UserView: View {
     }
     func refresh(){
         propertyModel.refreshSavedProperties()
+    }
+    
+    func loadMore(currentListing: Property){
+        if propertyModel.savedProperties.count >= propertyModel.savedSkip + 10 {
+            if propertyModel.savedProperties[propertyModel.savedProperties.count - 2].id == currentListing.id && propertyModel.savedProperties.count % 10 == 0{
+                print("load more")
+                propertyModel.savedSkip += 10
+                propertyModel.getSavedProperties()
+                //print(currentListing.address)
+            }
+        }
     }
 }
 

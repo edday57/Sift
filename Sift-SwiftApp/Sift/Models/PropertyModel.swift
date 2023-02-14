@@ -91,11 +91,17 @@ class PropertyModel: ObservableObject {
         guard let id = defaults.string(forKey: "userid") else {
                     return
                 }
-        WebService().getSavedProperties(id: id, token: token) { (result) in
+        let filters = Filters.loadFiltersFromUserDefaults()
+        WebService().getSavedProperties(id: id, filters: filters, skip: self.savedSkip, token: token) { (result) in
             switch result {
                 case .success(let properties):
                     DispatchQueue.main.async {
-                        self.savedProperties = properties
+                        if self.savedSkip == 0{
+                            self.savedProperties = properties
+                        }
+                        else {
+                            self.savedProperties.append(contentsOf: properties)
+                        }
                     }
                 case .failure(let error):
                     print(error.localizedDescription)

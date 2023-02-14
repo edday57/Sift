@@ -44,8 +44,45 @@ export const removeLike = async(req, res, next) => {
 };
 
 export const getLikedPosts = async(req, res, next) => {
+    //
+    let {filters} =req.body;
     const userId = req.params.id;
     let likes;
+    let skip = Number(req.query.skip)
+    let limit = 10;
+    var match = {};
+    //Filters
+    //Price
+    if (filters.minPrice != 100 || filters.maxPrice != 20000) {
+        match.price = { $gte: filters.minPrice, $lte: filters.maxPrice };
+    }
+    
+    //Size
+    if (filters.minSize != 100 || filters.maxSize != 5000) {
+        match.sizesqft = { $gte: filters.minSize, $lte: filters.maxSize };
+    }
+    //Bedrooms
+    if (filters.minBeds != -1) {
+        if (filters.maxBeds != 4){
+            //match.push()
+            match.bedrooms = { $gte: filters.minBeds, $lte: filters.maxBeds };
+        }
+        else {
+            match.bedrooms = { $gte: filters.minBeds};
+        }
+    }
+
+    //Bathrooms
+    if (filters.minBaths != -1) {
+        if (filters.maxBaths != 4){
+            match.bathrooms = { $gte: filters.minBaths, $lte: filters.maxBaths };
+        }
+        else {
+            match.bathrooms = { $gte: filters.minBaths};
+        }
+    }
+
+    //Get liked post IDs
     try {
         likes = await Like.find({user: userId}).sort({timestamp: -1});
     }
@@ -55,15 +92,24 @@ export const getLikedPosts = async(req, res, next) => {
     if (likes.length > 0) {
         let listingIds = likes.map(item => item.listing);
         let likedListings;
+        //Get data for liked posts
+        match._id = { $in: listingIds };
         try{
-            likedListings = await Listing.find({_id: { $in: listingIds }}); 
+            likedListings = await Listing.aggregate([
+                { $match: match },
+                { $addFields: { "__order" : { "$indexOfArray" : [ listingIds, "$_id" ] } }},
+                { $sort: { "__order": 1 }},
+                //To implement sort and skip
+                { $skip: skip },
+                { $limit: limit },
+            ]);
         } catch(err) {
             console.log(err);
         }
-        let obj = {}
-        likedListings.forEach(x => obj[x._id]=x)
-        const ordered = listingIds.map(key => obj[key])
-        return res.status(200).json(ordered);
+        //let obj = {}
+        //likedListings.forEach(x => obj[x._id]=x)
+        //const ordered = listingIds.map(key => obj[key])
+        return res.status(200).json(likedListings);
     } else {
         return res.status(200).json([]);
     }

@@ -107,7 +107,7 @@ struct HomeView: View {
 
                             //Vertical Cards
                             LazyVStack(spacing: -25){
-                                ForEach(Array(viewModel.properties)){property in
+                                ForEach(Array(viewModel.properties.prefix(5))){property in
                                     NavigationLink{
                                         ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
                                     } label: {
