@@ -13,6 +13,7 @@ struct UserView: View {
     @EnvironmentObject var likesModel: LikeModel
     @ObservedObject var propertyModel: PropertyModel
     @State private var showingFilters = false
+    @State private var showingSettings = false
     var body: some View {
 
         ZStack{
@@ -27,7 +28,28 @@ struct UserView: View {
                                 Text(user.name)
                                     .font(.system(size: 20, weight: .bold))
                                 Spacer()
-                                Text("settings")
+                                Button {
+                                    showingSettings.toggle()
+                                } label: {
+                                    Image(systemName: "gearshape.fill")
+                                        .foregroundColor(Color("TextGreyDark"))
+                                            .padding(11)
+                                            .font(.system(size: 14, weight: .bold))
+                                            .background(
+                                                RoundedRectangle(cornerRadius: 11)
+                                                    .strokeBorder(Color("StrokeGrey"), lineWidth: 1)
+                                                    .background(RoundedRectangle(cornerRadius: 11)
+                                                        .fill(Color.white)
+                                                        .shadow(color: .black.opacity(0.05), radius: 3)
+                                                    )
+                                            )
+                                }
+                                .fullScreenCover(isPresented: $showingSettings) {
+                                    SettingsView()
+                                        
+                                }
+
+                                    
                             }
                             Text(user.about ?? "")
                                 .font(.system(size: 14, weight: .medium))
@@ -57,7 +79,6 @@ struct UserView: View {
                         HStack(spacing:12) {
                             Button {
                                 showingFilters.toggle()
-                                print(likesModel.likedPosts[0])
                             } label: {
                                 Label("Filter", systemImage: "slider.horizontal.3")
                                     .foregroundColor(.white)

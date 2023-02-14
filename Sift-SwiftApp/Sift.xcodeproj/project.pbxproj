@@ -39,6 +39,7 @@
 		64B5F258296F308E00315553 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F24A296F308D00315553 /* ContentView.swift */; };
 		64CB0844299B9AD40099D89C /* LikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB0843299B9AD40099D89C /* LikeModel.swift */; };
 		64CB0846299BACCE0099D89C /* ASyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB0845299BACCE0099D89C /* ASyncButton.swift */; };
+		64CB0848299BEF960099D89C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB0847299BEF960099D89C /* SettingsView.swift */; };
 		64DBEE922972F16C0084BC13 /* PropertyCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DBEE912972F16C0084BC13 /* PropertyCardModel.swift */; };
 		64DBEE94297301330084BC13 /* FilterButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DBEE93297301330084BC13 /* FilterButtonComponent.swift */; };
 		64F1119D298A9864008A3A4C /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F1119C298A9864008A3A4C /* BrowseView.swift */; };
@@ -98,6 +99,7 @@
 		64B5F24A296F308D00315553 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		64CB0843299B9AD40099D89C /* LikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeModel.swift; sourceTree = "<group>"; };
 		64CB0845299BACCE0099D89C /* ASyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASyncButton.swift; sourceTree = "<group>"; };
+		64CB0847299BEF960099D89C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		64DBEE902972DDD70084BC13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		64DBEE912972F16C0084BC13 /* PropertyCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyCardModel.swift; sourceTree = "<group>"; };
 		64DBEE93297301330084BC13 /* FilterButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonComponent.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				64F1119C298A9864008A3A4C /* BrowseView.swift */,
 				649CD03C29950BCC00585E8A /* SearchBar.swift */,
 				64F1119E298B034B008A3A4C /* FiltersView.swift */,
+				64CB0847299BEF960099D89C /* SettingsView.swift */,
 				64F111A0298B0C28008A3A4C /* RangeSlider.swift */,
 				647D4BFF298991680082C868 /* SavedView.swift */,
 				649D7217297431D700E10D6B /* DiscoverView.swift */,
@@ -411,6 +414,7 @@
 				64B5F253296F308E00315553 /* ListingView.swift in Sources */,
 				64DBEE94297301330084BC13 /* FilterButtonComponent.swift in Sources */,
 				649CD03D29950BCC00585E8A /* SearchBar.swift in Sources */,
+				64CB0848299BEF960099D89C /* SettingsView.swift in Sources */,
 				64B47D31296F91DE00E0F4D7 /* PropertyModel.swift in Sources */,
 				64B5F256296F308E00315553 /* WelcomeView.swift in Sources */,
 				644B000429806B05002561FC /* DiscoverViewModel.swift in Sources */,

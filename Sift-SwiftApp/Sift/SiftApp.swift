@@ -12,8 +12,8 @@ import SwiftUI
  Features:
  Sign Up
  Agent View
+ Add sort to discover
  Build out property card
- Like Property from card
  Improve discover loading
  */
 

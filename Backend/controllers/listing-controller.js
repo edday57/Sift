@@ -43,6 +43,7 @@ export const getAllListings = async(req, res, next) => {
             match.bathrooms = { $gte: filters.minBaths};
         }
     }
+    
     try {
         
         listings = await Listing.aggregate([
