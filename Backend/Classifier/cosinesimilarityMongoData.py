@@ -168,13 +168,13 @@ def recommender(df, filters, liked, viewed):
 
     #Later need to consder if user has liked a property which isnt in matrix
     #Get df ids of liked properties 
-    liked_ids = df[df['_id'].isin(liked)]['artificial_listing_id'].tolist()
+    liked_ids = df[df['_id'].isin(liked[:5])]['artificial_listing_id'].tolist()
     #Apply filters to df (3 beds max etc)
     filter_results = applyFilters([], [], df)
     resultScores =[]
     for result in filter_results:
         scores=[]
-        for liked_id in liked_ids[:5]:
+        for liked_id in liked_ids:
             scores.append(cosine_similarity_matrix_dict[liked_id][result])
         averageScore = np.mean(np.array(scores))
         resultScores.append([result, averageScore])
