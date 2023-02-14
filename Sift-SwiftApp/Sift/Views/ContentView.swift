@@ -12,7 +12,9 @@ struct ContentView: View {
     var body: some View {
         if loginVM.isAuthenticated == true{
             if let user = loginVM.currentUser{
+                var likeModel = LikeModel(currentUser: user)
                 Home(user:user)
+                    .environmentObject(likeModel)
             }
             
         }

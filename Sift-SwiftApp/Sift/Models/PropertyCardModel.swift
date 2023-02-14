@@ -36,7 +36,10 @@ class PropertyCardModel: ObservableObject {
                 }
         WebService().addLike(user: currentUser.id, listing: property.id, token: token) { response in
             if response == 200{
-                print("Like added")
+                DispatchQueue.main.async {
+                    print("Like added")
+                }
+                
             }
         }
     }

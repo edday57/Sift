@@ -28,6 +28,45 @@ export const addLike = async(req, res, next) => {
     }
 };
 
+export const toggleLike = async(req, res, next) => {
+    let user = req.query.user
+    let listing = req.query.listing
+    let isLiked;
+    let like;
+    try {
+        isLiked = await Like.findOne({user, listing});
+    }
+    catch(err){
+        return console.log(err);
+    }
+    if (isLiked){
+        try {
+            like = await Like.findOneAndDelete({user, listing});
+        }
+        catch(err){
+            return console.log(err);
+        }
+        if (!like){
+            return res.status(400).json({message: "Post not already liked"});
+        }
+        return res.status(200).json({message: "Like successfully deleted."});
+    }
+    else {
+        const like = Like({
+            user,
+            listing,
+            timestamp: Date.now()
+        })
+        try{
+            await like.save();
+            return res.status(201).json({message: "Like successfully added."});
+        } catch(err){
+            return console.log(err);
+        }
+    }
+
+};
+
 export const removeLike = async(req, res, next) => {
     let {user, listing} = req.body;
     let like;

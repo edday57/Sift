@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ListingView: View {
+    @EnvironmentObject var likesModel: LikeModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     let viewModel: PropertyCardModel
     var description = "No description added."
@@ -41,10 +42,15 @@ struct ListingView: View {
                                 }
                                 
                                 Spacer()
-                                Button {
-                                    //
+                                AsyncButton {
+                                    await likesModel.AtoggleLike(listingID: viewModel.property.id)
                                 } label: {
-                                    NavBarComponent(symbol: "heart")
+                                    if likesModel.likedPosts.contains(viewModel.property.id){
+                                        NavBarComponent(symbol: "heart.fill")
+                                    }
+                                    else{
+                                        NavBarComponent(symbol: "heart")
+                                    }
                                 }
                                 Button {
                                     //

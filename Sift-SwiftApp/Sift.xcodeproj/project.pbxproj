@@ -37,6 +37,8 @@
 		64B5F256296F308E00315553 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F248296F308D00315553 /* WelcomeView.swift */; };
 		64B5F257296F308E00315553 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F249296F308D00315553 /* SignUpView.swift */; };
 		64B5F258296F308E00315553 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5F24A296F308D00315553 /* ContentView.swift */; };
+		64CB0844299B9AD40099D89C /* LikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB0843299B9AD40099D89C /* LikeModel.swift */; };
+		64CB0846299BACCE0099D89C /* ASyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB0845299BACCE0099D89C /* ASyncButton.swift */; };
 		64DBEE922972F16C0084BC13 /* PropertyCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DBEE912972F16C0084BC13 /* PropertyCardModel.swift */; };
 		64DBEE94297301330084BC13 /* FilterButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DBEE93297301330084BC13 /* FilterButtonComponent.swift */; };
 		64F1119D298A9864008A3A4C /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F1119C298A9864008A3A4C /* BrowseView.swift */; };
@@ -94,6 +96,8 @@
 		64B5F248296F308D00315553 /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		64B5F249296F308D00315553 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		64B5F24A296F308D00315553 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		64CB0843299B9AD40099D89C /* LikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeModel.swift; sourceTree = "<group>"; };
+		64CB0845299BACCE0099D89C /* ASyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASyncButton.swift; sourceTree = "<group>"; };
 		64DBEE902972DDD70084BC13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		64DBEE912972F16C0084BC13 /* PropertyCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyCardModel.swift; sourceTree = "<group>"; };
 		64DBEE93297301330084BC13 /* FilterButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonComponent.swift; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 				64AD68F329887C3E004EB52F /* SavedViewModel.swift */,
 				644B000329806B05002561FC /* DiscoverViewModel.swift */,
 				64B47D32296F952500E0F4D7 /* UserModel.swift */,
+				64CB0843299B9AD40099D89C /* LikeModel.swift */,
 				6421960A297EF5550096EE3E /* FiltersModel.swift */,
 				64DBEE912972F16C0084BC13 /* PropertyCardModel.swift */,
 				644B00072984194B002561FC /* UserViewModel.swift */,
@@ -219,6 +224,7 @@
 				64B5F242296F308D00315553 /* ProfileImageComponent.swift */,
 				64B5F243296F308D00315553 /* NavBarComponent.swift */,
 				649CD03E29953BDD00585E8A /* SmoothASync.swift */,
+				64CB0845299BACCE0099D89C /* ASyncButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -382,6 +388,7 @@
 			files = (
 				64F1119F298B034B008A3A4C /* FiltersView.swift in Sources */,
 				64B5F258296F308E00315553 /* ContentView.swift in Sources */,
+				64CB0846299BACCE0099D89C /* ASyncButton.swift in Sources */,
 				644B00082984194B002561FC /* UserViewModel.swift in Sources */,
 				64B5F24B296F308E00315553 /* SiftApp.swift in Sources */,
 				64F111A1298B0C28008A3A4C /* RangeSlider.swift in Sources */,
@@ -392,6 +399,7 @@
 				649D7218297431D700E10D6B /* DiscoverView.swift in Sources */,
 				64B5F250296F308E00315553 /* CardComponents.swift in Sources */,
 				647D4C00298991680082C868 /* SavedView.swift in Sources */,
+				64CB0844299B9AD40099D89C /* LikeModel.swift in Sources */,
 				64B5F251296F308E00315553 /* ProfileImageComponent.swift in Sources */,
 				64B5F255296F308E00315553 /* HomeView.swift in Sources */,
 				644B0002298065C4002561FC /* Home.swift in Sources */,

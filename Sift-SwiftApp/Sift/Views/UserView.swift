@@ -10,6 +10,7 @@ import SwiftUI
 struct UserView: View {
     let user: User
     @EnvironmentObject var filtersModel: FiltersModel
+    @EnvironmentObject var likesModel: LikeModel
     @ObservedObject var propertyModel: PropertyModel
     @State private var showingFilters = false
     var body: some View {
@@ -23,7 +24,7 @@ struct UserView: View {
                             .padding(.trailing, 14)
                         VStack(alignment: .leading, spacing: 6) {
                             HStack {
-                                Text(user.name ?? "")
+                                Text(user.name)
                                     .font(.system(size: 20, weight: .bold))
                                 Spacer()
                                 Text("settings")
@@ -56,6 +57,7 @@ struct UserView: View {
                         HStack(spacing:12) {
                             Button {
                                 showingFilters.toggle()
+                                print(likesModel.likedPosts[0])
                             } label: {
                                 Label("Filter", systemImage: "slider.horizontal.3")
                                     .foregroundColor(.white)

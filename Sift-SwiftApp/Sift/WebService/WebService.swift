@@ -18,6 +18,18 @@ enum NetworkError: Error {
     case decodingError
 }
 
+struct RuntimeError: Error {
+    let message: String
+
+    init(_ message: String) {
+        self.message = message
+    }
+
+    public var localizedDescription: String {
+        return message
+    }
+}
+
 struct LoginRequestBody: Codable{
     let email: String
     let password: String
@@ -107,6 +119,74 @@ class WebService{
             }
             
         }.resume()
+        
+    }
+    
+    func AaddLike(user: String, listing: String, token: String) async throws{
+        guard let url = URL(string: "http://\(hostname):5000/api/like/add") else{
+            fatalError("Invalid URL")
+        }
+        let body = LikeRequestBody(user: user, listing: listing)
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.httpBody = try? JSONEncoder().encode(body)
+        let (_, response) = try await URLSession.shared.data(for: request)
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+            throw RuntimeError("Error while fetching likes data")
+        }
+    }
+    
+    func AtoggleLike(user: String, listing: String, token: String) async throws -> Int{
+        guard var url = URL(string: "http://\(hostname):5000/api/like/toggle") else{
+            fatalError("Invalid URL")
+        }
+        let user = URLQueryItem(name: "user", value: user)
+        let listing = URLQueryItem(name: "listing", value: listing)
+        url.append(queryItems: [user, listing])
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        let (_, response) = try await URLSession.shared.data(for: request)
+        guard (response as? HTTPURLResponse)?.statusCode == 200 || (response as? HTTPURLResponse)?.statusCode == 201 else {
+            throw RuntimeError("Error while fetching likes data")
+        }
+        return (response as? HTTPURLResponse)!.statusCode
+    }
+//    func getLikes(id: String, token: String, completion: @escaping (Result <[String], NetworkError>) -> Void){
+//        guard let url = URL(string: "http://\(hostname):5000/api/like/\(id)") else{
+//            completion(.failure(.invalidURL))
+//            return
+//        }
+//        var request = URLRequest(url: url)
+//        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+//        URLSession.shared.dataTask(with: request) { data, response, error in
+//            guard let data=data, error==nil else{
+//                completion(.failure(.noData))
+//                return
+//            }
+//            guard let likes = try? JSONDecoder().decode([String].self, from: data) else {
+//                completion(.failure(.decodingError))
+//                return
+//            }
+//            completion(.success(likes))
+//        }.resume()
+//    }
+    
+    func AgetLikes(id: String, token: String) async throws -> [String] {
+        guard let url = URL(string: "http://\(hostname):5000/api/like/\(id)") else{
+            fatalError("Invalid URL")
+        }
+        var request = URLRequest(url: url)
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        let (data, response) = try await URLSession.shared.data(for: request)
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+            throw RuntimeError("Error while fetching likes data")
+        }
+        let likes = try JSONDecoder().decode([String].self, from: data)
+        return likes
     }
     
     //Listing Functions

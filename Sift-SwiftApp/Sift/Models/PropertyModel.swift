@@ -42,7 +42,6 @@ class PropertyModel: ObservableObject {
     var savedSkip = 0
     
     init(){
-        
         getProperties()
         getSavedProperties()
     }
@@ -106,8 +105,6 @@ class PropertyModel: ObservableObject {
                 case .failure(let error):
                     print(error.localizedDescription)
             }
-            
-        
         }
     }
 }
