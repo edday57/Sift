@@ -11,6 +11,7 @@ struct LoginView: View {
     @State private var email = ""
     @State private var password=""
     @EnvironmentObject var loginVM: LoginViewModel
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var body: some View {
         ZStack {
             Color("Background")
@@ -18,7 +19,7 @@ struct LoginView: View {
             VStack(alignment: .center, spacing: 12) {
                 HStack(){
                     Button {
-                        //
+                        self.presentationMode.wrappedValue.dismiss()
                     } label: {
                         NavBarComponent(symbol: "chevron.left")
                     }
@@ -108,6 +109,7 @@ struct LoginView: View {
                     
             }
         }
+        .navigationBarHidden(true)
         
 
     }
