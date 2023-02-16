@@ -199,7 +199,9 @@ class WebService{
         guard (response as? HTTPURLResponse)?.statusCode == 200 else {
             throw RuntimeError("Error while fetching agent listings")
         }
-        let listings = try JSONDecoder().decode([Property].self, from: data)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601WithFractionalSeconds
+        let listings = try decoder.decode([Property].self, from: data)
         return listings
     }
     
