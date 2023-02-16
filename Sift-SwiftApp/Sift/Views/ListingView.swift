@@ -12,7 +12,7 @@ struct ListingView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     let viewModel: PropertyCardModel
     var description = "No description added."
-
+    @State var showingAgent = false
     var body: some View {
         
         ZStack {
@@ -97,6 +97,12 @@ struct ListingView: View {
                                         .foregroundColor(Color("TextGreyLight"))
                                     
                                         .font(.system(size: 14))
+                                }
+                                .onTapGesture {
+                                    showingAgent.toggle()
+                                }
+                                .fullScreenCover(isPresented: $showingAgent){
+                                    AgentView(viewModel: AgentViewModel(agent: viewModel.agent!))
                                 }
                                 Text(viewModel.property.description ?? "No details added.")
                                     .font(.system(size: 16))

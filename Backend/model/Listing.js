@@ -45,10 +45,6 @@ const listingSchema = Schema({
         type: [String],
         required: false
     },
-    images : {
-        type: [String],
-        required: true
-    },
     let_type: {
         type: String,
         required: false

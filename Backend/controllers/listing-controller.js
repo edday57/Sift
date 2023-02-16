@@ -262,16 +262,17 @@ export const deleteListing = async(req, res, next)=>{
 export const getUserListings = async(req,res,next)=>{
     let userListings;
     const userId = req.params.id;
-
+    let ouid = new mongoose.Types.ObjectId(userId)
     //Add Limit/skip
 
     try {
-        userListings = await User.findById(userId).populate("listings");
+        userListings = await Listing.find({agent: { $eq: ouid }});
     } catch(err) {
         return console.log(err);
     }
     if(!userListings){
         return res.status(404).json({message: "No listings found."});
     }
-    return res.status(200).json({listings: userListings});
+    console.log("Returning user listings")
+    return res.status(200).json(userListings);
 };

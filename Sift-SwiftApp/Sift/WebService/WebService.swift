@@ -189,6 +189,20 @@ class WebService{
         return likes
     }
     
+    func aGetAgentProperties(id: String, skip: Int, token: String) async throws -> [Property]{
+        guard let url = URL(string: "http://\(hostname):5000/api/listing/user/\(id)") else{
+            fatalError("Invalid URL")
+        }
+        var request = URLRequest(url: url)
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        let (data, response) = try await URLSession.shared.data(for: request)
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+            throw RuntimeError("Error while fetching agent listings")
+        }
+        let listings = try JSONDecoder().decode([Property].self, from: data)
+        return listings
+    }
+    
     //Listing Functions
     func getProperties(filters: Filters, skip: Int, token: String, completion: @escaping (Result<[Property], NetworkError>)-> Void){
         guard var url = URL(string: "http://\(hostname):5000/api/listing/") else{

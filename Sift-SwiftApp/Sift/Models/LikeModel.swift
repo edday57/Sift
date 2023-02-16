@@ -23,16 +23,16 @@ class LikeModel: ObservableObject {
         let defaults = UserDefaults.standard
         guard let token = defaults.string(forKey: "jsonwebtoken") else {
                     return
-                }
-            do {
-                let data =  try await WebService().AgetLikes(id: currentUser.id, token:token)
-                await MainActor.run{
-                    self.likedPosts = data
-                }
-                print("Likes retrieved")
-            } catch {
-                print("Error: ", error)
+        }
+        do {
+            let data =  try await WebService().AgetLikes(id: currentUser.id, token:token)
+            await MainActor.run{
+                self.likedPosts = data
             }
+            print("Likes retrieved")
+        } catch {
+            print("Error: ", error)
+        }
             
     }
     
@@ -43,8 +43,11 @@ class LikeModel: ObservableObject {
                 }
         do {
             try await WebService().AaddLike(user: currentUser.id, listing: listingID, token: token)
-            print("Likes added/unadded")
-            likedPosts.append(listingID)
+            print("Likes added")
+            await MainActor.run{
+                self.likedPosts.append(listingID)
+            }
+            
         } catch {
             print("Error: ", error)
         }
