@@ -279,6 +279,10 @@ struct CardDiscoverComponentNew: View {
                     }
                     .position(x:60, y:27)
                 }
+                .overlay {
+                    RoundedRectangle(cornerRadius: 14)
+                        .stroke(.white, lineWidth: 3)
+                }
                 
                 
                 Text("\(viewModel.property.address)")
@@ -315,7 +319,7 @@ struct CardDiscoverComponentNew: View {
                 }
                 
             }
-            .padding(.horizontal, 20)
+            .padding(.horizontal, 24)
         
         
         
