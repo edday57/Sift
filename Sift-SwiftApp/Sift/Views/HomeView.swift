@@ -22,11 +22,7 @@ struct HomeView: View {
                         VStack(alignment: .center, spacing: 8) {
                             //Nav
                             HStack(){
-                                Button {
-                                    //
-                                } label: {
-                                    NavBarComponent(symbol: "list.bullet")
-                                }
+                                
                                 
                                 Spacer()
 //                                Button {
@@ -34,13 +30,13 @@ struct HomeView: View {
 //                                } label: {
 //                                    NavBarComponent(symbol: "magnifyingglass")
 //                                }
-                                NavigationLink {
-                                    UserView(user: user, propertyModel: viewModel)
-                                    
-                                } label: {
-                                    ProfileImageComponent(size: 44, image: self.user.image ?? "")
-                                        .padding(.trailing, 20)
-                                }
+//                                NavigationLink {
+//                                    UserView(user: user, propertyModel: viewModel)
+//
+//                                } label: {
+//                                    ProfileImageComponent(size: 44, image: self.user.image ?? "")
+//                                        .padding(.trailing, 20)
+//                                }
                                 
 
                             }
@@ -112,6 +108,94 @@ struct HomeView: View {
                                         ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
                                     } label: {
                                         CardListComponent(viewModel: PropertyCardModel(property: property, currentUser: user))
+                                    }
+                                    
+                                }
+                            }
+                                
+                        }
+                        .background(.clear)
+                    
+                }
+                .background(.clear)
+            }
+            .background(.clear)
+
+        
+       
+    }
+}
+
+struct HomeView2: View {
+    @Binding var selectedTab: String
+    @EnvironmentObject var filtersModel: FiltersModel
+    @ObservedObject var viewModel: PropertyModel
+    let user: User
+    
+    var body: some View {
+
+            ZStack {
+
+                ScrollView {
+                        
+                        VStack(alignment: .center, spacing: 8) {
+                            //Nav
+
+                            
+                            //Trending Section
+                            Text("Explore Property")
+                                .font(.system(size: 20, weight: .black))
+                                .foregroundColor(Color("PrimaryText"))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(20)
+                                .padding(.top, 30)
+                                
+                            
+                            //Horizontal Large Cards
+                            ScrollView(.horizontal, showsIndicators: false){
+                                HStack(spacing: 16){
+                                    ForEach(Array(viewModel.savedProperties.prefix(5))){property in
+                                        NavigationLink{
+                                            ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
+                                        } label: {
+                                            CardLargeComponentNew(viewModel: PropertyCardModel(property: property, currentUser: user))
+                                        }
+                                        
+                                    }
+                                }
+                                .padding(.leading, 20)
+                                .padding(.trailing, 20)
+                               
+                                
+                            }
+                            
+                            //For You Section
+                            HStack {
+                                Text("Recently Added")
+                                    .font(.system(size: 20, weight: .black))
+                                    .foregroundColor(Color("PrimaryText"))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(20)
+                                Spacer()
+                                Button {
+                                    //for you
+                                } label: {
+                                    Text("See More")
+                                        .underline()
+                                        .font(.system(size: 14, weight: .bold))
+                                        .padding(20)
+                                        .foregroundColor(Color("SecondaryText"))
+                                        
+                                }
+                            }
+                           
+                            //Vertical Cards
+                            LazyVStack(alignment: .center){
+                                ForEach(Array(viewModel.properties.prefix(5))){property in
+                                    NavigationLink{
+                                        ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
+                                    } label: {
+                                        CardDiscoverComponentNew(viewModel: PropertyCardModel(property: property, currentUser: user))
                                     }
                                     
                                 }

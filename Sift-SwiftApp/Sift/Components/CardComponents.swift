@@ -99,6 +99,94 @@ struct CardLargeComponent: View {
     }
 }
 
+struct CardLargeComponentNew: View {
+    @ObservedObject var viewModel: PropertyCardModel
+    
+    init(viewModel: PropertyCardModel){
+        self.viewModel = viewModel
+    }
+    var body: some View {
+        let formattedPrice = String(format: "£%.0f pcm", viewModel.property.price)
+    
+        VStack(alignment: .center){
+            ZStack{
+                RoundedRectangle(cornerRadius: 15)
+                    .foregroundColor(.white)
+                    .frame(width: 254, height: 164)
+                    .shadow(color: .black.opacity(0.1), radius: 2, y:4)
+                KFImage(URL(string: viewModel.property.images[0]))
+                    .resizable()
+                    .scaledToFill()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 250, height: 160)
+                    .clipShape(RoundedRectangle(cornerRadius: 14))
+                    .padding(7)
+                    .overlay{
+                        
+                        HStack(spacing:0){
+                            Text("\(viewModel.property.bedrooms) ")
+                                .font(.system(size: 12, weight: .heavy))
+                            Image(systemName: "bed.double.fill").font(.system(size: 12))
+                            Divider().frame(width: 1.4, height:12)
+                                .background(Color.white).padding(3)
+                            Text("\(viewModel.property.bathrooms) ")
+                                .font(.system(size: 12, weight: .heavy))
+                            Image(systemName: "shower.fill").font(.system(size: 12))
+                        }
+                        .foregroundColor(.white)
+                        
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 2)
+                        .background{
+                            Capsule()
+                                .foregroundColor(Color.black)
+                                .opacity(0.55)
+                        }
+                        .position(x:60, y:27)
+                    }
+            }
+
+            HStack{
+                Text(formattedPrice)
+                    .foregroundColor(Color("PrimaryBlue"))
+                    .font(.system(size: 14, weight: .bold))
+                Spacer()
+                Text("Listed \(viewModel.property.date_added.formatDate())")
+                    .foregroundColor(Color("SecondaryText"))
+                
+                    .font(.system(size: 12, weight: .semibold))
+            }
+            .frame(width: 254)
+            .padding(.bottom, 1)
+            
+            Text("\(viewModel.property.address)")
+                .lineLimit(1)
+                .font(.system(size: 16, weight: .black))
+                .foregroundColor(Color("PrimaryText"))
+                .frame(width: 254, alignment: .leading)
+                .padding(.leading, 10)
+                .padding(.trailing, 10)
+                .foregroundColor(.black)
+            Spacer()
+            HStack{
+                if let agent = viewModel.agent{
+                    Text(agent.name)
+                        .foregroundColor(Color("SecondaryText"))
+                        .lineLimit(1)
+                        .multilineTextAlignment(.leading)
+                        .font(.system(size: 14, weight: .medium))
+                }
+                Spacer()
+                
+            }
+            .frame(width: 254)
+            //Spacer()
+        }
+        
+    }
+}
+
 struct CardListComponent: View {
     @ObservedObject var viewModel: PropertyCardModel
     
@@ -162,6 +250,78 @@ struct CardListComponent: View {
     }
 }
 
+struct CardDiscoverComponentNew: View {
+    @ObservedObject var viewModel: PropertyCardModel
+    
+    init(viewModel: PropertyCardModel){
+        self.viewModel = viewModel
+    }
+    var body: some View {
+        let formattedPrice = String(format: "£%.0f pcm", viewModel.property.price)
+        let bedbath = String(format: "%i Beds | %i Baths", viewModel.property.bedrooms, viewModel.property.bathrooms)
+            VStack(alignment: .center){
+                KFImage(URL(string: viewModel.property.images[0]))
+                    .resizable()
+                    .scaledToFill()
+                .frame(height: 165)
+                .clipShape(RoundedRectangle(cornerRadius: 15))
+                .shadow(color: .black.opacity(0.1), radius: 10, y:4)
+                .overlay{
+                    Text("3.7km away")
+                        .font(.system(size: 12, weight: .heavy))
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 2)
+                    .background{
+                        Capsule()
+                            .foregroundColor(Color.black)
+                            .opacity(0.55)
+                    }
+                    .position(x:60, y:27)
+                }
+                
+                
+                Text("\(viewModel.property.address)")
+                    .lineLimit(1)
+                    .font(.system(size: 16, weight: .black))
+                    .foregroundColor(Color("PrimaryText"))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(.black)
+                HStack{
+                    if let agent = viewModel.agent{
+                        Text(agent.name)
+                            .foregroundColor(Color("SecondaryText"))
+                            .lineLimit(1)
+                            .multilineTextAlignment(.leading)
+                            .font(.system(size: 14, weight: .medium))
+                    }
+                    Spacer()
+                    Text(formattedPrice)
+                        .foregroundColor(Color("PrimaryBlue"))
+                        .font(.system(size: 14, weight: .bold))
+                }
+                .padding(.bottom, 1)
+                HStack(){
+                    Text(bedbath)
+                        .foregroundColor(Color("PrimaryBlue"))
+                        .font(.system(size: 12, weight: .heavy))
+                        .padding(7)
+                        .background{
+                            Color("SecondaryBlue")
+                                .cornerRadius(4)
+                        }
+                    Spacer()
+                    
+                }
+                
+            }
+            .padding(.horizontal, 20)
+        
+        
+        
+    }
+}
+
 struct CardDiscoverComponent: View {
     @ObservedObject var viewModel: PropertyCardModel
     
@@ -179,11 +339,11 @@ struct CardDiscoverComponent: View {
                     KFImage(URL(string: viewModel.property.images[0]))
                         .resizable()
                         .scaledToFill()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: geo.size.width-44,height: 270)
-                    .clipShape(RoundedRectangle(cornerRadius: 24))
-                    .padding(6)
-                    .shadow(color: .black.opacity(0.1), radius: 10, y:4)
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: geo.size.width-44,height: 270)
+                        .clipShape(RoundedRectangle(cornerRadius: 24))
+                        .padding(6)
+                        .shadow(color: .black.opacity(0.1), radius: 10, y:4)
                     
                     
                     //Address
