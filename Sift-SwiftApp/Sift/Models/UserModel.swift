@@ -24,3 +24,4 @@ struct User: Codable, Identifiable{
 }
 
 var userDemo: User = User(_id: "", email: "joe@apple.com", signedUp: true, isAgent: false, name: "Jenny Phillips", about: "Post-Grad Student | London")
+var agentDemo: User = User(_id: "", email: "agent@apple.com", signedUp: true, isAgent: true, name: "Chestertons Lettings", image: "https://upload.wikimedia.org/wikipedia/commons/c/cc/Chestertons_purple_logo.png")

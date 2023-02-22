@@ -8,7 +8,7 @@
 import Foundation
 
 class LikeModel: ObservableObject {
-    @Published var likedPosts: [String] = []
+    @Published var likedPosts: [String] = ["x"]
     var currentUser: User
     
     init(currentUser: User){

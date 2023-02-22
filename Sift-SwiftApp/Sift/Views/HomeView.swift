@@ -130,7 +130,9 @@ struct HomeView2: View {
     @Binding var selectedTab: String
     @EnvironmentObject var filtersModel: FiltersModel
     @ObservedObject var viewModel: PropertyModel
+    @State private var showingFilters = false
     let user: User
+    @State private var searchTerm = ""
     
     var body: some View {
 
@@ -148,10 +150,107 @@ struct HomeView2: View {
                                 .foregroundColor(Color("PrimaryText"))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(20)
-                                .padding(.top, 30)
-                                
+                                .padding(.top, 40)
                             
-                            //Horizontal Large Cards
+                            //MARK: Search Bar
+                            HStack{
+                                SearchBar(searchTerm: $searchTerm)
+                                Button {
+                                    showingFilters.toggle()
+                                } label: {
+                                    Image(systemName: "slider.horizontal.3")
+                                        .foregroundColor(Color("SecondaryText"))
+                                        .font(.system(size: 20, weight: .bold))
+                                }
+                                .fullScreenCover(isPresented: $showingFilters) {
+                                    FiltersView(parent: refresh)
+                                        
+                                }
+
+                                
+                            }
+                            .padding(.horizontal, 20)
+                            
+                            //MARK: Filters
+                            ScrollView(.horizontal){
+                                HStack(spacing:12) {
+                                    
+                                    if filtersModel.filters.property_type.count != 0{
+                                        ForEach(Array((filtersModel.filters.property_type)), id: (\.self)){ type in
+                                            Button {
+                                                filtersModel.filters.property_type.remove(object: type)
+                                                filtersModel.filters.saveFiltersToUserDefaults()
+                                                viewModel.refreshProperties()
+                                            } label: {
+                                                
+                                                Label(type, systemImage: "xmark")
+                                                    .filterTag()
+
+                                            }
+                                        }
+                                    }
+                                    if filtersModel.filters.minPrice != 100 || filtersModel.filters.maxPrice != 20000{
+                                        Button {
+                                            filtersModel.filters.minPrice = 100
+                                            filtersModel.filters.maxPrice = 20000
+                                            filtersModel.filters.saveFiltersToUserDefaults()
+                                            viewModel.refreshProperties()
+                                        } label: {
+                                            
+                                            Label("Price", systemImage: "xmark")
+                                                .filterTag()
+                                                
+
+                                        }
+                                        
+                                    }
+                                    
+                                    if filtersModel.filters.maxBeds != -1{
+                                        Button {
+                                            filtersModel.filters.minBeds = -1
+                                            filtersModel.filters.maxBeds = -1
+                                            filtersModel.filters.saveFiltersToUserDefaults()
+                                            viewModel.refreshProperties()
+                                        } label: {
+                                            
+                                            Label("Bedrooms", systemImage: "xmark")
+                                                .filterTag()
+
+                                        }
+                                    }
+                                    if filtersModel.filters.maxBaths != -1 {
+                                        Button {
+                                            filtersModel.filters.minBaths = -1
+                                            filtersModel.filters.maxBaths = -1
+                                            filtersModel.filters.saveFiltersToUserDefaults()
+                                            viewModel.refreshProperties()
+                                        } label: {
+                                            
+                                            Label("Bathrooms", systemImage: "xmark")
+                                                .filterTag()
+
+                                        }
+                                    }
+                                    if filtersModel.filters.minSize != 100 || filtersModel.filters.maxSize != 5000{
+                                        Button {
+                                            filtersModel.filters.minSize = 100
+                                            filtersModel.filters.maxSize = 5000
+                                            filtersModel.filters.saveFiltersToUserDefaults()
+                                            viewModel.refreshProperties()
+                                        } label: {
+                                            
+                                            Label("Size", systemImage: "xmark")
+                                                .filterTag()
+
+                                        }
+                                    }
+                                } //Filters HStack
+                                .padding(.horizontal, 20)
+                                .padding(.top, 10)
+                                .padding(.bottom, 10)
+                            }
+                            
+                            //MARK: Browse Cards
                             ScrollView(.horizontal, showsIndicators: false){
                                 HStack(spacing: 16){
                                     ForEach(Array(viewModel.savedProperties.prefix(5))){property in
@@ -212,6 +311,11 @@ struct HomeView2: View {
         
        
     }
+    
+    func refresh(){
+        viewModel.refreshProperties()
+        
+    }
 }
 
 struct HomeView_Previews: PreviewProvider {
@@ -219,7 +323,7 @@ struct HomeView_Previews: PreviewProvider {
         let viewModel = PropertyModel()
         viewModel.savedProperties=[propertyDemo, propertyDemo2]
         viewModel.properties=[propertyDemo, propertyDemo2]
-        return HomeView(selectedTab: .constant("Home"), viewModel: viewModel, user: userDemo)
+        return HomeView2(selectedTab: .constant("Home"), viewModel: viewModel, user: userDemo)
             
     }
 }

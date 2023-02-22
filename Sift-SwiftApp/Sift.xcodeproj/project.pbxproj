@@ -54,6 +54,8 @@
 		64D54BD8299FE0E40025C398 /* CustomCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D54BD7299FE0E40025C398 /* CustomCorners.swift */; };
 		64D54BDA299FF8B30025C398 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D54BD9299FF8B30025C398 /* Sidebar.swift */; };
 		64D54BDC299FF97B0025C398 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D54BDB299FF97B0025C398 /* TabsView.swift */; };
+		64D54BED29A6BD670025C398 /* ImageSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D54BEC29A6BD670025C398 /* ImageSlider.swift */; };
+		64D54BEF29A6CB460025C398 /* RatingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D54BEE29A6CB460025C398 /* RatingBar.swift */; };
 		64DBEE922972F16C0084BC13 /* PropertyCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DBEE912972F16C0084BC13 /* PropertyCardModel.swift */; };
 		64DBEE94297301330084BC13 /* FilterButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DBEE93297301330084BC13 /* FilterButtonComponent.swift */; };
 		64F1119D298A9864008A3A4C /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F1119C298A9864008A3A4C /* BrowseView.swift */; };
@@ -127,6 +129,8 @@
 		64D54BD7299FE0E40025C398 /* CustomCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCorners.swift; sourceTree = "<group>"; };
 		64D54BD9299FF8B30025C398 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		64D54BDB299FF97B0025C398 /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
+		64D54BEC29A6BD670025C398 /* ImageSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSlider.swift; sourceTree = "<group>"; };
+		64D54BEE29A6CB460025C398 /* RatingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingBar.swift; sourceTree = "<group>"; };
 		64DBEE902972DDD70084BC13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		64DBEE912972F16C0084BC13 /* PropertyCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyCardModel.swift; sourceTree = "<group>"; };
 		64DBEE93297301330084BC13 /* FilterButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonComponent.swift; sourceTree = "<group>"; };
@@ -261,6 +265,9 @@
 				64D54BD5299FDD850025C398 /* SidebarTabButton.swift */,
 				64D54BD7299FE0E40025C398 /* CustomCorners.swift */,
 				64D54BD9299FF8B30025C398 /* Sidebar.swift */,
+				64D54BEC29A6BD670025C398 /* ImageSlider.swift */,
+				649CD03C29950BCC00585E8A /* SearchBar.swift */,
+				64D54BEE29A6CB460025C398 /* RatingBar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -274,7 +281,6 @@
 				64B5F247296F308D00315553 /* HomeView.swift */,
 				644B0001298065C4002561FC /* Home.swift */,
 				64F1119C298A9864008A3A4C /* BrowseView.swift */,
-				649CD03C29950BCC00585E8A /* SearchBar.swift */,
 				64F1119E298B034B008A3A4C /* FiltersView.swift */,
 				64CB0847299BEF960099D89C /* SettingsView.swift */,
 				64F111A0298B0C28008A3A4C /* RangeSlider.swift */,
@@ -452,12 +458,14 @@
 				64B5F24B296F308E00315553 /* SiftApp.swift in Sources */,
 				64F111A1298B0C28008A3A4C /* RangeSlider.swift in Sources */,
 				64B5F24F296F308E00315553 /* WebService.swift in Sources */,
+				64D54BED29A6BD670025C398 /* ImageSlider.swift in Sources */,
 				64B5F257296F308E00315553 /* SignUpView.swift in Sources */,
 				649CD03F29953BDE00585E8A /* SmoothASync.swift in Sources */,
 				64D54BDA299FF8B30025C398 /* Sidebar.swift in Sources */,
 				64CB084F299C24620099D89C /* OnboardingItemModel.swift in Sources */,
 				64B5F24D296F308E00315553 /* LoginViewModel.swift in Sources */,
 				649D7218297431D700E10D6B /* DiscoverView.swift in Sources */,
+				64D54BEF29A6CB460025C398 /* RatingBar.swift in Sources */,
 				64B5F250296F308E00315553 /* CardComponents.swift in Sources */,
 				647D4C00298991680082C868 /* SavedView.swift in Sources */,
 				64CB0844299B9AD40099D89C /* LikeModel.swift in Sources */,

@@ -13,83 +13,85 @@ struct MainView: View {
     @State var showingMenu = false
     @ObservedObject var viewModel = PropertyModel()
     var body: some View {
-        ZStack{
-            Color("PrimaryBlue")
-                .ignoresSafeArea()
-            
-           //MARK: Sidebar
-            Sidebar(selectedTab: $selectedTab)
-            
-            //MARK: Tabs
+        NavigationView {
             ZStack{
-                Color.white
-                    .opacity(0.3)
-                    .cornerRadius(showingMenu ? 15 : 0)
-                    .offset(x: showingMenu ? -25 : 0)
-                    .padding(.vertical, 30)
-                Color.white
-                    .opacity(0.3)
-                    .cornerRadius(15)
-                    .offset(x: showingMenu ? -50 : 0)
-                    .padding(.vertical, 60)
-                TabsView(selectedTab: $selectedTab, user: user, showingMenu: $showingMenu, viewModel: viewModel)
-                    .cornerRadius(showingMenu ? 15 : 10)
-                    .disabled(showingMenu)
-//                    .overlay(content: {
-//                        if showingMenu{
-//                            Color.white
-//                                .ignoresSafeArea()
-//                                .opacity(0.5)
-//                                .cornerRadius(showingMenu ? 15 : 10)
-//                        }
-//                    })
-//                    .opacity(showingMenu ? 1 : 1)
-                    
-            }
-            .scaleEffect(showingMenu ? 0.85 : 1)
-            .offset(x: showingMenu ? getRect().width - 120 : 0)
-            .ignoresSafeArea()
-            .overlay(
-            
-                // Menu Button...
-                Button(action: {
-                    withAnimation(.spring()){
-                        showingMenu.toggle()
-                    }
-                }, label: {
-                    
-                    // Animted Drawer Button..
-                    VStack(spacing: 5){
+                Color("PrimaryBlue")
+                    .ignoresSafeArea()
+                
+               //MARK: Sidebar
+                Sidebar(selectedTab: $selectedTab)
+                
+                //MARK: Tabs
+                ZStack{
+                    Color.white
+                        .opacity(0.3)
+                        .cornerRadius(showingMenu ? 15 : 0)
+                        .offset(x: showingMenu ? -25 : 0)
+                        .padding(.vertical, 30)
+                    Color.white
+                        .opacity(0.3)
+                        .cornerRadius(15)
+                        .offset(x: showingMenu ? -50 : 0)
+                        .padding(.vertical, 60)
+                    TabsView(selectedTab: $selectedTab, user: user, showingMenu: $showingMenu, viewModel: viewModel)
+                        .cornerRadius(showingMenu ? 15 : 10)
+                        .disabled(showingMenu)
+    //                    .overlay(content: {
+    //                        if showingMenu{
+    //                            Color.white
+    //                                .ignoresSafeArea()
+    //                                .opacity(0.5)
+    //                                .cornerRadius(showingMenu ? 15 : 10)
+    //                        }
+    //                    })
+    //                    .opacity(showingMenu ? 1 : 1)
                         
-                        Capsule()
-                            .fill(showingMenu ? Color.white : Color("PrimaryText"))
-                            .frame(width: 30, height: 3)
-                        // Rotating...
-                            .rotationEffect(.init(degrees: showingMenu ? -45 : 0))
-                            .offset(x: showingMenu ? 2 : 0, y: showingMenu ? 9 : 0)
-
+                }
+                .scaleEffect(showingMenu ? 0.85 : 1)
+                .offset(x: showingMenu ? getRect().width - 120 : 0)
+                .ignoresSafeArea()
+                .overlay(
+                
+                    // Menu Button...
+                    Button(action: {
+                        withAnimation(.spring()){
+                            showingMenu.toggle()
+                        }
+                    }, label: {
+                        
+                        // Animted Drawer Button..
                         VStack(spacing: 5){
                             
                             Capsule()
                                 .fill(showingMenu ? Color.white : Color("PrimaryText"))
                                 .frame(width: 30, height: 3)
-                            // Moving Up when clicked...
-                            Capsule()
-                                .fill(showingMenu ? Color.white : Color("PrimaryText"))
-                                .frame(width: 30, height: 3)
-                                .offset(y: showingMenu ? -8 : 0)
+                            // Rotating...
+                                .rotationEffect(.init(degrees: showingMenu ? -45 : 0))
+                                .offset(x: showingMenu ? 2 : 0, y: showingMenu ? 9 : 0)
+
+                            VStack(spacing: 5){
+                                
+                                Capsule()
+                                    .fill(showingMenu ? Color.white : Color("PrimaryText"))
+                                    .frame(width: 30, height: 3)
+                                // Moving Up when clicked...
+                                Capsule()
+                                    .fill(showingMenu ? Color.white : Color("PrimaryText"))
+                                    .frame(width: 30, height: 3)
+                                    .offset(y: showingMenu ? -8 : 0)
+                            }
+                            .rotationEffect(.init(degrees: showingMenu ? 45 : 0))
                         }
-                        .rotationEffect(.init(degrees: showingMenu ? 45 : 0))
-                    }
-                    .contentShape(Rectangle())
-                })
-                .padding()
-                .offset(x: 3)
+                        .contentShape(Rectangle())
+                    })
+                    .padding()
+                    .offset(x: 3)
+                    
+                    ,alignment: .topLeading
+                )
                 
-                ,alignment: .topLeading
-            )
-            
-                
+                    
+            }
         }
     }
 }

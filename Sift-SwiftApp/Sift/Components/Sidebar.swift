@@ -18,7 +18,7 @@ struct Sidebar: View {
                     .frame(width: 68, height: 68, alignment: .center)
                     .foregroundColor(Color("StrokeGrey"))
                 
-                Image("Profile4")
+                Image("Profile2")
                     .resizable()
                     .scaledToFill()
                     .frame(width: 64, height: 64)
@@ -26,7 +26,7 @@ struct Sidebar: View {
             }
             .padding(.top, 50)
             VStack(alignment: .leading, spacing: 6){
-                Text("Sophie Whyman")
+                Text("Jenny Lettings")
                     .foregroundColor(.white)
                     .font(.system(size: 20))
                     .fontWeight(.black)

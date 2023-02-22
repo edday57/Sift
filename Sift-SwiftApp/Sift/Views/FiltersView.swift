@@ -392,6 +392,23 @@ extension Text {
     }
 }
 
+extension Label {
+    func filterTag() -> some View {
+        self.foregroundColor(Color("SecondaryText"))
+            .padding(9)
+            .font(.system(size: 14, weight: .bold))
+            .background(
+                RoundedRectangle(cornerRadius: 5)
+                    .strokeBorder(Color("SecondaryTextLight"), lineWidth: 1)
+                    .background(RoundedRectangle(cornerRadius: 11)
+                        .fill(Color.white)
+                        .shadow(color: .black.opacity(0.1), radius: 4, y: 4)
+                    )
+            )
+                
+    }
+    
+}
 
 struct FiltersView_Previews: PreviewProvider {
     static var previews: some View {

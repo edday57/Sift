@@ -53,6 +53,7 @@ struct CardLargeComponent: View {
                             }
                             .position(x:60, y:27)
                     }
+                    
                 HStack{
                     Text(formattedPrice)
                         .foregroundColor(Color("TextGreyLight"))
@@ -144,6 +145,27 @@ struct CardLargeComponentNew: View {
                                 .opacity(0.55)
                         }
                         .position(x:60, y:27)
+                    }
+                    .overlay(alignment: .bottomTrailing) {
+                        Button {
+                            //
+                        } label: {
+                            ZStack{
+                                Circle()
+                                    .foregroundColor(.white)
+                                    .frame(width: 28, height: 28)
+                                    .shadow(color: .black
+                                        .opacity(0.2), radius: 5, y:4)
+                                Image(systemName: "location.fill")
+                                    .font(.system(size: 12, weight: .bold))
+                                    .foregroundColor(Color("PrimaryBlue"))
+                                    
+                                    
+                            }
+                            .offset(x: -16, y: -14)
+                                
+                        }
+
                     }
             }
 
@@ -283,6 +305,28 @@ struct CardDiscoverComponentNew: View {
                     RoundedRectangle(cornerRadius: 14)
                         .stroke(.white, lineWidth: 3)
                 }
+                .overlay(alignment: .bottomTrailing) {
+                    Button {
+                        //
+                    } label: {
+                        ZStack{
+                            Circle()
+                                .foregroundColor(.white)
+                                .frame(width: 28, height: 28)
+                                .shadow(color: .black
+                                    .opacity(0.2), radius: 5, y:4)
+                            Image(systemName: "location.fill")
+                                .font(.system(size: 12, weight: .bold))
+                                .foregroundColor(Color("PrimaryBlue"))
+                                
+                                
+                        }
+                        .offset(x: -20, y: 14)
+                            
+                    }
+
+                }
+                .padding(.bottom, 8)
                 
                 
                 Text("\(viewModel.property.address)")

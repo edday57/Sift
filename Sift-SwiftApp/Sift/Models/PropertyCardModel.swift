@@ -11,8 +11,9 @@ class PropertyCardModel: ObservableObject {
     @Published var property: Property
     let currentUser: User
     @Published var agent: User?
-    init(property: Property, currentUser: User){
+    init(property: Property, currentUser: User, agent: User? = nil){
         self.property = property
+        self.agent = agent
         self.currentUser = currentUser
         self.fetchUser(userId: property.agent)
     }

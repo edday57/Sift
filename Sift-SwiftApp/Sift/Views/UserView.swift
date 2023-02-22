@@ -210,23 +210,7 @@ struct UserView: View {
     }
 }
 
-extension Label {
-    func filterTag() -> some View {
-        self.foregroundColor(Color("TextGreyDark"))
-            .padding(11)
-            .font(.system(size: 14, weight: .bold))
-            .background(
-                RoundedRectangle(cornerRadius: 11)
-                    .strokeBorder(Color("StrokeGrey"), lineWidth: 1)
-                    .background(RoundedRectangle(cornerRadius: 11)
-                        .fill(Color.white)
-                        .shadow(color: .black.opacity(0.05), radius: 3)
-                    )
-            )
-                
-    }
-    
-}
+
 
 struct UserView_Previews: PreviewProvider {
     static var previews: some View {
