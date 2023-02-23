@@ -109,6 +109,7 @@ struct Home: View {
                 .navigationBarHidden(true)
             }
         }
+        .navigationViewStyle(.stack)
     }
 }
 

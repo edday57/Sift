@@ -94,6 +94,10 @@ struct TabsView: View {
             }
             .tag("Saved")
             .background(Color("Background"))
+            
+            SettingsView()
+                .tag("Settings")
+            
         }.edgesIgnoringSafeArea(.top)
             
             

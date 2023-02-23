@@ -11,10 +11,15 @@ class PropertyCardModel: ObservableObject {
     @Published var property: Property
     let currentUser: User
     @Published var agent: User?
+    let formattedPrice: String
     init(property: Property, currentUser: User, agent: User? = nil){
         self.property = property
         self.agent = agent
         self.currentUser = currentUser
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 0
+        self.formattedPrice = "£" + (formatter.string(from: NSNumber(value: property.price)) ?? "") + " pcm"
         self.fetchUser(userId: property.agent)
     }
     
@@ -44,4 +49,5 @@ class PropertyCardModel: ObservableObject {
             }
         }
     }
+    
 }

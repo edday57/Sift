@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Kingfisher
-
+import MapKit
 struct CardLargeComponent: View {
     @ObservedObject var viewModel: PropertyCardModel
     
@@ -107,7 +107,6 @@ struct CardLargeComponentNew: View {
         self.viewModel = viewModel
     }
     var body: some View {
-        let formattedPrice = String(format: "£%.0f pcm", viewModel.property.price)
     
         VStack(alignment: .center){
             ZStack{
@@ -170,7 +169,7 @@ struct CardLargeComponentNew: View {
             }
 
             HStack{
-                Text(formattedPrice)
+                Text(viewModel.formattedPrice)
                     .foregroundColor(Color("PrimaryBlue"))
                     .font(.system(size: 14, weight: .bold))
                 Spacer()
@@ -279,7 +278,6 @@ struct CardDiscoverComponentNew: View {
         self.viewModel = viewModel
     }
     var body: some View {
-        let formattedPrice = String(format: "£%.0f pcm", viewModel.property.price)
         let bedbath = String(format: "%i Beds | %i Baths", viewModel.property.bedrooms, viewModel.property.bathrooms)
             VStack(alignment: .center){
                 KFImage(URL(string: viewModel.property.images[0]))
@@ -335,6 +333,7 @@ struct CardDiscoverComponentNew: View {
                     .foregroundColor(Color("PrimaryText"))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(.black)
+                    .padding(.bottom, 1)
                 HStack{
                     if let agent = viewModel.agent{
                         Text(agent.name)
@@ -344,7 +343,7 @@ struct CardDiscoverComponentNew: View {
                             .font(.system(size: 14, weight: .medium))
                     }
                     Spacer()
-                    Text(formattedPrice)
+                    Text(viewModel.formattedPrice)
                         .foregroundColor(Color("PrimaryBlue"))
                         .font(.system(size: 14, weight: .bold))
                 }

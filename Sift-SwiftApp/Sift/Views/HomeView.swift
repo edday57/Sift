@@ -105,6 +105,7 @@ struct HomeView: View {
                             LazyVStack(spacing: -25){
                                 ForEach(Array(viewModel.properties.prefix(5))){property in
                                     NavigationLink{
+                                        
                                         ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
                                     } label: {
                                         CardListComponent(viewModel: PropertyCardModel(property: property, currentUser: user))
@@ -270,7 +271,7 @@ struct HomeView2: View {
                             
                             //For You Section
                             HStack {
-                                Text("Recently Added")
+                                Text("For You")
                                     .font(.system(size: 20, weight: .black))
                                     .foregroundColor(Color("PrimaryText"))
                                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -295,6 +296,7 @@ struct HomeView2: View {
                                         ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
                                     } label: {
                                         CardDiscoverComponentNew(viewModel: PropertyCardModel(property: property, currentUser: user))
+                                            .padding(.bottom, 5)
                                     }
                                     
                                 }
