@@ -13,7 +13,7 @@ struct MainView: View {
     @State var showingMenu = false
     @ObservedObject var viewModel = PropertyModel()
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack{
                 Color("PrimaryBlue")
                     .ignoresSafeArea()
