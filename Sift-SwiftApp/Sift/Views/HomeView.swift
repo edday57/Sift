@@ -65,7 +65,7 @@ struct HomeView: View {
                             //Horizontal Large Cards
                             ScrollView(.horizontal, showsIndicators: false){
                                 HStack(spacing: 16){
-                                    ForEach(Array(viewModel.savedProperties.prefix(5))){property in
+                                    ForEach(Array(viewModel.properties.prefix(5))){property in
                                         NavigationLink{
                                             ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
                                         } label: {
@@ -128,6 +128,7 @@ struct HomeView: View {
 }
 
 struct HomeView2: View {
+    @Binding var showingMenu: Bool
     @Binding var selectedTab: String
     @EnvironmentObject var filtersModel: FiltersModel
     @ObservedObject var viewModel: PropertyModel
@@ -143,7 +144,15 @@ struct HomeView2: View {
                         
                         VStack(alignment: .center, spacing: 8) {
                             //Nav
-
+                            Button {
+                                withAnimation(.spring()){
+                                    showingMenu.toggle()
+                                }
+                            } label: {
+                                MenuIcon().frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.horizontal, 20)
+                                    .opacity(showingMenu ? 0: 1)
+                            }
                             
                             //Trending Section
                             Text("Explore Property")
@@ -151,7 +160,6 @@ struct HomeView2: View {
                                 .foregroundColor(Color("PrimaryText"))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(20)
-                                .padding(.top, 40)
                             
                             //MARK: Search Bar
                             HStack{
@@ -254,7 +262,7 @@ struct HomeView2: View {
                             //MARK: Browse Cards
                             ScrollView(.horizontal, showsIndicators: false){
                                 HStack(spacing: 16){
-                                    ForEach(Array(viewModel.savedProperties.prefix(5))){property in
+                                    ForEach(Array(viewModel.properties.prefix(5))){property in
                                         NavigationLink{
                                             ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
                                         } label: {
@@ -291,7 +299,7 @@ struct HomeView2: View {
                            
                             //Vertical Cards
                             LazyVStack(alignment: .center){
-                                ForEach(Array(viewModel.properties.prefix(5))){property in
+                                ForEach(Array(viewModel.savedProperties.prefix(5))){property in
                                     NavigationLink{
                                         ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
                                     } label: {
@@ -325,7 +333,7 @@ struct HomeView_Previews: PreviewProvider {
         let viewModel = PropertyModel()
         viewModel.savedProperties=[propertyDemo, propertyDemo2]
         viewModel.properties=[propertyDemo, propertyDemo2]
-        return HomeView2(selectedTab: .constant("Home"), viewModel: viewModel, user: userDemo)
+        return HomeView2(showingMenu: .constant(false),selectedTab: .constant("Home"), viewModel: viewModel, user: userDemo)
             
     }
 }

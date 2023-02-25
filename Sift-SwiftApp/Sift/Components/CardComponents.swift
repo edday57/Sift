@@ -153,8 +153,8 @@ struct CardLargeComponentNew: View {
                                 Circle()
                                     .foregroundColor(.white)
                                     .frame(width: 28, height: 28)
-                                    .shadow(color: .black
-                                        .opacity(0.2), radius: 5, y:4)
+                                    .shadow(color: Color("ShadowBlue")
+                                        .opacity(0.25), radius: 5, y:4)
                                 Image(systemName: "location.fill")
                                     .font(.system(size: 12, weight: .bold))
                                     .foregroundColor(Color("PrimaryBlue"))
@@ -285,7 +285,7 @@ struct CardDiscoverComponentNew: View {
                     .scaledToFill()
                 .frame(height: 165)
                 .clipShape(RoundedRectangle(cornerRadius: 15))
-                .shadow(color: .black.opacity(0.1), radius: 10, y:4)
+                .shadow(color: .black.opacity(0.1), radius: 2, y:4)
                 .overlay{
                     Text("3.7km away")
                         .font(.system(size: 12, weight: .heavy))
@@ -311,8 +311,8 @@ struct CardDiscoverComponentNew: View {
                             Circle()
                                 .foregroundColor(.white)
                                 .frame(width: 28, height: 28)
-                                .shadow(color: .black
-                                    .opacity(0.2), radius: 5, y:4)
+                                .shadow(color: Color("ShadowBlue")
+                                    .opacity(0.25), radius: 5, y:4)
                             Image(systemName: "location.fill")
                                 .font(.system(size: 12, weight: .bold))
                                 .foregroundColor(Color("PrimaryBlue"))
@@ -369,6 +369,147 @@ struct CardDiscoverComponentNew: View {
     }
 }
 
+struct CardSwipeComponent: View {
+    @ObservedObject var viewModel: PropertyCardModel
+    
+    init(viewModel: PropertyCardModel){
+        self.viewModel = viewModel
+    }
+    var body: some View {
+        let bedbath = String(format: "%i Beds | %i Baths", viewModel.property.bedrooms, viewModel.property.bathrooms)
+        GeometryReader { geo in
+            let size = geo.size
+            VStack(alignment: .center){
+                KFImage(URL(string: viewModel.property.images[0]))
+                    .resizable()
+                    .scaledToFill()
+                    .frame(maxWidth: size.width - 64, maxHeight: 230)
+                .clipShape(RoundedRectangle(cornerRadius: 15))
+                .shadow(color: .black.opacity(0.1), radius: 2, y:4)
+                .overlay{
+                    Text("3.7km away")
+                        .font(.system(size: 12, weight: .heavy))
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 3)
+                    .background{
+                        Capsule()
+                            .foregroundColor(Color.black)
+                            .opacity(0.55)
+                    }
+                    .position(x:60, y:24)
+                }
+                .overlay {
+                    RoundedRectangle(cornerRadius: 14)
+                        .stroke(.white, lineWidth: 3)
+                }
+                .overlay(alignment: .bottomTrailing) {
+                    Button {
+                        //
+                    } label: {
+                        ZStack{
+
+                            Circle()
+                                .foregroundColor(.white)
+                                .frame(width: 28, height: 28)
+                                .shadow(color: Color("ShadowBlue")
+                                    .opacity(0.25), radius: 3, y:3)
+                            Image(systemName: "location.fill")
+                                .font(.system(size: 12, weight: .bold))
+                                .foregroundColor(Color("PrimaryBlue"))
+                        }
+                        .offset(x: -20, y: 14)
+                    }
+                }
+                .padding(.bottom, 8)
+                
+                
+                Text("\(viewModel.property.address)")
+                    .lineLimit(1)
+                    .font(.system(size: 16, weight: .black))
+                    .foregroundColor(Color("PrimaryText"))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(.black)
+                    .padding(.bottom, 1)
+                HStack{
+                    if let agent = viewModel.agent{
+                        Text(agent.name)
+                            .foregroundColor(Color("SecondaryText"))
+                            .lineLimit(1)
+                            .multilineTextAlignment(.leading)
+                            .font(.system(size: 14, weight: .medium))
+                    }
+                    Spacer()
+                    Text(viewModel.formattedPrice)
+                        .foregroundColor(Color("PrimaryBlue"))
+                        .font(.system(size: 14, weight: .bold))
+                }
+                .padding(.bottom, 1)
+                
+                //MARK: Bed Bath and Date
+                HStack(){
+                    Text(bedbath)
+                        .foregroundColor(Color("PrimaryBlue"))
+                        .font(.system(size: 12, weight: .heavy))
+                        .padding(7)
+                        .background{
+                            Color("SecondaryBlue")
+                                .cornerRadius(4)
+                        }
+                    Spacer()
+                    Text("Listed \(viewModel.property.date_added.formatDate())")
+                        .foregroundColor(Color("SecondaryText"))
+                        .font(.system(size: 12, weight: .semibold))
+                }
+                
+                //MARK: Description
+                Text(viewModel.property.description ?? "No description found.")
+                    .foregroundColor(Color("SecondaryText"))
+                    .font(.system(size: 14, weight: .medium))
+                    .lineLimit(7)
+                    .padding(.top, 5)
+                    .padding(.bottom, 10)
+                
+                //MARK: Rating and Not Interested
+                HStack(alignment: .center, spacing: 15){
+                    HStack{
+                        Image(systemName: "nosign")
+                        Text("Not interested")
+                            .lineLimit(1)
+                    }
+                    .frame(minWidth: 125)
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(Color("SecondaryText"))
+                    
+                    RatingBar(rating: 0.85)
+                        .frame(maxWidth: 120, maxHeight: 10)
+                    Text("80% match")
+                        .font(.system(size: 14, weight: .heavy))
+                        .foregroundColor(Color("PrimaryBlue"))
+                    
+                }
+                
+            }
+            .padding(.vertical,10)
+            .padding(.horizontal, 12)
+            .background{
+                RoundedRectangle(cornerRadius: 15 )
+                    .foregroundColor(Color("Background"))
+                    .shadow(radius: 5)
+                    
+            }
+            .padding(.horizontal, 20)
+        }
+        
+
+            
+            
+        
+        
+        
+    }
+}
+
 struct CardDiscoverComponent: View {
     @ObservedObject var viewModel: PropertyCardModel
     
@@ -376,6 +517,7 @@ struct CardDiscoverComponent: View {
         self.viewModel = viewModel
     }
     var body: some View {
+        
         let formattedPrice = String(format: "£%.0f pcm", viewModel.property.price)
         let bedbath = String(format: "%iB | %iB", viewModel.property.bedrooms, viewModel.property.bathrooms)
         
@@ -538,8 +680,13 @@ struct CardFullWidthListComponent: View {
 
 struct CardLargeComponent_Previews: PreviewProvider {
     static var previews: some View {
-        CardFullWidthListComponent(viewModel: PropertyCardModel(property: propertyDemo, currentUser: userDemo))
-            .padding(20)
+        ZStack{
+            Color("Background")
+            CardSwipeComponent(viewModel: PropertyCardModel(property: propertyDemo, currentUser: userDemo))
+                
+                
+        }
+        
     }
 }
 

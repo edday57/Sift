@@ -79,8 +79,8 @@ struct ListingView: View {
                                         Circle()
                                             .foregroundColor(.white)
                                             .frame(width: 46, height: 46)
-                                            .shadow(color: .black
-                                                .opacity(0.2), radius: 5, y:4)
+                                            .shadow(color: Color("ShadowBlue")
+                                                .opacity(0.3), radius: 5, y:4)
                                         Image(systemName: "location.fill")
                                             .font(.system(size: 16, weight: .bold))
                                             .foregroundColor(Color("PrimaryBlue"))

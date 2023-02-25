@@ -28,6 +28,10 @@ struct SidebarTabButton: View {
                     .frame(width: 30)
                 Text(title)
                     .fontWeight(title == "Log Out" ? .semibold : .black)
+                if title == "Inbox"{
+                    Text("(3)")
+                        .fontWeight(.black)
+                }
             }
             .foregroundColor(selectedTab == title ? Color("PrimaryBlue") : .white)
             .padding(.vertical, 12)

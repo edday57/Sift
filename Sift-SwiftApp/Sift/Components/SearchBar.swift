@@ -38,7 +38,7 @@ struct SearchBar_Previews: PreviewProvider {
         let viewModel = PropertyModel()
         viewModel.savedProperties=[propertyDemo, propertyDemo2]
         viewModel.properties=[propertyDemo, propertyDemo2]
-        return HomeView2(selectedTab: .constant("Home"), viewModel: viewModel, user: userDemo)
+        return HomeView2(showingMenu: .constant(false),selectedTab: .constant("Home"), viewModel: viewModel, user: userDemo)
             
     }
 }

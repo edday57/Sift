@@ -32,7 +32,7 @@ struct TabsView: View {
                     .offset(x: -80, y: 300)
                     .font(.system(size: 500))
                     .opacity(0.05)
-                HomeView2(selectedTab: $selectedTab, viewModel: viewModel, user: user)
+                HomeView2(showingMenu: $showingMenu, selectedTab: $selectedTab, viewModel: viewModel, user: user)
                     
             }
             .tabItem{
@@ -51,7 +51,7 @@ struct TabsView: View {
                     .offset(x: -80, y: 300)
                     .font(.system(size: 500))
                     .opacity(0.05)
-                DiscoverView(user:user)
+                DiscoverView(showingMenu: $showingMenu, user:user)
             }
             .tabItem{
                 Image(systemName: "heart.text.square")
@@ -69,7 +69,7 @@ struct TabsView: View {
                     .offset(x: -80, y: 300)
                     .font(.system(size: 500))
                     .opacity(0.05)
-                BrowseView(user: user, viewModel: viewModel)
+                BrowseView2(user: user, viewModel: viewModel)
                     
             }
             .tabItem{
@@ -95,8 +95,46 @@ struct TabsView: View {
             .tag("Saved")
             .background(Color("Background"))
             
+            
+        }.edgesIgnoringSafeArea(.top)
+        .onAppear {
+                let tabBarAppearance = UITabBarAppearance()
+                tabBarAppearance.configureWithDefaultBackground()
+                UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+            }
+            
+            
+    }
+}
+
+struct SecondaryTabsView: View {
+    @Binding var selectedTab: String
+    let user: User
+    @Binding var showingMenu: Bool
+    let viewModel: PropertyModel
+    init(selectedTab: Binding<String>, user: User, showingMenu: Binding<Bool>, viewModel: PropertyModel){
+        self.viewModel = viewModel
+        self.user = user
+        self._showingMenu = showingMenu
+        self._selectedTab = selectedTab
+    }
+    
+    var body: some View {
+        TabView(selection: $selectedTab) {
+            //Tabs
+            InboxView()
+                .tabItem {
+                    Image(systemName: "envelope")
+                }
+                .tag("Inbox")
             SettingsView()
-                .tag("Settings")
+            .tabItem{
+                Image(systemName: "gearshape")
+            }
+            .tag("Settings")
+            .background(Color("Background"))
+            
+            
             
         }.edgesIgnoringSafeArea(.top)
             

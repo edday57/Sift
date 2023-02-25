@@ -8,10 +8,43 @@
 import SwiftUI
 
 struct Sidebar: View {
+    @Binding var showingMenu: Bool
     @Binding var selectedTab: String
     @Namespace var animation
     var body: some View {
         VStack(alignment: .leading, spacing: 15, content: {
+            Button(action: {
+                withAnimation(.spring()){
+                    showingMenu.toggle()
+                }
+            }, label: {
+                
+                // Animted Drawer Button..
+                VStack(spacing: 5){
+                    
+                    Capsule()
+                        .fill(showingMenu ? Color.white : Color("PrimaryText"))
+                        .frame(width: 30, height: 3)
+                    // Rotating...
+                        .rotationEffect(.init(degrees: showingMenu ? -45 : 0))
+                        .offset(x: showingMenu ? 2 : 0, y: showingMenu ? 9 : 0)
+
+                    VStack(spacing: 5){
+                        
+                        Capsule()
+                            .fill(showingMenu ? Color.white : Color("PrimaryText"))
+                            .frame(width: 30, height: 3)
+                            .opacity(0)
+                        // Moving Up when clicked...
+                        Capsule()
+                            .fill(showingMenu ? Color.white : Color("PrimaryText"))
+                            .frame(width: 30, height: 3)
+                            .offset(y: showingMenu ? -8 : 0)
+                    }
+                    .rotationEffect(.init(degrees: showingMenu ? 45 : 0))
+                }
+                .contentShape(Rectangle())
+            })
             //MARK: Profile Section
             ZStack {
                 Circle()
@@ -42,7 +75,7 @@ struct Sidebar: View {
             //MARK: Tab Buttons
             VStack(alignment: .leading, spacing: 10){
                 SidebarTabButton(image: "house", title: "Home", selectedTab: $selectedTab, animation: animation)
-                SidebarTabButton(image: "envelope.badge", title: "Inbox (3)", selectedTab: $selectedTab, animation: animation)
+                SidebarTabButton(image: "envelope.badge", title: "Inbox", selectedTab: $selectedTab, animation: animation)
                 SidebarTabButton(image: "bookmark", title: "Saved Properties", selectedTab: $selectedTab, animation: animation)
                 SidebarTabButton(image: "gearshape", title: "Settings", selectedTab: $selectedTab, animation: animation)
                 SidebarTabButton(image: "info.circle", title: "Help", selectedTab: $selectedTab, animation: animation)

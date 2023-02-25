@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     let user: User
+    let mainTabs = ["Home", "Discover", "Browse", "Saved"]
     @State var selectedTab = "Home"
     @State var showingMenu = false
     @ObservedObject var viewModel = PropertyModel()
@@ -19,7 +20,7 @@ struct MainView: View {
                     .ignoresSafeArea()
                 
                //MARK: Sidebar
-                Sidebar(selectedTab: $selectedTab)
+                Sidebar(showingMenu: $showingMenu, selectedTab: $selectedTab)
                 
                 //MARK: Tabs
                 ZStack{
@@ -33,9 +34,14 @@ struct MainView: View {
                         .cornerRadius(15)
                         .offset(x: showingMenu ? -50 : 0)
                         .padding(.vertical, 60)
+                    SecondaryTabsView(selectedTab: $selectedTab, user: user, showingMenu: $showingMenu, viewModel: viewModel)
+                        .cornerRadius(showingMenu ? 15 : 10)
+                        .disabled(showingMenu)
+                    
                     TabsView(selectedTab: $selectedTab, user: user, showingMenu: $showingMenu, viewModel: viewModel)
                         .cornerRadius(showingMenu ? 15 : 10)
                         .disabled(showingMenu)
+                        .opacity(mainTabs.contains(selectedTab) ? 1: 0)
     //                    .overlay(content: {
     //                        if showingMenu{
     //                            Color.white
@@ -50,45 +56,45 @@ struct MainView: View {
                 .scaleEffect(showingMenu ? 0.85 : 1)
                 .offset(x: showingMenu ? getRect().width - 120 : 0)
                 .ignoresSafeArea()
-                .overlay(
-                
-                    // Menu Button...
-                    Button(action: {
-                        withAnimation(.spring()){
-                            showingMenu.toggle()
-                        }
-                    }, label: {
-                        
-                        // Animted Drawer Button..
-                        VStack(spacing: 5){
-                            
-                            Capsule()
-                                .fill(showingMenu ? Color.white : Color("PrimaryText"))
-                                .frame(width: 30, height: 3)
-                            // Rotating...
-                                .rotationEffect(.init(degrees: showingMenu ? -45 : 0))
-                                .offset(x: showingMenu ? 2 : 0, y: showingMenu ? 9 : 0)
-
-                            VStack(spacing: 5){
-                                
-                                Capsule()
-                                    .fill(showingMenu ? Color.white : Color("PrimaryText"))
-                                    .frame(width: 30, height: 3)
-                                // Moving Up when clicked...
-                                Capsule()
-                                    .fill(showingMenu ? Color.white : Color("PrimaryText"))
-                                    .frame(width: 30, height: 3)
-                                    .offset(y: showingMenu ? -8 : 0)
-                            }
-                            .rotationEffect(.init(degrees: showingMenu ? 45 : 0))
-                        }
-                        .contentShape(Rectangle())
-                    })
-                    .padding()
-                    .offset(x: 3)
-                    
-                    ,alignment: .topLeading
-                )
+//                .overlay(
+//                
+//                    // Menu Button...
+//                    Button(action: {
+//                        withAnimation(.spring()){
+//                            showingMenu.toggle()
+//                        }
+//                    }, label: {
+//                        
+//                        // Animted Drawer Button..
+//                        VStack(spacing: 5){
+//                            
+//                            Capsule()
+//                                .fill(showingMenu ? Color.white : Color("PrimaryText"))
+//                                .frame(width: 30, height: 3)
+//                            // Rotating...
+//                                .rotationEffect(.init(degrees: showingMenu ? -45 : 0))
+//                                .offset(x: showingMenu ? 2 : 0, y: showingMenu ? 9 : 0)
+//
+//                            VStack(spacing: 5){
+//                                
+//                                Capsule()
+//                                    .fill(showingMenu ? Color.white : Color("PrimaryText"))
+//                                    .frame(width: 30, height: 3)
+//                                // Moving Up when clicked...
+//                                Capsule()
+//                                    .fill(showingMenu ? Color.white : Color("PrimaryText"))
+//                                    .frame(width: 30, height: 3)
+//                                    .offset(y: showingMenu ? -8 : 0)
+//                            }
+//                            .rotationEffect(.init(degrees: showingMenu ? 45 : 0))
+//                        }
+//                        .contentShape(Rectangle())
+//                    })
+//                    .padding()
+//                    .offset(x: 3)
+//                    
+//                    ,alignment: .topLeading
+//                )
                 
                     
             }
