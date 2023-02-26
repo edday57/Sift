@@ -15,8 +15,6 @@ struct BrowseView2: View {
     @State private var showingFilters = false
     @ObservedObject var viewModel: PropertyModel
     var body: some View {
-        ZStack {
-            
             ScrollView {
                 
                 LazyVStack(alignment: .center, spacing: 8) {
@@ -153,8 +151,6 @@ struct BrowseView2: View {
                 
             }
             .background(.clear)
-        }
-        .background(.clear)
         
         
         

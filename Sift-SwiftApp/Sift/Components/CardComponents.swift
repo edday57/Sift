@@ -371,9 +371,10 @@ struct CardDiscoverComponentNew: View {
 
 struct CardSwipeComponent: View {
     @ObservedObject var viewModel: PropertyCardModel
-    
-    init(viewModel: PropertyCardModel){
+    @Binding var backgroundColor: Color
+    init(viewModel: PropertyCardModel, bgC: Binding <Color>){
         self.viewModel = viewModel
+        _backgroundColor = bgC
     }
     var body: some View {
         let bedbath = String(format: "%i Beds | %i Baths", viewModel.property.bedrooms, viewModel.property.bathrooms)
@@ -494,7 +495,7 @@ struct CardSwipeComponent: View {
             .padding(.horizontal, 12)
             .background{
                 RoundedRectangle(cornerRadius: 15 )
-                    .foregroundColor(Color("Background"))
+                    .foregroundColor(backgroundColor)
                     .shadow(radius: 5)
                     
             }
@@ -682,7 +683,7 @@ struct CardLargeComponent_Previews: PreviewProvider {
     static var previews: some View {
         ZStack{
             Color("Background")
-            CardSwipeComponent(viewModel: PropertyCardModel(property: propertyDemo, currentUser: userDemo))
+            CardSwipeComponent(viewModel: PropertyCardModel(property: propertyDemo, currentUser: userDemo), bgC: .constant(Color("Background")))
                 
                 
         }

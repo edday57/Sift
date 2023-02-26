@@ -51,7 +51,7 @@ struct TabsView: View {
                     .offset(x: -80, y: 300)
                     .font(.system(size: 500))
                     .opacity(0.05)
-                DiscoverView(showingMenu: $showingMenu, user:user)
+                DiscoverView2(showingMenu: $showingMenu, user:user)
             }
             .tabItem{
                 Image(systemName: "heart.text.square")
