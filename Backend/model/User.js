@@ -3,21 +3,22 @@ const Schema = mongoose.Schema;
 const userSchema = Schema({
     name : {
         type: String,
-        required: false
+        required: true
     },
     email : {
         type: String,
         required: true,
         unique: true
     },
+    mobile : {
+        type: Number,
+        required: false,
+        unique: true
+    },
     password : {
         type: String,
-        required: true,
+        required: false,
         minLength: 6
-    },
-    signedUp : {
-        type: Boolean,
-        required: true
     },
     dob:{
         type: String,
@@ -31,6 +32,18 @@ const userSchema = Schema({
         type: String,
         required: false
     },
+    renterType:{
+        type: String,
+        required: false
+    },
+    profession:{
+        type: String,
+        required: false
+    },
+    salary:{
+        type: Number,
+        required: false
+    },
     token: {
         type: String,
         required: false
@@ -38,7 +51,6 @@ const userSchema = Schema({
     isAgent: {
         type: Boolean,
         required: true
-    },
-    listings:[{type: mongoose.Types.ObjectId, ref: "Listing", required: true}]
+    }
 });
 export default mongoose.model("User", userSchema);

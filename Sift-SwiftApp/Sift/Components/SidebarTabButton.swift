@@ -10,7 +10,7 @@ import SwiftUI
 struct SidebarTabButton: View {
     var image: String
     var title: String
-    
+    @EnvironmentObject var loginVM: LoginViewModel
     @Binding var selectedTab: String
     var animation: Namespace.ID
     var body: some View {
@@ -19,7 +19,8 @@ struct SidebarTabButton: View {
             withAnimation(.spring()){
                 selectedTab = title
             }
-            if title == "Log out"{
+            if title == "Log Out"{
+                logout()
                 //log out user
             }
         } label: {
@@ -49,6 +50,14 @@ struct SidebarTabButton: View {
             }
         }
 
+    }
+    func logout(){
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: "jsonwebtoken")
+        defaults.removeObject(forKey: "searchFilters")
+        defaults.removeObject(forKey: "userid")
+        loginVM.currentUser = nil
+        loginVM.isAuthenticated = false
     }
 }
 

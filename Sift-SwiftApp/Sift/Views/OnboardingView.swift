@@ -104,7 +104,10 @@ struct OnboardingView: View {
                                         showLogin = true
                                     }
                                 }
-                            NavigationLink(destination: LoginView(), isActive: $showLogin) {}
+                                .navigationDestination(isPresented: $showLogin) {
+                                LoginView(presentSignIn: $showLogin)
+                            }
+                               
                             HStack{
                                 Text("Terms of Service")
                                 

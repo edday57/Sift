@@ -6,15 +6,12 @@
 //
 
 import SwiftUI
-
+import GoogleSignIn
 
 /*
  Features:
- Sign Up
- Agent View
- Add sort to discover
- Build out property card
- Improve discover loading
+ Add additional info for google sign up (present controller and update profile)
+ Add additional details to sign up
  */
 
 
@@ -25,6 +22,9 @@ struct ArticulateApp: App {
             ContentView()
                 .environmentObject(LoginViewModel.shared)
                 .environmentObject(FiltersModel.shared)
+                .onOpenURL { url in
+                          GIDSignIn.sharedInstance.handle(url)
+                        }
         }
     }
 }

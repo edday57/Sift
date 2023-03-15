@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6421960B297EF5550096EE3E /* FiltersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6421960A297EF5550096EE3E /* FiltersModel.swift */; };
+		6428069829B42A9B00BB7EFF /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6428069729B42A9B00BB7EFF /* GoogleSignInSwift */; };
 		644B0002298065C4002561FC /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B0001298065C4002561FC /* Home.swift */; };
 		644B000429806B05002561FC /* DiscoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B000329806B05002561FC /* DiscoverViewModel.swift */; };
 		644B0006298418F8002561FC /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B0005298418F8002561FC /* UserView.swift */; };
@@ -65,6 +66,10 @@
 		64D54BEF29A6CB460025C398 /* RatingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D54BEE29A6CB460025C398 /* RatingBar.swift */; };
 		64DBEE922972F16C0084BC13 /* PropertyCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DBEE912972F16C0084BC13 /* PropertyCardModel.swift */; };
 		64DBEE94297301330084BC13 /* FilterButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DBEE93297301330084BC13 /* FilterButtonComponent.swift */; };
+		64E053B829B4BD5F002B3A4E /* ApplicationUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E053B729B4BD5F002B3A4E /* ApplicationUtility.swift */; };
+		64E053BE29B5DA4D002B3A4E /* Lora.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64E053BD29B5DA24002B3A4E /* Lora.ttf */; };
+		64E053BF29B5DA50002B3A4E /* Lora-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64E053BC29B5DA23002B3A4E /* Lora-Italic.ttf */; };
+		64E053C129B614E4002B3A4E /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E053C029B614E4002B3A4E /* SignUpViewModel.swift */; };
 		64F1119D298A9864008A3A4C /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F1119C298A9864008A3A4C /* BrowseView.swift */; };
 		64F1119F298B034B008A3A4C /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F1119E298B034B008A3A4C /* FiltersView.swift */; };
 		64F111A1298B0C28008A3A4C /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F111A0298B0C28008A3A4C /* RangeSlider.swift */; };
@@ -143,6 +148,10 @@
 		64DBEE902972DDD70084BC13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		64DBEE912972F16C0084BC13 /* PropertyCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyCardModel.swift; sourceTree = "<group>"; };
 		64DBEE93297301330084BC13 /* FilterButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonComponent.swift; sourceTree = "<group>"; };
+		64E053B729B4BD5F002B3A4E /* ApplicationUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationUtility.swift; sourceTree = "<group>"; };
+		64E053BC29B5DA23002B3A4E /* Lora-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lora-Italic.ttf"; sourceTree = "<group>"; };
+		64E053BD29B5DA24002B3A4E /* Lora.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lora.ttf; sourceTree = "<group>"; };
+		64E053C029B614E4002B3A4E /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		64F1119C298A9864008A3A4C /* BrowseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseView.swift; sourceTree = "<group>"; };
 		64F1119E298B034B008A3A4C /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
 		64F111A0298B0C28008A3A4C /* RangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
@@ -153,6 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6428069829B42A9B00BB7EFF /* GoogleSignInSwift in Frameworks */,
 				646DA4A929967C22006CC832 /* Kingfisher in Frameworks */,
 				64CB084B299C239F0099D89C /* Lottie in Frameworks */,
 			);
@@ -217,6 +227,7 @@
 		64B5F237296F308D00315553 /* Sift */ = {
 			isa = PBXGroup;
 			children = (
+				64E053BB29B5DA10002B3A4E /* Fonts */,
 				64DBEE902972DDD70084BC13 /* Info.plist */,
 				64B5F238296F308D00315553 /* SiftApp.swift */,
 				64B5F239296F308D00315553 /* Assets.xcassets */,
@@ -225,6 +236,7 @@
 				64B5F23E296F308D00315553 /* WebService */,
 				64B5F240296F308D00315553 /* Components */,
 				64B5F244296F308D00315553 /* Views */,
+				64E053B729B4BD5F002B3A4E /* ApplicationUtility.swift */,
 			);
 			path = Sift;
 			sourceTree = "<group>";
@@ -233,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				64B5F23B296F308D00315553 /* LoginViewModel.swift */,
+				64E053C029B614E4002B3A4E /* SignUpViewModel.swift */,
 				64B47D30296F91DE00E0F4D7 /* PropertyModel.swift */,
 				64AD68F329887C3E004EB52F /* SavedViewModel.swift */,
 				644B000329806B05002561FC /* DiscoverViewModel.swift */,
@@ -290,6 +303,7 @@
 				64B5F245296F308D00315553 /* ListingView.swift */,
 				6467A34929A7968D0075A0CA /* MapView.swift */,
 				64CB084C299C242E0099D89C /* OnboardingView.swift */,
+				64B5F249296F308D00315553 /* SignUpView.swift */,
 				64B5F246296F308D00315553 /* LoginView.swift */,
 				64B5F247296F308D00315553 /* HomeView.swift */,
 				644B0001298065C4002561FC /* Home.swift */,
@@ -303,7 +317,6 @@
 				644B0005298418F8002561FC /* UserView.swift */,
 				64CB0859299CE1F80099D89C /* AgentView.swift */,
 				64B5F248296F308D00315553 /* WelcomeView.swift */,
-				64B5F249296F308D00315553 /* SignUpView.swift */,
 				64B5F24A296F308D00315553 /* ContentView.swift */,
 				64D54BDB299FF97B0025C398 /* TabsView.swift */,
 				64D54BD3299FD9700025C398 /* MainView.swift */,
@@ -327,6 +340,15 @@
 			path = Lottie;
 			sourceTree = "<group>";
 		};
+		64E053BB29B5DA10002B3A4E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				64E053BC29B5DA23002B3A4E /* Lora-Italic.ttf */,
+				64E053BD29B5DA24002B3A4E /* Lora.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -346,6 +368,7 @@
 			packageProductDependencies = (
 				646DA4A829967C22006CC832 /* Kingfisher */,
 				64CB084A299C239F0099D89C /* Lottie */,
+				6428069729B42A9B00BB7EFF /* GoogleSignInSwift */,
 			);
 			productName = Articulate;
 			productReference = 642402F72937F9B900F928F3 /* Sift.app */;
@@ -400,6 +423,7 @@
 			packageReferences = (
 				646DA4A729967C22006CC832 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				64CB0849299C239F0099D89C /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				6428069629B42A9B00BB7EFF /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 642402F82937F9B900F928F3 /* Products */;
 			projectDirPath = "";
@@ -418,6 +442,8 @@
 			files = (
 				64CB0855299C5CC00099D89C /* search.json in Resources */,
 				64CB0856299C5CC00099D89C /* people.json in Resources */,
+				64E053BE29B5DA4D002B3A4E /* Lora.ttf in Resources */,
+				64E053BF29B5DA50002B3A4E /* Lora-Italic.ttf in Resources */,
 				64CB0857299C5CC00099D89C /* city.json in Resources */,
 				64CB0851299C46970099D89C /* house.json in Resources */,
 				646450A329ABCBE5005CDD97 /* loading.json in Resources */,
@@ -447,6 +473,7 @@
 				64CB0846299BACCE0099D89C /* ASyncButton.swift in Sources */,
 				644B00082984194B002561FC /* UserViewModel.swift in Sources */,
 				64B5F24B296F308E00315553 /* SiftApp.swift in Sources */,
+				64E053C129B614E4002B3A4E /* SignUpViewModel.swift in Sources */,
 				64F111A1298B0C28008A3A4C /* RangeSlider.swift in Sources */,
 				6467A34A29A7968D0075A0CA /* MapView.swift in Sources */,
 				64B5F24F296F308E00315553 /* WebService.swift in Sources */,
@@ -483,6 +510,7 @@
 				649CD03D29950BCC00585E8A /* SearchBar.swift in Sources */,
 				64CB085A299CE1F90099D89C /* AgentView.swift in Sources */,
 				64CB0848299BEF960099D89C /* SettingsView.swift in Sources */,
+				64E053B829B4BD5F002B3A4E /* ApplicationUtility.swift in Sources */,
 				64B47D31296F91DE00E0F4D7 /* PropertyModel.swift in Sources */,
 				64D54BDC299FF97B0025C398 /* TabsView.swift in Sources */,
 				64B5F256296F308E00315553 /* WelcomeView.swift in Sources */,
@@ -644,7 +672,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -675,7 +703,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -760,6 +788,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6428069629B42A9B00BB7EFF /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		646DA4A729967C22006CC832 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -779,6 +815,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6428069729B42A9B00BB7EFF /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6428069629B42A9B00BB7EFF /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		646DA4A829967C22006CC832 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 646DA4A729967C22006CC832 /* XCRemoteSwiftPackageReference "Kingfisher" */;

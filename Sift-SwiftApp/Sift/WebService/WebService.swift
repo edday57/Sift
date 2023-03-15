@@ -34,6 +34,17 @@ struct LoginRequestBody: Codable{
     let email: String
     let password: String
 }
+
+struct SignUpRequestBody: Codable{
+    let email: String?
+    let password: String?
+    let name: String?
+    let dob: Date?
+    let about: String?
+    let mobile: Int?
+    let fromGoogle: Bool
+}
+
 struct LikeRequestBody: Codable{
     let user: String
     let listing: String
@@ -49,9 +60,29 @@ struct LoginResponse: Codable{
     let message: String?
 }
 
+struct GoogleLoginResponse: Codable{
+    let success: Bool?
+    let user: User
+    let token: String
+    let message: String?
+    let newAccount: Bool
+}
+
+struct SignUpResponse: Codable{
+    var status: Int?
+    let user: User?
+    let token: String?
+    let message: String?
+}
+
+struct DiscoverResponse: Codable{
+    let discoverProperties: [Property]
+    let additionalProperties: [Property]
+}
+
 class WebService{
-    let hostname = "159.65.51.173"
-    //let hostname = "localhost"
+    //let hostname = "159.65.51.173"
+    let hostname = "localhost"
     //Auth Functions
     func login(email: String, password: String, completion: @escaping (Result<LoginResponse, AuthenticationError>)-> Void){
         guard let url = URL(string: "http://\(hostname):5000/api/user/login") else{
@@ -60,6 +91,8 @@ class WebService{
         }
         let body = LoginRequestBody(email: email, password: password)
         var request = URLRequest(url: url)
+        print(email)
+        print(password)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONEncoder().encode(body)
@@ -75,6 +108,90 @@ class WebService{
             completion(.success(loginResponse))
         }.resume()
     }
+    
+    func loginGoogle(idToken: String, completion: @escaping (Result<GoogleLoginResponse, AuthenticationError>)-> Void){
+        guard let url = URL(string: "http://\(hostname):5000/api/user/googleLogin") else{
+            completion(.failure(.custom(errorMessage: "URL is invalid")))
+            return
+        }
+        guard let body = try? JSONEncoder().encode(["idToken": idToken]) else {
+            completion(.failure(.custom(errorMessage: "Error encoding authentication data")))
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = body
+        URLSession.shared.dataTask(with: request) {
+            data, response, error in
+            guard let data=data, error==nil else{
+                completion(.failure(.custom(errorMessage: "No data received")))
+                return
+            }
+            guard let loginResponse = try? JSONDecoder().decode(GoogleLoginResponse.self, from: data) else {
+                completion(.failure(.custom(errorMessage: "Error decoding response")))
+                return
+            }
+            completion(.success(loginResponse))
+        }.resume()
+        
+    }
+    
+    func verifyEmail(email: String) async throws -> Bool{
+        guard var url = URL(string: "http://\(hostname):5000/api/user/checkEmailExists") else{
+            fatalError("Invalid URL")
+        }
+        let email = URLQueryItem(name: "email", value: email)
+        url.append(queryItems: [email])
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let (data, response) = try await URLSession.shared.data(for: request)
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+            throw RuntimeError("Error while fetching likes data")
+        }
+        let exists = try JSONDecoder().decode(Bool.self, from: data)
+        return exists
+    }
+    
+    func signUpUser(details: SignUpRequestBody) async throws -> SignUpResponse{
+        guard let url = URL(string: "http://\(hostname):5000/api/user/signup") else{
+            fatalError("Invalid URL")
+        }
+        let body = details
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONEncoder().encode(body)
+        let (data, response) = try await URLSession.shared.data(for: request)
+        guard var signUpResponse = try? JSONDecoder().decode(SignUpResponse.self, from: data) else {
+            throw RuntimeError("Error decoding sign up response")
+        }
+        signUpResponse.status = (response as? HTTPURLResponse)?.statusCode
+        return signUpResponse
+    }
+    
+//    func loginGoogle(idToken: String) async throws -> LoginResponse{
+//        guard let url = URL(string: "http://\(hostname):5000/api/user/googleLogin") else{
+//            fatalError("Invalid URL")
+//        }
+//        guard let body = try? JSONEncoder().encode(["idToken": idToken]) else {
+//            throw RuntimeError("Error while encoding Google login data")
+//        }
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "POST"
+//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request.httpBody = body
+//        let (data, response) = try await URLSession.shared.data(for: request)
+//        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+//            throw RuntimeError("Error while logging in user")
+//        }
+//        guard let loginResponse = try? JSONDecoder().decode(LoginResponse.self, from: data) else {
+//            throw RuntimeError("Error while decoding login data")
+//        }
+//        return loginResponse
+//    }
+    
     
     func fetchUser(id: String, completion: @escaping (Result <User, AuthenticationError>) -> Void){
         guard let url = URL(string: "http://\(hostname):5000/api/user/\(id)") else{
@@ -263,7 +380,7 @@ class WebService{
         }.resume()
     }
     
-    func getDiscover(id: String, token: String, viewed: [String], completion: @escaping (Result<[Property], NetworkError>)-> Void){
+    func getDiscover(id: String, token: String, viewed: [String], completion: @escaping (Result<DiscoverResponse, NetworkError>)-> Void){
         guard let url = URL(string: "http://\(hostname):5000/api/listing/discover/\(id)") else{
             completion(.failure(.invalidURL))
             return
@@ -281,7 +398,7 @@ class WebService{
             }
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601WithFractionalSeconds
-            guard let properties = try? decoder.decode([Property].self, from: data) else {
+            guard let properties = try? decoder.decode(DiscoverResponse.self, from: data) else {
                 completion(.failure(.decodingError))
                 return
             }

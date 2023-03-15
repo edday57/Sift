@@ -18,7 +18,7 @@ struct DiscoverView2: View {
     @State var bgC = Color("Background")
     @State var likeOpacity = 0.0
     @State var loadingLottie = LottieAnimationView.init(name: "loading", bundle: .main)
-    @ObservedObject var viewModel = DiscoverViewModel()
+    @ObservedObject var viewModel: DiscoverViewModel
     let user: User
     @State var viewedProperties: [String] = ["63c8279a5b061b24d6897c5d"]
     var body: some View {

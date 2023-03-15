@@ -12,8 +12,10 @@ struct TabsView: View {
     let user: User
     @Binding var showingMenu: Bool
     let viewModel: PropertyModel
-    init(selectedTab: Binding<String>, user: User, showingMenu: Binding<Bool>, viewModel: PropertyModel){
+    let discoverModel: DiscoverViewModel
+    init(selectedTab: Binding<String>, user: User, showingMenu: Binding<Bool>, viewModel: PropertyModel, discoverModel: DiscoverViewModel){
         self.viewModel = viewModel
+        self.discoverModel = discoverModel
         self.user = user
         self._showingMenu = showingMenu
         self._selectedTab = selectedTab
@@ -51,7 +53,7 @@ struct TabsView: View {
                     .offset(x: -80, y: 300)
                     .font(.system(size: 500))
                     .opacity(0.05)
-                DiscoverView2(showingMenu: $showingMenu, user:user)
+                DiscoverView2(showingMenu: $showingMenu, viewModel: discoverModel, user:user)
             }
             .tabItem{
                 Image(systemName: "heart.text.square")

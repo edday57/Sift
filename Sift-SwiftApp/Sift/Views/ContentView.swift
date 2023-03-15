@@ -23,7 +23,8 @@ struct ContentView: View {
             
         }
         else{
-            NavigationView {
+            NavigationStack {
+                //SignUpView1()
                 OnboardingView()
             }
             

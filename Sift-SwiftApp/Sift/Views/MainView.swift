@@ -13,6 +13,7 @@ struct MainView: View {
     @State var selectedTab = "Home"
     @State var showingMenu = false
     @ObservedObject var viewModel = PropertyModel()
+    @ObservedObject var discoverModel = DiscoverViewModel()
     var body: some View {
         NavigationStack {
             ZStack{
@@ -38,7 +39,7 @@ struct MainView: View {
                         .cornerRadius(showingMenu ? 15 : 10)
                         .disabled(showingMenu)
                     
-                    TabsView(selectedTab: $selectedTab, user: user, showingMenu: $showingMenu, viewModel: viewModel)
+                    TabsView(selectedTab: $selectedTab, user: user, showingMenu: $showingMenu, viewModel: viewModel, discoverModel: discoverModel)
                         .cornerRadius(showingMenu ? 15 : 10)
                         .disabled(showingMenu)
                         .opacity(mainTabs.contains(selectedTab) ? 1: 0)

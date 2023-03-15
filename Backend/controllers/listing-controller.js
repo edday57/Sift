@@ -79,14 +79,15 @@ export const recommender = async(req,res,next) => {
     }
     if (likes.length > 0) {
         likes = likes.map(item => item.listing);
+        likes = likes.toString()
     } else {
-        likes =[];
+        likes = "a";
     }
     let discoverrecommendations;
     let extrarecommendations;
     let recommendationIDs;
     console.log(likes.toString())
-    var process = spawn('python3',["./Classifier/cosinesimilarityMongoData.py", likes.toString(), viewed ],{shell: true} );
+    var process = spawn('python3',["./Classifier/cosinesimilarityMongoData.py", likes, viewed ],{shell: true} );
 
     for await (const data of process.stdout) {
         //console.log(data.toString())
@@ -128,12 +129,12 @@ export const recommender = async(req,res,next) => {
             console.log(err);
         }
         
-        discoverrecommendations =discoverrecommendations.concat(extrarecommendations);
+        //discoverrecommendations =discoverrecommendations.concat(extrarecommendations);
         //console.log(recommendations);
         if(!discoverrecommendations){
             return res.status(404).json({message: "No listings found"});
         }
-        return res.status(202).json(discoverrecommendations);
+        return res.status(202).json({discoverProperties: discoverrecommendations, additionalProperties: extrarecommendations});
       };
     //look at user filters to pass to python
     //Look at 5 most recent liked properties from like table to pass to python function

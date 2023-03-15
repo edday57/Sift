@@ -25,9 +25,10 @@ class DiscoverViewModel: ObservableObject {
                 }
         WebService().getDiscover(id: id, token: token, viewed: viewed) { (result) in
             switch result {
-                case .success(let properties):
+                case .success(let data):
                     DispatchQueue.main.async {
-                        self.properties = properties
+                        self.properties = data.discoverProperties
+                        self.properties.append(contentsOf: data.additionalProperties)
                     }
                 case .failure(let error):
                     print(error.localizedDescription)

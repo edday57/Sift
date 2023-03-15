@@ -165,47 +165,57 @@ def mergeIds(discover, extra):
     return discover
 
 def recommender(df, filters, liked, viewed):
-
-    #Later need to consder if user has liked a property which isnt in matrix
-    #Get df ids of liked properties 
-    liked_ids = df[df['_id'].isin(liked[:5])]['artificial_listing_id'].tolist()
-    #Apply filters to df (3 beds max etc)
-    filter_results = applyFilters([], [], df)
-    resultScores =[]
-    for result in filter_results:
-        scores=[]
-        for liked_id in liked_ids:
-            scores.append(cosine_similarity_matrix_dict[liked_id][result])
-        averageScore = np.mean(np.array(scores))
-        resultScores.append([result, averageScore])
-    #Sorted list of [artifical listing id, cosine similarity score]
-    resultScores= sorted(resultScores, key=itemgetter(1), reverse=True)
-    discoverIds=[] #Actual IDs
-    chosenArtificialIds=[]
-    for result in resultScores:
-        resultRow = df.loc[df['artificial_listing_id']==result[0]]
-        if resultRow['_id'].values[0] not in liked and resultRow['_id'].values[0] not in viewed:
-            discoverIds.append(resultRow['_id'].values[0])
-            chosenArtificialIds.append(result)
-            if len(discoverIds) == 5:
-                break
-    discoverIds.append("*")
-    #Add extra properties
-    extraIds = []
-    for result in filter_results:
-        if result not in chosenArtificialIds:
-            resultRow = df.loc[df['artificial_listing_id']==result]
+    if len(liked) >=1: 
+        #Later need to consder if user has liked a property which isnt in matrix
+        #Get df ids of liked properties 
+        liked_ids = df[df['_id'].isin(liked[:5])]['artificial_listing_id'].tolist()
+        #Apply filters to df (3 beds max etc)
+        filter_results = applyFilters([], [], df)
+        resultScores =[]
+        for result in filter_results:
+            scores=[]
+            for liked_id in liked_ids:
+                scores.append(cosine_similarity_matrix_dict[liked_id][result])
+            averageScore = np.mean(np.array(scores))
+            resultScores.append([result, averageScore])
+        #Sorted list of [artifical listing id, cosine similarity score]
+        resultScores= sorted(resultScores, key=itemgetter(1), reverse=True)
+        discoverIds=[] #Actual IDs
+        chosenArtificialIds=[]
+        for result in resultScores:
+            resultRow = df.loc[df['artificial_listing_id']==result[0]]
             if resultRow['_id'].values[0] not in liked and resultRow['_id'].values[0] not in viewed:
-                extraIds.append(resultRow['_id'].values[0])
-                if len(extraIds) == 6:
+                discoverIds.append(resultRow['_id'].values[0])
+                chosenArtificialIds.append(result)
+                if len(discoverIds) == 5:
                     break
-    discoverIds.extend(extraIds)
-    #discoverIds.reverse()
-    #Merge extra with discover properties
-    #discoverIds = mergeIds(discoverIds, extraIds)
-    return discoverIds
-
-
+        discoverIds.append("*")
+        #Add extra properties
+        extraIds = []
+        for result in filter_results:
+            if result not in chosenArtificialIds:
+                resultRow = df.loc[df['artificial_listing_id']==result]
+                if resultRow['_id'].values[0] not in liked and resultRow['_id'].values[0] not in viewed:
+                    extraIds.append(resultRow['_id'].values[0])
+                    if len(extraIds) == 6:
+                        break
+        discoverIds.extend(extraIds)
+        #discoverIds.reverse()
+        #Merge extra with discover properties
+        #discoverIds = mergeIds(discoverIds, extraIds)
+        return discoverIds
+    #if user has not yet liked any properties
+    else:
+        extraIds = []
+        filter_results = applyFilters([], [], df)
+        for result in filter_results:
+            resultRow = df.loc[df['artificial_listing_id']==result]
+            if resultRow['_id'].values[0] not in viewed:
+                extraIds.append(resultRow['_id'].values[0])
+                if len(extraIds) == 5:
+                    extraIds.append("*")
+                elif len(extraIds) == 11:
+                    return extraIds
 
 
 #user inputs loose filters (max price, beds etc)
@@ -226,7 +236,11 @@ with open('Classifier/similarityDict.pickle', 'rb') as handle:
     cosine_similarity_matrix_dict = pickle.load(handle)
 with open('Classifier/listingsDF.pickle', 'rb') as handle:
     df = pickle.load(handle)
-liked = sys.argv[1].split(",")
+liked=sys.argv[1]
+if len(liked)>=2: 
+    liked = liked.split(",")
+else:
+    liked = []
 viewed=sys.argv[2]
 if len(viewed)>=2:
     viewed= viewed.split(",")
