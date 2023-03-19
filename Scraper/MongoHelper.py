@@ -26,9 +26,7 @@ def createAgent(name, pic):
         "email": id,
         "password": password,
         "name": name,
-        "signedUp": True,
         "isAgent": True,
-        "listings": [],
         "image": pic
     }
     users.insert_one(agent)
@@ -39,7 +37,9 @@ def addListing(data):
     with client.start_session() as session:
         with session.start_transaction():
             result = listings.insert_one(data)
-            users.find_one_and_update({'_id': data['agent']},{'$push': {'listings': result.inserted_id}})
+            with open("addedIds.txt", "a") as f:
+                f.write(str(result.inserted_id))
+                f.write("\n")
             print(result.inserted_id)
 
 def getListings():

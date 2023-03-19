@@ -73,23 +73,23 @@ def scrapeData(link):
         property_data["date_added"] = today
     #Specs
     specifications = {}
-    specification = soup.find_all('div', class_="ZBWaPR-rIda6ikyKpB_E2")
+    specification = soup.find_all('dt', class_="ZBWaPR-rIda6ikyKpB_E2")
     for specs in specification:
         #Property Type
         if specs.get_text() == "PROPERTY TYPE":
-            property_type = specs.parent.parent.find("div", class_="_3ZGPwl2N1mHAJH3cbltyWn").find("p", "_1hV1kqpVceE9m-QrX_hWDN").get_text()
+            property_type = specs.parent.parent.find("div", class_="_3ZGPwl2N1mHAJH3cbltyWn").find("dd", "_1hV1kqpVceE9m-QrX_hWDN").get_text()
             property_data["property_type"] = property_type\
         #Bedrooms
         if specs.get_text() == "BEDROOMS":
-            bedrooms = specs.parent.parent.find("div", class_="_3ZGPwl2N1mHAJH3cbltyWn").find("p", "_1hV1kqpVceE9m-QrX_hWDN").get_text()
+            bedrooms = specs.parent.parent.find("div", class_="_3ZGPwl2N1mHAJH3cbltyWn").find("dd", "_1hV1kqpVceE9m-QrX_hWDN").get_text()
             bedrooms = int(''.join(filter(str.isdigit, bedrooms)))
             property_data["bedrooms"] = bedrooms
         if specs.get_text() == "BATHROOMS":
-            bathrooms = specs.parent.parent.find("div", class_="_3ZGPwl2N1mHAJH3cbltyWn").find("p", "_1hV1kqpVceE9m-QrX_hWDN").get_text()
+            bathrooms = specs.parent.parent.find("div", class_="_3ZGPwl2N1mHAJH3cbltyWn").find("dd", "_1hV1kqpVceE9m-QrX_hWDN").get_text()
             bathrooms = int(''.join(filter(str.isdigit, bathrooms)))
             property_data["bathrooms"] = bathrooms
         if specs.get_text() == "SIZE":
-            size = specs.parent.parent.find("div", class_="_3ZGPwl2N1mHAJH3cbltyWn").find("p", "_1hV1kqpVceE9m-QrX_hWDN").get_text()
+            size = specs.parent.parent.find("div", class_="_3ZGPwl2N1mHAJH3cbltyWn").find("dd", "_1hV1kqpVceE9m-QrX_hWDN").get_text()
             size = int(''.join(filter(str.isdigit, size)))
             property_data["sizesqft"] = size
     #Longitude and Latitude
@@ -145,6 +145,7 @@ def scrapeData(link):
         property_data["floorplan"] = floorplan['src'].replace('_max_296x197', '')
     #Agent Details
     agent_name = soup.find('div', class_ = "RPNfwwZBarvBLs58-mdN8").find("a").get_text()
+    agent_name = agent_name.split(',')[0]
     agentId = MongoHelper.getAgent(agent_name)
     if agentId == None:
         agent_img = soup.find("a", class_="_3uq285qlcTkSZrCuXYW-zQ").find("img")['src']
@@ -168,7 +169,8 @@ def propertyLinks(latest_link, maxValues):
     while foundLatest == False and len(property_links) != maxValues:
         print("Getting more Property Links")
         index = index+24
-        url =  'https://www.rightmove.co.uk/property-to-rent/find.html?locationIdentifier=REGION%5E87490&minBedrooms=2&maxPrice=80000&index='+str(index)+'&propertyTypes=&mustHave=&dontShow=&furnishTypes=&keywords='
+        url = 'https://www.rightmove.co.uk/property-to-rent/find.html?locationIdentifier=REGION%5E87490&index='+ str(index)+'&minPrice=10000&propertyTypes=detached%2Csemi-detached%2Cterraced&includeLetAgreed=false&mustHave=&dontShow=&furnishTypes=&keywords='
+        #url =  'https://www.rightmove.co.uk/property-to-rent/find.html?locationIdentifier=REGION%5E85282&index='+ str(index)+'&propertyTypes=&includeLetAgreed=false&mustHave=&dontShow=&furnishTypes=&keywords='
         print(url)
         response = requests.get(url)
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -207,5 +209,5 @@ def getNewProperties(link, count):
 #scrapeData(latest_link)
 #GetAgent.addListing(scrapeData(latest_link))
 
-getNewProperties(latest_link, 500)
+getNewProperties(latest_link, 100)
 #url = 'https://www.rightmove.co.uk/property-to-rent/find.html?locationIdentifier=REGION%5E87490&maxPrice=80000&minBedrooms=2&propertyTypes=&includeSharedAccommodation=false&mustHave=&dontShow=&furnishTypes=&keywords='

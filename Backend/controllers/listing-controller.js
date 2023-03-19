@@ -87,7 +87,7 @@ export const recommender = async(req,res,next) => {
     let extrarecommendations;
     let recommendationIDs;
     console.log(likes.toString())
-    var process = spawn('python3',["./Classifier/cosinesimilarityMongoData.py", likes, viewed ],{shell: true} );
+    var process = spawn('python3',["./Classifier/CBRecommender.py", likes, viewed ],{shell: true} );
 
     for await (const data of process.stdout) {
         //console.log(data.toString())
