@@ -129,8 +129,24 @@ export const login = async(req,res,next) => {
     if (!user){
         return res.status(404).json({message: "Account does not exist."});
     }
-    const valiatePass = bcrypt.compareSync(password, user.password)
-    if (!valiatePass) {
+    //If test account
+    if (user.test == true){
+        const token = jwt.sign({id: user.id}, "SECRET");
+        user.token = token;
+        if(token){
+            return res.status(200).json({token: token, user: user});
+        }
+    }
+
+    let validatePass;
+    if(user.password){
+        validatePass = bcrypt.compareSync(password, user.password)
+    }
+    else{
+        return res.status(404).json({message: "Please sign in with Google."});
+    }
+    
+    if (!validatePass) {
         console.log("hi")
         return res.status(404).json({message: "Password is incorrect. Please try again."});
     }

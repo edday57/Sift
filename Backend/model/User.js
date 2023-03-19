@@ -51,6 +51,10 @@ const userSchema = Schema({
     isAgent: {
         type: Boolean,
         required: true
+    },
+    test: {
+        type: Boolean,
+        required: false
     }
 });
 export default mongoose.model("User", userSchema);

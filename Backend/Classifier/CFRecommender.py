@@ -8,11 +8,11 @@ from surprise.model_selection import cross_validate
 from collections import defaultdict
 from surprise.model_selection import train_test_split
 from surprise.model_selection import KFold
-
+import sys
 #Add function for user who does not have 20+ interactions
 
 #Load ratings - CSV or from DB
-ratings_filename = 'ratings.csv'
+ratings_filename = './Classifier/ratings.csv'
 df_ratings = pd.read_csv( ratings_filename, usecols=['userId', 'propertyId', 'rating'], dtype={'userId': 'str', 'propertyId': 'str', 'rating': 'int32'})
 ratings_dict = {'propertyID': list(df_ratings.propertyId),
                 'userID': list(df_ratings.userId),
@@ -37,7 +37,7 @@ listing_id = '64162c3b4a54c62d647acc63'
 #print(pred.est)
 
 #Function to calculate top recommendations
-def top_recs_for_user(ratings_df_in, user_id_in, algo_in):
+def recommender(ratings_df_in, user_id_in, algo_in):
     #Get each unique listing ID
     unique_listings = set(ratings_df_in['propertyID'])
     #Also get current session viewed
@@ -56,8 +56,9 @@ def top_recs_for_user(ratings_df_in, user_id_in, algo_in):
     toprated=[]
     #Get top 10 items and rating to return
     for i in range(0,10):
-        toprated.append([preds_df.iloc[i].iid,preds_df.iloc[i].pred_score])
+        toprated.append([preds_df.iloc[i].iid,round(preds_df.iloc[i].pred_score,3)])
     return toprated
     #return preds_df
 
-print(top_recs_for_user(ratings_df_in=df, user_id_in = user_id, algo_in=algo))
+user_id=sys.argv[1]
+print(recommender(ratings_df_in=df, user_id_in = user_id, algo_in=algo))

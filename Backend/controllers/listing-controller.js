@@ -64,7 +64,52 @@ export const getAllListings = async(req, res, next) => {
     return res.status(202).json(listings);
 };
 
-export const recommender = async(req,res,next) => {
+export const recommenderCF = async(req,res,next) => {
+    const userId = req.params.id;
+    var viewed = req.body;
+    if (req.body ==""){
+        viewed="None"
+    }
+    console.log(userId)
+    let recommendations;
+    let recommendationIds = [];
+    var process = spawn('python3',["./Classifier/CFRecommender.py", userId],{shell: true} );
+
+    for await (const data of process.stdout) {
+        //console.log(data.toString())
+        //Python returns object IDs as array in string datatype
+        recommendations= data.toString();
+        
+        recommendations = recommendations.replace(/'/g, '"');
+        //Convert to actual array
+        recommendations = JSON.parse(recommendations);
+        for (var item of recommendations){
+            //console.log(recommendations);
+            recommendationIds.push(item[0]);
+        }
+        let listings;
+        try{
+            listings = await Listing.find({_id: { $in: recommendationIds }}); 
+        } catch(err) {
+            console.log(err);
+        }
+        if(!listings){
+            return res.status(404).json({message: "No listings found"});
+        }
+        let scored_listings=[]
+        for (var listing of listings){
+            for(var item of recommendations){
+                if(item[0]==listing.id){
+                    listing.matchscore = item[1];
+                    scored_listings.push(listing)
+                }
+            }
+        }
+        return res.status(202).json(scored_listings);
+
+      };
+}
+export const recommenderCB = async(req,res,next) => {
     const userId = req.params.id;
     var viewed = req.body;
     if (req.body ==""){

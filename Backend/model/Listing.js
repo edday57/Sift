@@ -73,6 +73,11 @@ const listingSchema = Schema({
         type: mongoose.Types.ObjectId,
         ref: "User",
         required: true
+    },
+    matchscore: {
+        type: Number,
+        required: false
     }
+    
 });
 export default mongoose.model("Listing", listingSchema);

@@ -381,7 +381,7 @@ class WebService{
     }
     
     func getDiscover(id: String, token: String, viewed: [String], completion: @escaping (Result<DiscoverResponse, NetworkError>)-> Void){
-        guard let url = URL(string: "http://\(hostname):5000/api/listing/discover/\(id)") else{
+        guard let url = URL(string: "http://\(hostname):5000/api/listing/discover/cb/\(id)") else{
             completion(.failure(.invalidURL))
             return
         }
