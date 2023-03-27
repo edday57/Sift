@@ -119,7 +119,6 @@ export const login = async(req,res,next) => {
     
     let {email, password} = req.body;
     email = email.toLowerCase();
-    console.log(password)
     let user;
     try {
         user= await User.findOne({email});
@@ -147,7 +146,6 @@ export const login = async(req,res,next) => {
     }
     
     if (!validatePass) {
-        console.log("hi")
         return res.status(404).json({message: "Password is incorrect. Please try again."});
     }
     
@@ -213,23 +211,28 @@ export const googleLogin = async(req,res,next) => {
 
 };
 
-export const completeSignUp = async(req,res,next)=>{
-    const{name, about, dob,image} = req.body;
+export const updateProfile = async(req,res,next)=>{
+    const{name, about, dob,image, mobile} = req.body;
+    var data = {};
+    if(req.body.mobile != null){
+        data['mobile']= req.body.mobile;
+    }
+    if(req.body.name != null){
+        data['name']= req.body.name;
+    }
+    if(req.body.about != null){
+        data['about']= req.body.about;
+    }
+    let updateData = { $set: data };
     const userId = req.params.id;
     let user;
     try{
-        user = await User.findByIdAndUpdate(userId, {
-            name,
-            about,
-            dob,
-            image,
-            signedUp:true
-        });
+        user = await User.findByIdAndUpdate(userId, updateData, {new:true});
     } catch(err){
         console.log(err);
     }
     if (!user){
-        return res.status(500).json({message: "Unable to complete signup."});
+        return res.status(500).json({message: "Unable to update profile."});
     }
     return res.status(200).json({user});
 };

@@ -10,9 +10,9 @@ import Lottie
 struct DiscoverView2: View {
     @State var animate = false
     @State var offset = 0
-    @State var offset2 = -330
+    @State var offset2 = -40
     @State var rotate = 0
-    @State var rotate2 = -15
+    @State var opacity2 = 1.0
     @Binding var showingMenu: Bool
     @State var liked = false
     @State var bgC = Color("Background")
@@ -49,64 +49,65 @@ struct DiscoverView2: View {
                 //.padding(.top, 40)
                 Spacer()
                 ZStack{
-                    if viewModel.properties.count == 0 {
+                    if viewModel.propertiesCF.count == 0 {
                         ResizeableLottieView2(lottie: $loadingLottie)
                             .frame(width: size.width / 2, height: size.width / 2)
                             .onAppear{
                                 loadingLottie.play()
                             }
                     }
-                    if viewModel.properties.count >= 2 {
-                        CardSwipeComponent(viewModel: PropertyCardModel(property: viewModel.properties[1], currentUser: user), bgC: .constant(Color("Background")))
-                            .blur(radius: animate ? 0 : 2)
-                            .opacity(animate ? 1: 0.5)
-                            .scaleEffect(animate ? 1 : 0.8)
-                            .offset(x: CGFloat(offset2))
-                            .rotation3DEffect(.degrees(Double(rotate2)), axis: (x: 0, y: -1, z: 0), anchor: .center)
+                    if viewModel.propertiesCF.count >= 2 {
+                        CardSwipeComponent(viewModel: PropertyCardModel(property: viewModel.propertiesCF[1], currentUser: user), bgC: .constant(Color("Background")), opacity: .constant(1.0), user: user)
+                            .scaleEffect(0.9)
+                            .offset(y: CGFloat(-40))
+                            .opacity(1-opacity2)
+                        CardSwipeComponent(viewModel: PropertyCardModel(property: viewModel.propertiesCF[1], currentUser: user), bgC: .constant(Color("Background")), opacity: $opacity2, user: user)
+                            .scaleEffect(animate ? 1 : 0.9)
+                            .offset(y: CGFloat(offset2))
                     }
-                    ForEach(Array(viewModel.properties.prefix(1))){ property in
-                        CardSwipeComponent(viewModel: PropertyCardModel(property: property, currentUser: user), bgC: $bgC)
+                    ForEach(Array(viewModel.propertiesCF.prefix(1))){ property in
+                        CardSwipeComponent(viewModel: PropertyCardModel(property: property, currentUser: user), bgC: $bgC, opacity: .constant(0), user: user)
                             .transition(.opacity)
-                            .animation(viewModel.properties.count == 11 ? .spring() : .none)
-                            .scaleEffect(animate ? 0.8 : 1)
+                            .animation(viewModel.propertiesCF.count == 11 ? .spring() : .none)
+                            .scaleEffect(animate ? 0.9 : 1)
                             .offset(x: CGFloat(offset))
-                            .rotation3DEffect(.degrees(Double(rotate)), axis: (x: 0, y: -1, z: 0), anchor: .center)
+                            //.rotation3DEffect(.degrees(Double(rotate)), axis: (x: 0, y: -1, z: 0), anchor: .center)
                         //.blur(radius: animate ? 2: 0)
                             .opacity(animate ? 0.5 : 1)
                             .gesture(DragGesture().onEnded({ value in
                                 if value.translation.width > 100 {
-                                    offset2 = -330
-                                    rotate2 = -15
+                                    offset2 = -40
+                                    opacity2 = 1
                                     withAnimation(.easeInOut(duration: 0.4)){
                                         animate=true
                                         offset = 330
                                         offset2 = 0
                                         rotate = 15
-                                        rotate2 = 0
+                                        opacity2 = 0
                                         bgC = Color("SecondaryBlue")
                                         likeAnimation()
                                     }
                                     
                                 }
                                 if value.translation.width < -100 {
-                                    offset2 = 330
-                                    rotate2 = 15
+                                    offset2 = -40
+                                    opacity2 = 1
                                     withAnimation(.easeInOut(duration: 0.4)){
                                         animate=true
                                         offset = -330
                                         offset2 = 0
                                         rotate = -15
-                                        rotate2 = 0
+                                        opacity2 = 0
                                     }
                                 }
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                                     animate = false
                                     rotate = 0
-                                    rotate2 = -15
                                     offset = 0
-                                    offset2 = -330
+                                    offset2 = -40
+                                    opacity2 = 1
                                     bgC = Color("Background")
-                                    viewModel.properties.remove(at: self.viewModel.properties.firstIndex(where:  {$0.id == property.id})!)
+                                    viewModel.propertiesCF.remove(at: self.viewModel.propertiesCF.firstIndex(where:  {$0.id == property.id})!)
                                 }
                                 
                                 
@@ -188,6 +189,7 @@ struct DiscoverView2: View {
 struct DiscoverView: View {
     @Binding var showingMenu: Bool
     @State var liked = false
+    @State var opacity2 = 1.0
     @State var bgC = Color.white
     @ObservedObject var viewModel = DiscoverViewModel()
     let user: User
@@ -219,7 +221,7 @@ struct DiscoverView: View {
             Spacer()
                 ZStack {
                     ForEach(Array(viewModel.properties.prefix(1))){ property in
-                        CardSwipeComponent(viewModel: PropertyCardModel(property: property, currentUser: user), bgC: $bgC)
+                        CardSwipeComponent(viewModel: PropertyCardModel(property: property, currentUser: user), bgC: $bgC, opacity: $opacity2, user: user)
                         .buttonStyle(FlatLinkStyle())
                         .animation(.spring())
                         //.transition(liked ? .slide : .backslide)

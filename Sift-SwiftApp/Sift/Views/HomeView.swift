@@ -276,7 +276,8 @@ struct HomeView2: View {
                                
                                 
                             }
-                            
+                           
+
                             //For You Section
                             HStack {
                                 Text("For You")

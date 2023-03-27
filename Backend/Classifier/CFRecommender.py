@@ -61,4 +61,7 @@ def recommender(ratings_df_in, user_id_in, algo_in):
     #return preds_df
 
 user_id=sys.argv[1]
+
+##OVERRIDE FOR TESTING
+#user_id = "641638d913e3af7e2e6d16ef"
 print(recommender(ratings_df_in=df, user_id_in = user_id, algo_in=algo))

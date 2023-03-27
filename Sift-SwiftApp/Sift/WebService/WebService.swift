@@ -405,6 +405,31 @@ class WebService{
             completion(.success(properties))
         }.resume()
     }
+    func getDiscoverCF(id: String, token: String, viewed: [String], completion: @escaping (Result<[Property], NetworkError>)-> Void){
+        guard let url = URL(string: "http://\(hostname):5000/api/listing/discover/cf/\(id)") else{
+            completion(.failure(.invalidURL))
+            return
+        }
+        print(url)
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.httpBody = try? JSONEncoder().encode(viewed)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data=data, error==nil else{
+                completion(.failure(.noData))
+                return
+            }
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601WithFractionalSeconds
+            guard let properties = try? decoder.decode([Property].self, from: data) else {
+                completion(.failure(.decodingError))
+                return
+            }
+            completion(.success(properties))
+        }.resume()
+    }
     
 }
 extension Formatter {

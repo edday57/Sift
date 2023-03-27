@@ -7,7 +7,7 @@ listingRouter.post("/new", newListing);
 listingRouter.put("/update/:id",updateListing);
 listingRouter.get("/:id",getListing);
 listingRouter.delete("/delete/:id", deleteListing);
-listingRouter.get("/user/:id", getUserListings);
+listingRouter.get("/user/:id", authenticate, getUserListings);
 listingRouter.post("/discover/cb/:id", authenticate, recommenderCB);
 listingRouter.post("/discover/cf/:id", authenticate, recommenderCF);
 export default listingRouter;

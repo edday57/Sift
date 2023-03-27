@@ -11,7 +11,7 @@ const userSchema = Schema({
         unique: true
     },
     mobile : {
-        type: Number,
+        type: String,
         required: false,
         unique: true
     },

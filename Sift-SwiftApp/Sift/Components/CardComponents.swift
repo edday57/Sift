@@ -372,19 +372,45 @@ struct CardDiscoverComponentNew: View {
 struct CardSwipeComponent: View {
     @ObservedObject var viewModel: PropertyCardModel
     @Binding var backgroundColor: Color
-    init(viewModel: PropertyCardModel, bgC: Binding <Color>){
+    @Binding var opacity: Double
+    let user: User
+    @State var selectedImage = 0
+    @State var loadImage = false
+    init(viewModel: PropertyCardModel, bgC: Binding <Color>, opacity: Binding<Double>, user: User){
         self.viewModel = viewModel
         _backgroundColor = bgC
+        _opacity = opacity
+        self.user = user
     }
     var body: some View {
         let bedbath = String(format: "%i Beds | %i Baths", viewModel.property.bedrooms, viewModel.property.bathrooms)
         GeometryReader { geo in
             let size = geo.size
             VStack(alignment: .center){
-                KFImage(URL(string: viewModel.property.images[0]))
+                KFImage(URL(string: viewModel.property.images[selectedImage]))
+                    .onSuccess({ result in
+                        self.loadImage = false
+                    })
                     .resizable()
                     .scaledToFill()
-                    .frame(maxWidth: size.width - 64, maxHeight: 230)
+                    .opacity(loadImage ? 0 : 1)
+                    .animation(.easeInOut(duration: 0.25), value: loadImage)
+                    .frame(maxWidth: size.width - 64, minHeight: 230, maxHeight: 230)
+                    .onTapGesture {
+                        if selectedImage == viewModel.property.images.count - 1 {
+                            withAnimation {
+                                self.loadImage = true
+                                selectedImage = 0
+                            }
+                            //selectedImage = 0
+                        }
+                        else{
+                            withAnimation {
+                                self.loadImage = true
+                                selectedImage += 1
+                            }
+                        }
+                    }
                 .clipShape(RoundedRectangle(cornerRadius: 15))
                 .shadow(color: .black.opacity(0.1), radius: 2, y:4)
                 .overlay{
@@ -472,23 +498,29 @@ struct CardSwipeComponent: View {
                     .padding(.bottom, 10)
                 
                 //MARK: Rating and Not Interested
-                HStack(alignment: .center, spacing: 15){
-                    HStack{
-                        Image(systemName: "nosign")
-                        Text("Not interested")
-                            .lineLimit(1)
+                NavigationLink {
+                    ListingView(viewModel: PropertyCardModel(property: viewModel.property, currentUser: user))
+                } label: {
+                    
+                    HStack(alignment: .center, spacing: 15){
+                        HStack{
+                            Image(systemName: "doc.text.image")
+                            Text("View More")
+                                .lineLimit(1)
+                        }
+                        .frame(minWidth: 110)
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundColor(Color("SecondaryText"))
+                        RatingBar(rating: 0.85)
+                            .frame(maxWidth: 120, maxHeight: 10)
+                        Text("80% match")
+                            .font(.system(size: 14, weight: .heavy))
+                            .foregroundColor(Color("PrimaryBlue"))
+                        
                     }
-                    .frame(minWidth: 125)
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(Color("SecondaryText"))
-                    
-                    RatingBar(rating: 0.85)
-                        .frame(maxWidth: 120, maxHeight: 10)
-                    Text("80% match")
-                        .font(.system(size: 14, weight: .heavy))
-                        .foregroundColor(Color("PrimaryBlue"))
-                    
                 }
+                
+                
                 
             }
             .padding(.vertical,10)
@@ -499,6 +531,11 @@ struct CardSwipeComponent: View {
                     .shadow(radius: 5)
                     
             }
+            .overlay(content: {
+                RoundedRectangle(cornerRadius: 15 )
+                    .foregroundColor(backgroundColor)
+                    .opacity(opacity)
+            })
             .padding(.horizontal, 20)
         }
         
@@ -683,7 +720,7 @@ struct CardLargeComponent_Previews: PreviewProvider {
     static var previews: some View {
         ZStack{
             Color("Background")
-            CardSwipeComponent(viewModel: PropertyCardModel(property: propertyDemo, currentUser: userDemo), bgC: .constant(Color("Background")))
+            CardSwipeComponent(viewModel: PropertyCardModel(property: propertyDemo, currentUser: userDemo), bgC: .constant(Color("Background")), opacity: .constant(0.0), user: userDemo)
                 
                 
         }
