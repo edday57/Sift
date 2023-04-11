@@ -81,8 +81,8 @@ struct DiscoverResponse: Codable{
 }
 
 class WebService{
-    //let hostname = "159.65.51.173"
-    let hostname = "localhost"
+    let hostname = "159.65.51.173"
+    //let hostname = "localhost"
     //Auth Functions
     func login(email: String, password: String, completion: @escaping (Result<LoginResponse, AuthenticationError>)-> Void){
         guard let url = URL(string: "http://\(hostname):5000/api/user/login") else{

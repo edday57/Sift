@@ -322,3 +322,33 @@ export const getUserListings = async(req,res,next)=>{
     console.log("Returning user listings")
     return res.status(200).json(userListings);
 };
+
+export const getNamedListings = async(req,res,next)=>{
+    let listingsId = ["641620f082cd788ac08d128c",
+        "641620a182cd788ac08d121b",
+        "641620b682cd788ac08d1239", 
+        "641622ed7d1d55252f096569",
+        "641622f87d1d55252f09657a",
+        "641623477d1d55252f09658d",
+        "6416257c1adf13fd618322fa",
+        "641625821adf13fd61832301",
+        "641625841adf13fd61832305",
+        "64162742731a136ad1d00a66",
+        "641627af731a136ad1d00aaa",
+        "641627b1731a136ad1d00aad", 
+        "64162c404a54c62d647acc6d",
+        "64162c374a54c62d647acc5c",
+        "6415f5611230d7e523e5e4a5"
+        ];
+        var oids =[];
+        listingsId.forEach(function(item){
+            oids.push(new mongoose.Types.ObjectId(item));
+        });
+        let listings;
+        try{
+            listings = await Listing.find({_id: { $in: oids }}); 
+        } catch(err) {
+            console.log(err);
+        }
+        return res.status(200).json(listings);
+};

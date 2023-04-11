@@ -10,11 +10,16 @@ import Foundation
 class DiscoverViewModel: ObservableObject {
 
     @Published var properties: [Property] = []
-    @Published var propertiesCF: [Property] = []
+    @Published var cfEnabled = false
     
     init(){
-        getProperties(viewed:[""])
-        getPropertiesCF(viewed:[""])
+        if cfEnabled == false{
+            getProperties(viewed:[""])
+        }
+        else{
+            getPropertiesCF(viewed:[""])
+        }
+        
     }
     
     func getProperties(viewed: [String]){
@@ -25,19 +30,36 @@ class DiscoverViewModel: ObservableObject {
         guard let id = defaults.string(forKey: "userid") else {
                     return
                 }
-        WebService().getDiscover(id: id, token: token, viewed: viewed) { (result) in
-            switch result {
-                case .success(let data):
-                    DispatchQueue.main.async {
-                        self.properties = data.discoverProperties
-                        self.properties.append(contentsOf: data.additionalProperties)
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
-            }
+        if cfEnabled == false{
+            WebService().getDiscover(id: id, token: token, viewed: viewed) { (result) in
+                switch result {
+                    case .success(let data):
+                        DispatchQueue.main.async {
+                            self.properties = data.discoverProperties
+                            self.properties.append(contentsOf: data.additionalProperties)
+                        }
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                }
+                
             
-        
+            }
         }
+        else {
+            WebService().getDiscoverCF(id: id, token: token, viewed: viewed) { (result) in
+                switch result {
+                    case .success(let data):
+                        DispatchQueue.main.async {
+                            self.properties = data
+                        }
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                }
+                
+            
+            }
+        }
+        
     }
     func getPropertiesCF(viewed: [String]){
         let defaults = UserDefaults.standard
@@ -51,7 +73,7 @@ class DiscoverViewModel: ObservableObject {
             switch result {
                 case .success(let data):
                     DispatchQueue.main.async {
-                        self.propertiesCF = data
+                        self.properties = data
                     }
                 case .failure(let error):
                     print(error.localizedDescription)
