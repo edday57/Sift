@@ -8,14 +8,19 @@
 import SwiftUI
 import Kingfisher
 import MapKit
+import CoreData
 struct ListingView: View {
     @EnvironmentObject var likesModel: LikeModel
+    @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     let viewModel: PropertyCardModel
     var description = "No description added."
     @State var showingAgent = false
     @State var showingMap = false
-    
+    @State var timeSpent: TimeInterval = 0
+    @State var didScroll = false
+    @State var viewedImg = 1
+    @State var timer: Timer = Timer()
     var body: some View {
         
         ZStack {
@@ -197,8 +202,63 @@ struct ListingView: View {
             
         }
         .navigationBarHidden(true)
+        .onAppear{
+            let startTime = Date()
+            // Start timing how long the user spends viewing the property
+            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                timeSpent = Date().timeIntervalSince(startTime)
+            }
+            RunLoop.current.add(timer, forMode: .common)
+        }
+        .onDisappear {
+                    // Stop timing when the user stops viewing the property
+                    timer.invalidate()
+                    // Calculate the implicit rating based on time spent and liked status
+                    let rating = calculateRating(timeSpent: timeSpent, didScroll: didScroll, viewedImg: viewedImg)
+                    // Record the implicit rating as an event
+                    trackEvent(name: "property_view", properties: ["rating": rating])
+                }
         
     }
+    
+    func calculateRating(timeSpent: TimeInterval, didScroll: Bool, viewedImg: Int) -> Int {
+            // Calculate an implicit rating based on the time spent and liked status
+        var isLiked = false
+        if likesModel.likedPosts.contains(viewModel.property.id){
+            isLiked = true
+        }
+        var existingRating: Int16 = 0
+        @FetchRequest(sortDescriptors: []) var ratings: FetchedResults<ImplicitRating>
+        ratings.forEach { rating in
+            if rating.id == viewModel.property.id {
+                existingRating = rating.rating
+            }
+        }
+        
+        var rating = 1
+            if isLiked {
+                rating = 5
+            } else if timeSpent >= 30 && didScroll {
+                rating = 4
+            } else if timeSpent >= 20 && didScroll {
+                rating = 3
+            } else if existingRating != 0 {
+                rating = 3
+            }else if timeSpent >= 10 {
+                rating = 2
+            }
+        if rating > existingRating{
+            return rating
+        }
+            return 0
+        }
+    func trackEvent(name: String, properties: [String: Any]) {
+        if properties["rating"] as! Int == 0 {
+            return
+        }
+        print(properties["rating"]!)
+    }
+        
 }
 struct Triangle: Shape {
     func path(in rect: CGRect) -> Path {

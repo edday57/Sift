@@ -47,3 +47,8 @@ def getListings():
     print (listingdf.head())
 
 #print(getAgent("Foxtons", True))
+
+def addField(name, entry):
+    listings.update_many({}, {'$set': {name: entry}})
+
+#addField("property_status", "listed")

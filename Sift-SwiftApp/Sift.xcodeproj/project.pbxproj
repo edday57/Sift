@@ -67,6 +67,8 @@
 		64E053BE29B5DA4D002B3A4E /* Lora.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64E053BD29B5DA24002B3A4E /* Lora.ttf */; };
 		64E053BF29B5DA50002B3A4E /* Lora-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64E053BC29B5DA23002B3A4E /* Lora-Italic.ttf */; };
 		64E053C129B614E4002B3A4E /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E053C029B614E4002B3A4E /* SignUpViewModel.swift */; };
+		64EFFB6329E8982900CFE70E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64EFFB6129E8982900CFE70E /* Model.xcdatamodeld */; };
+		64EFFB6529E8A58F00CFE70E /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EFFB6429E8A58F00CFE70E /* DataController.swift */; };
 		64F1119D298A9864008A3A4C /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F1119C298A9864008A3A4C /* BrowseView.swift */; };
 		64F1119F298B034B008A3A4C /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F1119E298B034B008A3A4C /* FiltersView.swift */; };
 		64F111A1298B0C28008A3A4C /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F111A0298B0C28008A3A4C /* RangeSlider.swift */; };
@@ -146,6 +148,8 @@
 		64E053BC29B5DA23002B3A4E /* Lora-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lora-Italic.ttf"; sourceTree = "<group>"; };
 		64E053BD29B5DA24002B3A4E /* Lora.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lora.ttf; sourceTree = "<group>"; };
 		64E053C029B614E4002B3A4E /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		64EFFB6229E8982900CFE70E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		64EFFB6429E8A58F00CFE70E /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		64F1119C298A9864008A3A4C /* BrowseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseView.swift; sourceTree = "<group>"; };
 		64F1119E298B034B008A3A4C /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
 		64F111A0298B0C28008A3A4C /* RangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
@@ -175,6 +179,7 @@
 		642402EE2937F9B900F928F3 = {
 			isa = PBXGroup;
 			children = (
+				64EFFB6129E8982900CFE70E /* Model.xcdatamodeld */,
 				64CB0858299C5CD40099D89C /* Lottie */,
 				64B5F237296F308D00315553 /* Sift */,
 				6424030A2937F9BB00F928F3 /* ArticulateTests */,
@@ -250,6 +255,7 @@
 				64DBEE912972F16C0084BC13 /* PropertyCardModel.swift */,
 				644B00072984194B002561FC /* UserViewModel.swift */,
 				64CB084E299C24620099D89C /* OnboardingItemModel.swift */,
+				64EFFB6429E8A58F00CFE70E /* DataController.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -465,6 +471,7 @@
 				644B00082984194B002561FC /* UserViewModel.swift in Sources */,
 				64B5F24B296F308E00315553 /* SiftApp.swift in Sources */,
 				64E053C129B614E4002B3A4E /* SignUpViewModel.swift in Sources */,
+				64EFFB6329E8982900CFE70E /* Model.xcdatamodeld in Sources */,
 				64F111A1298B0C28008A3A4C /* RangeSlider.swift in Sources */,
 				6467A34A29A7968D0075A0CA /* MapView.swift in Sources */,
 				64B5F24F296F308E00315553 /* WebService.swift in Sources */,
@@ -493,6 +500,7 @@
 				64CB084D299C242E0099D89C /* OnboardingView.swift in Sources */,
 				64D54BD4299FD9700025C398 /* MainView.swift in Sources */,
 				644B0006298418F8002561FC /* UserView.swift in Sources */,
+				64EFFB6529E8A58F00CFE70E /* DataController.swift in Sources */,
 				64B81C8B29D46BE300A350A1 /* CardsView.swift in Sources */,
 				64B5F253296F308E00315553 /* ListingView.swift in Sources */,
 				64DBEE94297301330084BC13 /* FilterButtonComponent.swift in Sources */,
@@ -819,6 +827,19 @@
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		64EFFB6129E8982900CFE70E /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				64EFFB6229E8982900CFE70E /* Model.xcdatamodel */,
+			);
+			currentVersion = 64EFFB6229E8982900CFE70E /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 642402EF2937F9B900F928F3 /* Project object */;
 }

@@ -77,6 +77,10 @@ const listingSchema = Schema({
     matchscore: {
         type: Number,
         required: false
+    },
+    property_status: {
+        type: String,
+        required: false
     }
     
 });

@@ -17,11 +17,13 @@ import GoogleSignIn
 
 @main
 struct ArticulateApp: App {
+    @StateObject private var dataController = DataController()
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(LoginViewModel.shared)
                 .environmentObject(FiltersModel.shared)
+                .environment(\.managedObjectContext, dataController.container.viewContext)
                 .onOpenURL { url in
                           GIDSignIn.sharedInstance.handle(url)
                         }
