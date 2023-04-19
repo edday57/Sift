@@ -6,14 +6,89 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct SettingsView: View {
     @EnvironmentObject var loginVM: LoginViewModel
+    @Environment(\.dismiss) var dismiss
+    @StateObject var locationManager: LocationManager = .init()
+    @Binding var showingMenu: Bool
+    let presented: Bool
     var body: some View {
-        Button {
-           logout()
-        } label: {
-            Text("Logout")
+        VStack {
+            if presented{
+                Button(action: {
+                    dismiss()
+                    
+                }, label: {
+                    Image(systemName: "xmark")
+                        .bold()
+                        .foregroundColor(Color("TextGreyDark"))
+                })
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
+            }
+            else{
+                Button {
+                    withAnimation(.spring()){
+                        showingMenu.toggle()
+                    }
+                } label: {
+                    MenuIcon().frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 20)
+                        .opacity(showingMenu ? 0: 1)
+                }
+            }
+           
+            HStack(spacing: 10){
+                Image(systemName: "magnifyingglass")
+                    .foregroundColor(.gray)
+                
+                TextField("Enter your preferred location", text: $locationManager.searchText)
+            }
+            .padding(.vertical,12)
+            .padding(.horizontal)
+            .padding(.vertical,10)
+            
+            if let places = locationManager.fetchedPlaces,!places.isEmpty{
+                List{
+                    ForEach(places,id: \.self){place in
+                        Button {
+                            if let coordinate = place.location?.coordinate{
+                                print(coordinate)
+                                locationManager.pickedLocation = place.location
+                                locationManager.saveLocation()
+                            }
+
+                        } label: {
+                            HStack(spacing: 15){
+                                Image(systemName: "mappin.circle.fill")
+                                    .font(.title2)
+                                    .foregroundColor(.gray)
+                                
+                                VStack(alignment: .leading, spacing: 6) {
+                                    Text(place.name ?? "")
+                                        .font(.title3.bold())
+                                        .foregroundColor(.primary)
+                                    
+                                    Text(place.locality ?? "")
+                                        .font(.caption)
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                        }
+
+                    }
+                }
+                .listStyle(.plain)
+            }
+            Spacer()
+            Button {
+               logout()
+            } label: {
+                Text("Logout")
+                    .padding()
+        }
         }
 
     }
@@ -30,6 +105,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        return SettingsView()
+        return SettingsView(showingMenu: .constant(false), presented: false)
     }
 }

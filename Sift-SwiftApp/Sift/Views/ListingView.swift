@@ -17,10 +17,11 @@ struct ListingView: View {
     var description = "No description added."
     @State var showingAgent = false
     @State var showingMap = false
-    @State var timeSpent: TimeInterval = 0
+    @State private var startTime: Date?
     @State var didScroll = false
     @State var viewedImg = 1
     @State var timer: Timer = Timer()
+    @FetchRequest(sortDescriptors: []) var ratings: FetchedResults<ImplicitRating>
     var body: some View {
         
         ZStack {
@@ -203,21 +204,22 @@ struct ListingView: View {
         }
         .navigationBarHidden(true)
         .onAppear{
-            let startTime = Date()
-            // Start timing how long the user spends viewing the property
-            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                timeSpent = Date().timeIntervalSince(startTime)
-            }
-            RunLoop.current.add(timer, forMode: .common)
+            startTime = Date()
         }
         .onDisappear {
                     // Stop timing when the user stops viewing the property
-                    timer.invalidate()
+            if let startTime = startTime {
+                let duration = Date().timeIntervalSince(startTime)
+                print("Time spent in view: \(duration) seconds")
+                let rating = calculateRating(timeSpent: duration, didScroll: didScroll, viewedImg: viewedImg)
+                trackEvent(name: "property_view", properties: ["rating": String(rating), "listingId": viewModel.property.id])
+            }
+        }
                     // Calculate the implicit rating based on time spent and liked status
-                    let rating = calculateRating(timeSpent: timeSpent, didScroll: didScroll, viewedImg: viewedImg)
+                    
                     // Record the implicit rating as an event
-                    trackEvent(name: "property_view", properties: ["rating": rating])
-                }
+                    //trackEvent(name: "property_view", properties: ["rating": rating])
+        
         
     }
     
@@ -227,11 +229,10 @@ struct ListingView: View {
         if likesModel.likedPosts.contains(viewModel.property.id){
             isLiked = true
         }
-        var existingRating: Int16 = 0
-        @FetchRequest(sortDescriptors: []) var ratings: FetchedResults<ImplicitRating>
-        ratings.forEach { rating in
-            if rating.id == viewModel.property.id {
-                existingRating = rating.rating
+        var existingRating: Int = 0
+        self.ratings.forEach { rating in
+            if rating.listingId == viewModel.property.id {
+                existingRating = Int(rating.rating!) ?? 0
             }
         }
         
@@ -240,23 +241,37 @@ struct ListingView: View {
                 rating = 5
             } else if timeSpent >= 30 && didScroll {
                 rating = 4
-            } else if timeSpent >= 20 && didScroll {
+            } else if timeSpent >= 15 && didScroll {
                 rating = 3
             } else if existingRating != 0 {
                 rating = 3
-            }else if timeSpent >= 10 {
+            }else if timeSpent >= 7 {
                 rating = 2
             }
         if rating > existingRating{
             return rating
         }
-            return 0
-        }
+        return 0
+    }
+    
     func trackEvent(name: String, properties: [String: Any]) {
-        if properties["rating"] as! Int == 0 {
+        if properties["rating"] as! String  == "0" {
             return
         }
+        self.ratings.forEach { rating in
+            if rating.listingId == viewModel.property.id {
+                print(rating.rating!)
+                
+                rating.rating = (properties["rating"] as! String)
+                try? moc.save()
+                return
+            }
+        }
         print(properties["rating"]!)
+        let rating = ImplicitRating(context: moc)
+        rating.listingId = (properties["listingId"] as! String)
+        rating.rating = (properties["rating"] as! String)
+        try? moc.save()
     }
         
 }

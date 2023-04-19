@@ -273,12 +273,18 @@ struct CardListComponent: View {
 
 struct CardDiscoverComponentNew: View {
     @ObservedObject var viewModel: PropertyCardModel
-    
+    var locationManager: LocationManager = .init()
+    var cLoc = CLLocation(latitude: 51.4793902, longitude: -0.1813137)
     init(viewModel: PropertyCardModel){
         self.viewModel = viewModel
+        if locationManager.pickedLocation != nil{
+            cLoc = locationManager.pickedLocation!
+        }
     }
     var body: some View {
         let bedbath = String(format: "%i Beds | %i Baths", viewModel.property.bedrooms, viewModel.property.bathrooms)
+        let dis: CLLocationDistance = viewModel.property.loc.distance(from: cLoc)
+        let formattedDis = String(format: "%.1fkm away", dis/1000)
             VStack(alignment: .center){
                 KFImage(URL(string: viewModel.property.images[0]))
                     .resizable()
@@ -287,7 +293,7 @@ struct CardDiscoverComponentNew: View {
                 .clipShape(RoundedRectangle(cornerRadius: 15))
                 .shadow(color: .black.opacity(0.1), radius: 2, y:4)
                 .overlay{
-                    Text("3.7km away")
+                    Text(formattedDis)
                         .font(.system(size: 12, weight: .heavy))
                     .foregroundColor(.white)
                     .padding(.horizontal, 10)

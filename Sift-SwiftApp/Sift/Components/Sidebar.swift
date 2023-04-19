@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct Sidebar: View {
     @Binding var showingMenu: Bool
     @Binding var selectedTab: String
     @Namespace var animation
+    let user: User
     var body: some View {
         VStack(alignment: .leading, spacing: 15, content: {
             Button(action: {
@@ -51,7 +53,7 @@ struct Sidebar: View {
                     .frame(width: 68, height: 68, alignment: .center)
                     .foregroundColor(Color("StrokeGrey"))
                 
-                Image("Profile2")
+                KFImage(URL(string: user.image ?? ""))
                     .resizable()
                     .scaledToFill()
                     .frame(width: 64, height: 64)
@@ -59,12 +61,14 @@ struct Sidebar: View {
             }
             .padding(.top, 50)
             VStack(alignment: .leading, spacing: 6){
-                Text("Jenny Lettings")
+                Text(user.name.capitalized)
                     .foregroundColor(.white)
                     .font(.system(size: 20))
                     .fontWeight(.black)
                 Button {
-                    //profile
+                    withAnimation(.spring()){
+                        selectedTab = "Saved"
+                    }
                 } label: {
                     Text("View Profile")
                         .foregroundColor(.white)

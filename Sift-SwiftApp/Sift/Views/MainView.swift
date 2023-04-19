@@ -21,7 +21,7 @@ struct MainView: View {
                     .ignoresSafeArea()
                 
                //MARK: Sidebar
-                Sidebar(showingMenu: $showingMenu, selectedTab: $selectedTab)
+                Sidebar(showingMenu: $showingMenu, selectedTab: $selectedTab, user: user)
                 
                 //MARK: Tabs
                 ZStack{

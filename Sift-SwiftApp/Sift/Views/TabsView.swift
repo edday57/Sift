@@ -130,7 +130,7 @@ struct SecondaryTabsView: View {
                     Image(systemName: "envelope")
                 }
                 .tag("Inbox")
-            SettingsView()
+            SettingsView(showingMenu: $showingMenu, presented: false)
             .tabItem{
                 Image(systemName: "gearshape")
             }

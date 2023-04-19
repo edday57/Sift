@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import MapKit
 struct Property: Codable, Identifiable {
     var id: String {
         return _id
@@ -30,6 +30,9 @@ struct Property: Codable, Identifiable {
     var link: String
     var agent: String
     var floorplan: String?
+    var loc: CLLocation{
+        return CLLocation(latitude: CLLocationDegrees(self.latitude), longitude: CLLocationDegrees(self.longitude))
+    }
 }
 
 let propertyDemo: Property = Property(_id: "x", address: "Balham Park Road, London, SW12", price: 3000, property_type: "Flat", bedrooms: 2, bathrooms: 2, latitude: 100, longitude: 100, images: ["https://media.rightmove.co.uk/211k/210110/117674516/210110_P235846_IMG_00_0000.jpeg", "https://media.rightmove.co.uk/29k/28962/121446902/28962_9997158_EAF_95819_IMG_00_0000.jpeg"], date_added: Date(timeIntervalSinceNow: 0), description: "Introducing a stunning two-bedroom Blueground apartment, available for flexible lease options in the heart of the vibrant Shoreditch community in London. With custom pricing available for any duration, you can enjoy this beautifully designed and fully-equipped home starting at £4,550 per month.\n\nStep inside and discover a thoughtfully furnished space, complete with top-of-the-line amenities such as gorgeous furniture, a fully-equipped kitchen, a smart TV, and a premium wireless speaker. The bedrooms are fitted with superior quality mattresses, luxury linens, and cozy towels to ensure a comfortable stay. Plus, with on-site building amenities such as an elevator and a washing machine, you'll have everything you need at your fingertips.", link: "link.com", agent:"x")

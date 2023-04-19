@@ -45,7 +45,7 @@ struct UserView: View {
                                             )
                                 }
                                 .fullScreenCover(isPresented: $showingSettings) {
-                                    SettingsView()
+                                    SettingsView(showingMenu: .constant(false), presented: true)
                                         
                                 }
 
