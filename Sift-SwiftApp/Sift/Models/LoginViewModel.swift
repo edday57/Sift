@@ -7,6 +7,7 @@
 
 import Foundation
 import GoogleSignIn
+import UIKit
 class LoginViewModel: ObservableObject {
     
     @Published var isAuthenticated = false
@@ -133,28 +134,53 @@ class LoginViewModel: ObservableObject {
             
     }
     
-    func signUp(details: SignUpRequestBody) async{
+    func signUp(details: SignUpRequestBody, image: UIImage?) async{
         let defaults = UserDefaults.standard
-        do {
-            let data =  try await WebService().signUpUser(details: details)
-            if data.status! == 200{
-                //User signed up
-                defaults.set(data.token, forKey: "jsonwebtoken")
-                defaults.setValue(data.user!.id, forKey: "userid")
-                await MainActor.run{
-                    self.currentUser = data.user
-                    self.isAuthenticated = true
-                    
-                }
+        if let image = image{
+            do {
+                let data =  try await WebService().signUpUserWithPic(details: details, image: image)
+                if data.status! == 200{
+                    //User signed up
+                    defaults.set(data.token, forKey: "jsonwebtoken")
+                    defaults.setValue(data.user!.id, forKey: "userid")
+                    await MainActor.run{
+                        self.currentUser = data.user
+                        self.isAuthenticated = true
+                        
+                    }
 
+                }
+                else {
+                    //Present error
+                }
+            } catch(let error) {
+                print(error)
+                
             }
-            else {
-                //Present error
-            }
-        } catch(let error) {
-            print(error)
-            
         }
+        else{
+            do {
+                let data =  try await WebService().signUpUser(details: details)
+                if data.status! == 200{
+                    //User signed up
+                    defaults.set(data.token, forKey: "jsonwebtoken")
+                    defaults.setValue(data.user!.id, forKey: "userid")
+                    await MainActor.run{
+                        self.currentUser = data.user
+                        self.isAuthenticated = true
+                        
+                    }
+
+                }
+                else {
+                    //Present error
+                }
+            } catch(let error) {
+                print(error)
+                
+            }
+        }
+        
 
     }
 }

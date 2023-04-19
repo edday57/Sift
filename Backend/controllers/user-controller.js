@@ -1,6 +1,8 @@
 import User from "../model/User";
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import multiparty from 'multiparty';
+import multer from "multer";
 import { OAuth2Client } from "google-auth-library";
 export const getAllUser = async(req, res, next) => {
     let users;
@@ -86,6 +88,65 @@ export const signUp = async(req, res, next) => {
     
 
 };
+
+
+export const signUpImg = async(req, res, next) => {
+    try {
+        let { email, password, name, dob, about, mobile, fromGoogle } = JSON.parse(req.body.json);
+        console.log(email);
+        email = email.toLowerCase();
+        let existingUser;
+        try {
+            existingUser= await User.findOne({email});
+        }catch(err){
+            return console.log(err);
+        }
+        if (existingUser){
+            return res.status(400).json({message: "User already exists"});
+        }
+        const hashedPassword = bcrypt.hashSync(password);
+        const user = User({
+            name,
+            email,
+            password:  hashedPassword,
+            dob,
+            about,
+            image: req.get('host')+'/uploads/'+req.file.filename,
+            mobile,
+            isAgent: false
+        });
+        try{
+            await user.save();
+        } catch(err){
+            return console.log(err);
+        }
+        const token = jwt.sign({id: user.id}, "SECRET");
+        user.token = token;
+        if(token){
+            return res.status(200).json({token: token, user: user});
+        }
+        return res.status(400).json({message: "Authentication error."});
+    }catch (ex) {
+        throw ex;
+    }
+    return res.status(400).json({message: "Authentication error."});
+    
+    
+
+};
+
+function parseMultiparty(req) {
+    return new Promise((resolve, reject) => {
+      var form = new multiparty.Form();
+      form.parse(req, function(err, fields, files) { 
+        if(err){
+            reject(err)
+        } 
+      else resolve([fields, files])
+      })
+  
+    })
+  }
 
 // export const signUp2 = async(req, res, next) => {
 //     let { email, password } = req.body;

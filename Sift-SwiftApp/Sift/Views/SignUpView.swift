@@ -20,6 +20,8 @@ struct SignUpView: View {
     @State private var mobile = ""
     @State private var about = ""
     @State private var validationMessage = ""
+    @State private var image: UIImage?
+    @State private var showingImagePicker = false
     @EnvironmentObject var viewModel: LoginViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     let dateFormatter = DateFormatter()
@@ -166,7 +168,7 @@ struct SignUpView: View {
                                 let dob = isSameDay(date1: dob, date2: Date()) ? nil : dob
                                 let about = about.isEmpty ? nil : about
                                 let mobile = mobile.isEmpty ? nil : Int(mobile)
-                                await viewModel.signUp(details: SignUpRequestBody(email: email, password: password, name: name, dob: dob, about: about, mobile: mobile, fromGoogle: fromGoogle))
+                                await viewModel.signUp(details: SignUpRequestBody(email: email, password: password, name: name, dob: dob, about: about, mobile: mobile, fromGoogle: fromGoogle), image: image)
                             }
                             //currentIndex += 1
                         } label: {
@@ -229,12 +231,21 @@ struct SignUpView: View {
                                     .opacity(0.5)
                                     .font(.system(size: 16, weight: .regular))
                                 Button {
-                                    //
+                                    self.showingImagePicker = true
                                 } label: {
-                                    Image(systemName: "plus.circle")
-                                        .padding(.leading, 6)
-                                        .font(.system(size: 20))
-                                        .foregroundColor(Color("PrimaryText"))
+                                    if image != nil {
+                                        Image(uiImage: image!).resizable()
+                                            .scaledToFill()
+                                            .frame(width: 28, height: 28, alignment: .center)
+                                            .clipShape(RoundedRectangle(cornerRadius: 46))
+                                    }
+                                    else{
+                                        Image(systemName: "plus.circle")
+                                            .padding(.leading, 6)
+                                            .font(.system(size: 20))
+                                            .foregroundColor(Color("PrimaryText"))
+                                    }
+                                    
                                 }
 
                                 Rectangle()
@@ -242,6 +253,9 @@ struct SignUpView: View {
                                     .foregroundColor(Color("StrokeGrey"))
                                     
                             }
+                            .sheet(isPresented: $showingImagePicker) {
+                                        ImagePicker(image: self.$image)
+                                    }
                             //.padding(.bottom, 40)
                             //MARK: Date of Birth
                             VStack(alignment: .leading){

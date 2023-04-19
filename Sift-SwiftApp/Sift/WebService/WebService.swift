@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 enum AuthenticationError: Error {
     case invalidCredentials
     case custom(errorMessage: String)
@@ -163,6 +163,49 @@ class WebService{
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONEncoder().encode(body)
+        let (data, response) = try await URLSession.shared.data(for: request)
+        guard var signUpResponse = try? JSONDecoder().decode(SignUpResponse.self, from: data) else {
+            throw RuntimeError("Error decoding sign up response")
+        }
+        signUpResponse.status = (response as? HTTPURLResponse)?.statusCode
+        return signUpResponse
+    }
+    
+    func signUpUserWithPic(details: SignUpRequestBody, image: UIImage) async throws -> SignUpResponse{
+        guard let url = URL(string: "http://\(hostname):5000/api/user/signupImg") else{
+            fatalError("Invalid URL")
+        }
+        let boundary = UUID().uuidString
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        let imageData = image.jpegData(compressionQuality: 0.5)
+        
+        var body = Data()
+        
+        if let imageData = imageData {
+            body.append("--\(boundary)\r\n".data(using: .utf8)!)
+            body.append("Content-Disposition: form-data; name=\"image\"; filename=\"image.jpg\"\r\n".data(using: .utf8)!)
+            body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
+            body.append(imageData)
+            body.append("\r\n".data(using: .utf8)!)
+        }
+        print(imageData)
+        let jsonData = try? JSONEncoder().encode(details)
+        
+        if let jsonData = jsonData {
+            body.append("--\(boundary)\r\n".data(using: .utf8)!)
+            body.append("Content-Disposition: form-data; name=\"json\"\r\n".data(using: .utf8)!)
+            body.append("Content-Type: application/json\r\n\r\n".data(using: .utf8)!)
+            body.append(jsonData)
+            body.append("\r\n".data(using: .utf8)!)
+        }
+        
+        body.append("--\(boundary)--\r\n".data(using: .utf8)!)
+        
+        request.httpBody = body
         let (data, response) = try await URLSession.shared.data(for: request)
         guard var signUpResponse = try? JSONDecoder().decode(SignUpResponse.self, from: data) else {
             throw RuntimeError("Error decoding sign up response")
