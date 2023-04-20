@@ -138,13 +138,25 @@ struct ListingView: View {
                     
                     //MARK: Rating
                     HStack(alignment: .center){
-                        RatingBar(rating: 0.85)
-                            .frame(width: 130)
-                            .padding(.top, 4)
-                            .padding(.trailing, 4)
-                        Text("85% match")
-                            .font(.system(size: 14, weight: .heavy))
-                            .foregroundColor(Color("PrimaryBlue"))
+                        if let score = viewModel.property.matchscore{
+                            //score = score/5
+                            RatingBar(rating: Double(score)/5)
+                                .frame(width: 130)
+                                .padding(.top, 4)
+                                .padding(.trailing, 4)
+                            Text("\(Int(score*20))% match")
+                                .font(.system(size: 14, weight: .heavy))
+                                .foregroundColor(Color("PrimaryBlue"))
+                        }
+                        else {
+                            RatingBar(rating: 0.8)
+                                .frame(width: 130)
+                                .padding(.top, 4)
+                                .padding(.trailing, 4).frame(maxWidth: 120, maxHeight: 10)
+                            Text("80% match")
+                                .font(.system(size: 14, weight: .heavy))
+                                .foregroundColor(Color("PrimaryBlue"))
+                        }
                         Spacer()
                     }
                     .padding(.horizontal, 20)

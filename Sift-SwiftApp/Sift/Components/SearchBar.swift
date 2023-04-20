@@ -30,15 +30,15 @@ struct SearchBar: View {
         }
     }
 }
-
-struct SearchBar_Previews: PreviewProvider {
-    let searchTerm = "london"
-    static var previews: some View {
-
-        let viewModel = PropertyModel()
-        viewModel.savedProperties=[propertyDemo, propertyDemo2]
-        viewModel.properties=[propertyDemo, propertyDemo2]
-        return HomeView2(showingMenu: .constant(false),selectedTab: .constant("Home"), viewModel: viewModel, user: userDemo)
-            
-    }
-}
+//
+//struct SearchBar_Previews: PreviewProvider {
+//    let searchTerm = "london"
+//    static var previews: some View {
+//
+//        let viewModel = PropertyModel()
+//        viewModel.savedProperties=[propertyDemo, propertyDemo2]
+//        viewModel.properties=[propertyDemo, propertyDemo2]
+//        return HomeView2(showingMenu: .constant(false),selectedTab: .constant("Home"), viewModel: viewModel, user: userDemo)
+//            
+//    }
+//}

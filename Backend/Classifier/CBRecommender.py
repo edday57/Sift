@@ -195,7 +195,7 @@ def recommender(df, filters, liked, viewed):
         for result in filter_results:
             if result not in chosenArtificialIds:
                 resultRow = df.loc[df['artificial_listing_id']==result]
-                if resultRow['_id'].values[0] not in liked and resultRow['_id'].values[0] not in viewed:
+                if resultRow['_id'].values[0] not in liked and resultRow['_id'].values[0] not in viewed and resultRow['_id'].values[0] not in discoverIds:
                     extraIds.append(resultRow['_id'].values[0])
                     if len(extraIds) == 6:
                         break

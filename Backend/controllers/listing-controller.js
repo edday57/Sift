@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken'
 import { spawn } from 'child_process';
 export const getAllListings = async(req, res, next) => {
     let {filters} =req.body;
-    console.log(filters);
+    //console.log(filters);
     let listings;
     console.log(req.query.skip)
     let skip = Number(req.query.skip)
@@ -43,9 +43,13 @@ export const getAllListings = async(req, res, next) => {
             match.bathrooms = { $gte: filters.minBaths};
         }
     }
+    if (filters.property_type.length > 0){
+        match.property_type = { $in: filters.property_type};
+    }
     
     try {
-        
+        let values = await Listing.distinct("property_type");
+        console.log(values)
         listings = await Listing.aggregate([
             { $match: match },
             { $sort: { "date_added": -1 }},
@@ -141,6 +145,7 @@ export const recommenderCB = async(req,res,next) => {
         recommendationIDs = recommendationIDs.replace(/'/g, '"');
         //Convert to actual array
         recommendationIDs = JSON.parse(recommendationIDs);
+        console.log(recommendationIDs);
         //Change IDs to object ID type
         var discoveroids = [];
         var extraoids=[];

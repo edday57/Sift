@@ -34,7 +34,7 @@ struct TabsView: View {
                     .offset(x: -80, y: 300)
                     .font(.system(size: 500))
                     .opacity(0.05)
-                HomeView2(showingMenu: $showingMenu, selectedTab: $selectedTab, viewModel: viewModel, user: user)
+                HomeView2(showingMenu: $showingMenu, selectedTab: $selectedTab, viewModel: viewModel, discoverModel: discoverModel, user: user)
                     
             }
             .tabItem{

@@ -377,6 +377,8 @@ struct CardDiscoverComponentNew: View {
 
 struct CardSwipeComponent: View {
     @ObservedObject var viewModel: PropertyCardModel
+    var locationManager: LocationManager = .init()
+    var cLoc = CLLocation(latitude: 51.4793902, longitude: -0.1813137)
     @Binding var backgroundColor: Color
     @Binding var opacity: Double
     let user: User
@@ -387,9 +389,14 @@ struct CardSwipeComponent: View {
         _backgroundColor = bgC
         _opacity = opacity
         self.user = user
+        if locationManager.pickedLocation != nil{
+            cLoc = locationManager.pickedLocation!
+        }
     }
     var body: some View {
         let bedbath = String(format: "%i Beds | %i Baths", viewModel.property.bedrooms, viewModel.property.bathrooms)
+        let dis: CLLocationDistance = viewModel.property.loc.distance(from: cLoc)
+        let formattedDis = String(format: "%.1fkm away", dis/1000)
         GeometryReader { geo in
             let size = geo.size
             VStack(alignment: .center){
@@ -420,7 +427,7 @@ struct CardSwipeComponent: View {
                 .clipShape(RoundedRectangle(cornerRadius: 15))
                 .shadow(color: .black.opacity(0.1), radius: 2, y:4)
                 .overlay{
-                    Text("3.7km away")
+                    Text(formattedDis)
                         .font(.system(size: 12, weight: .heavy))
                     .foregroundColor(.white)
                     .padding(.horizontal, 12)
@@ -517,11 +524,25 @@ struct CardSwipeComponent: View {
                         .frame(minWidth: 110)
                         .font(.system(size: 14, weight: .semibold))
                         .foregroundColor(Color("SecondaryText"))
-                        RatingBar(rating: 0.85)
-                            .frame(maxWidth: 120, maxHeight: 10)
-                        Text("80% match")
-                            .font(.system(size: 14, weight: .heavy))
-                            .foregroundColor(Color("PrimaryBlue"))
+                        if let score = viewModel.property.matchscore{
+                            //score = score/5
+                            RatingBar(rating: Double(score)/5)
+                                .frame(maxWidth: 120, maxHeight: 10)
+                            Text("\(Int(score*20))% match")
+                                .font(.system(size: 14, weight: .heavy))
+                                .foregroundColor(Color("PrimaryBlue"))
+                        }
+                        else {
+                            RatingBar(rating: 0.8)
+                                .frame(maxWidth: 120, maxHeight: 10)
+                            Text("80% match")
+                                .font(.system(size: 14, weight: .heavy))
+                                .foregroundColor(Color("PrimaryBlue"))
+                        }
+                        
+                            
+                        
+                            
                         
                     }
                 }

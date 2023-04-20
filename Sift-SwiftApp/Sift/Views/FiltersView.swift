@@ -15,7 +15,16 @@ struct FiltersView: View {
     @Environment(\.dismiss) var dismiss
     @State var priceSliderPosition: ClosedRange<Float>
     @State var sizeSliderPosition: ClosedRange<Float>
-    @State var propertyTypes: [String] = ["Apartment", "Town House", "Whole Home"]
+    @State var propertyTypes: [String] = ["Apartment",   "Bungalow",
+                                           "Cottage",     "Detached",
+                                           "Duplex",      "End of Terrace",
+                                           "Flat",        "Flat Share",
+                                           "Ground Flat", "House",
+                                           "House Share", "Link Detached House",
+                                           "Maisonette",  "Mews",
+                                           "Penthouse",   "Semi-Detached",
+                                           "Terraced",    "Town House"
+    ]
     @State var bedrooms: [Int] = [1, 2, 3, 4]
     @State var bathrooms: [Int] = [1, 2, 3, 4]
 
