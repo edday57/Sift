@@ -6,7 +6,6 @@ import jwt from 'jsonwebtoken';
 import likeRouter from './routes/like-routes';
 const app = express();
 import cors from 'cors'
-import multer from 'multer';
 import bodyParser from 'body-parser'
 
 //"fltHUuMl1uLNnCC9";
