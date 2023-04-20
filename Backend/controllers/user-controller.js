@@ -116,7 +116,6 @@ export const signUpImg = async(req, res, next) => {
             isAgent: false
         });
         console.log(user);
-        return res.status(400).json({message: "Authentication error."});
         try{
             await user.save();
         } catch(err){
