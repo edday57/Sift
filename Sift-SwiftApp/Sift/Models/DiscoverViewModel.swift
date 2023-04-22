@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class DiscoverViewModel: ObservableObject {
 
@@ -14,7 +15,7 @@ class DiscoverViewModel: ObservableObject {
     
     init(){
         if cfEnabled == false{
-            getProperties(viewed:[""])
+            getProperties(viewed:[""], views:[])
         }
         else{
             getPropertiesCF(viewed:[""])
@@ -22,7 +23,11 @@ class DiscoverViewModel: ObservableObject {
         
     }
     
-    func getProperties(viewed: [String]){
+    func getProperties(viewed: [String], views: [PropertyViewStruct]){
+
+        views.forEach { view in
+            print(view.id)
+        }
         let defaults = UserDefaults.standard
         guard let token = defaults.string(forKey: "jsonwebtoken") else {
                     return
@@ -31,7 +36,7 @@ class DiscoverViewModel: ObservableObject {
                     return
                 }
         if cfEnabled == false{
-            WebService().getDiscover(id: id, token: token, viewed: viewed) { (result) in
+            WebService().getDiscover(id: id, token: token, viewed: viewed, views: views) { (result) in
                 switch result {
                     case .success(let data):
                         DispatchQueue.main.async {

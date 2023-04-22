@@ -44,6 +44,7 @@ class PropertyCardModel: ObservableObject {
             if response == 200{
                 DispatchQueue.main.async {
                     print("Like added")
+                    
                 }
                 
             }

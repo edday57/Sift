@@ -22,6 +22,7 @@ struct ListingView: View {
     @State var viewedImg = 1
     @State var timer: Timer = Timer()
     @FetchRequest(sortDescriptors: []) var ratings: FetchedResults<ImplicitRating>
+    @FetchRequest(sortDescriptors: []) var views: FetchedResults<PropertyView>
     var body: some View {
         
         ZStack {
@@ -224,15 +225,14 @@ struct ListingView: View {
                 let duration = Date().timeIntervalSince(startTime)
                 print("Time spent in view: \(duration) seconds")
                 let rating = calculateRating(timeSpent: duration, didScroll: didScroll, viewedImg: viewedImg)
-                trackEvent(name: "property_view", properties: ["rating": String(rating), "listingId": viewModel.property.id])
+                trackEvent(name: "property_rating", properties: ["rating": String(rating), "listingId": viewModel.property.id])
+                trackEvent(name: "property_view", properties: ["listingId": viewModel.property.id])
+                views.forEach { view in
+                    print(view.listingId)
+                }
+                
             }
         }
-                    // Calculate the implicit rating based on time spent and liked status
-                    
-                    // Record the implicit rating as an event
-                    //trackEvent(name: "property_view", properties: ["rating": rating])
-        
-        
     }
     
     func calculateRating(timeSpent: TimeInterval, didScroll: Bool, viewedImg: Int) -> Int {
@@ -267,23 +267,43 @@ struct ListingView: View {
     }
     
     func trackEvent(name: String, properties: [String: Any]) {
-        if properties["rating"] as! String  == "0" {
-            return
-        }
-        self.ratings.forEach { rating in
-            if rating.listingId == viewModel.property.id {
-                print(rating.rating!)
-                
-                rating.rating = (properties["rating"] as! String)
-                try? moc.save()
+        switch name{
+        case "property_rating":
+            if properties["rating"] as! String  == "0" {
                 return
             }
+            for rating in ratings{
+                if rating.listingId == viewModel.property.id {
+                    rating.rating = (properties["rating"] as! String)
+                    rating.date = Date()
+                    try? moc.save()
+                    return
+                }
+            }
+            print(properties["rating"]!)
+            let rating = ImplicitRating(context: moc)
+            rating.listingId = (properties["listingId"] as! String)
+            rating.rating = (properties["rating"] as! String)
+            rating.date = Date()
+            try? moc.save()
+            
+        case "property_view":
+            for view in views{
+                if view.listingId! == (properties["listingId"] as! String) {
+                    view.date = Date()
+                    try? moc.save()
+                    return
+                }
+            }
+            let view = PropertyView(context: moc)
+            view.listingId = (properties["listingId"] as! String)
+            view.date = Date()
+            try? moc.save()
+            return
+        default:
+            return
         }
-        print(properties["rating"]!)
-        let rating = ImplicitRating(context: moc)
-        rating.listingId = (properties["listingId"] as! String)
-        rating.rating = (properties["rating"] as! String)
-        try? moc.save()
+        
     }
         
 }

@@ -18,3 +18,9 @@ class DataController: ObservableObject {
         }
     }
 }
+
+struct PropertyViewStruct: Codable, Identifiable{
+    var id: String
+    var user: String
+    var date: Date
+}

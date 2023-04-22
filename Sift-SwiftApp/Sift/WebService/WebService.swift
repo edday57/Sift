@@ -423,7 +423,7 @@ class WebService{
         }.resume()
     }
     
-    func getDiscover(id: String, token: String, viewed: [String], completion: @escaping (Result<DiscoverResponse, NetworkError>)-> Void){
+    func getDiscover(id: String, token: String, viewed: [String], views: [PropertyViewStruct], completion: @escaping (Result<DiscoverResponse, NetworkError>)-> Void){
         guard let url = URL(string: "http://\(hostname):5000/api/listing/discover/cb/\(id)") else{
             completion(.failure(.invalidURL))
             return
@@ -433,7 +433,9 @@ class WebService{
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        request.httpBody = try? JSONEncoder().encode(viewed)
+        let encoder = JSONEncoder()
+        //encoder.dateEncodingStrategy = .secondsSince1970
+        request.httpBody = try? JSONEncoder().encode(views)
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data=data, error==nil else{
                 completion(.failure(.noData))

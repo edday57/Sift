@@ -2,6 +2,7 @@ import { json, response } from "express";
 import Listing from "../model/Listing"
 import User from "../model/User";
 import Like from "../model/Like";
+import Event from "../model/Event";
 import mongoose from "mongoose";
 import jwt from 'jsonwebtoken'
 import { spawn } from 'child_process';
@@ -48,8 +49,6 @@ export const getAllListings = async(req, res, next) => {
     }
     
     try {
-        let values = await Listing.distinct("property_type");
-        console.log(values)
         listings = await Listing.aggregate([
             { $match: match },
             { $sort: { "date_added": -1 }},
@@ -116,9 +115,45 @@ export const recommenderCF = async(req,res,next) => {
 export const recommenderCB = async(req,res,next) => {
     const userId = req.params.id;
     var viewed = req.body;
-    if (req.body ==""){
-        viewed="None"
+    const events = [];
+    var swiftOffset = Date.UTC(2001,0,1)
+    let dbViews;
+    let allViews = [];
+    try{
+        dbViews = await Event.find({user: userId, type: "property_view"});
+    }catch(err){
+        console.log(err);
     }
+    for (var view of dbViews){
+        allViews.push(view.listing.toString());
+    }
+    console.log(allViews)
+    for( var view of viewed){
+        if(allViews.includes(view.id)){
+            console.log("view tracked")
+        }
+        else{
+            let event = Event({
+                user: view.user,
+                listing: view.id,
+                timestamp: new Date(swiftOffset + view.date * 1000),
+                type: "property_view"
+            });
+            allViews.push(view.id);
+            events.push(event);
+        }
+    }
+    try{
+        const result = await Event.insertMany(events);
+    }catch(err){
+        return console.log(err);
+    }
+    //console.log(events)
+    //return res.status(404).json({message: "No listings found"});
+    if (allViews.length == 0){
+        allViews="None"
+    }
+    //viewed="None"
     let likes;
     try {
         likes = await Like.find({user: userId}).sort({timestamp: -1});
@@ -136,7 +171,7 @@ export const recommenderCB = async(req,res,next) => {
     let extrarecommendations;
     let recommendationIDs;
     console.log(likes.toString())
-    var process = spawn('python3',["./Classifier/CBRecommender.py", likes, viewed ],{shell: true} );
+    var process = spawn('python3',["./Classifier/CBRecommender.py", likes, allViews ],{shell: true} );
 
     for await (const data of process.stdout) {
         //console.log(data.toString())
@@ -145,7 +180,6 @@ export const recommenderCB = async(req,res,next) => {
         recommendationIDs = recommendationIDs.replace(/'/g, '"');
         //Convert to actual array
         recommendationIDs = JSON.parse(recommendationIDs);
-        console.log(recommendationIDs);
         //Change IDs to object ID type
         var discoveroids = [];
         var extraoids=[];
