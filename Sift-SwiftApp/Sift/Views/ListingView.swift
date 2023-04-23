@@ -42,6 +42,8 @@ struct ListingView: View {
                                             .foregroundColor(.white)
                                             .font(.system(size: 20, weight: .semibold))
                                             .shadow(color: .black.opacity(1),radius: 5)
+                                            .padding(.vertical)
+                                            .padding(.horizontal, 20)
                                     }
                                     
                                     Spacer()
@@ -71,7 +73,7 @@ struct ListingView: View {
                                             .shadow(color: .black.opacity(0.7),radius: 5)
                                     }
                                 }
-                                .padding(.horizontal, 20)
+                                .padding(.trailing, 20)
                                 .padding(.bottom,20)
                                 .offset(y: +50)
                             }
@@ -288,7 +290,7 @@ struct ListingView: View {
             try? moc.save()
             
         case "property_view":
-            for view in views{
+            for view in views {
                 if view.listingId! == (properties["listingId"] as! String) {
                     view.date = Date()
                     try? moc.save()

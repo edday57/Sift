@@ -119,7 +119,7 @@ struct FiltersView: View {
                                 .font(.system(size: 24, weight: .bold))
                                 .lineLimit(1)
                             Spacer()
-                            Text("£\(String(format: "%0.f", priceSliderPosition.lowerBound)) - £\(String(format: "%0.f", priceSliderPosition.upperBound))")
+                            Text("£\(String(format: "%0.f", roundNumber(Double(priceSliderPosition.lowerBound), toNearest: 100))) - £\(String(format: "%0.f", roundNumber(Double(priceSliderPosition.upperBound), toNearest: 100)))")
                                 .padding(20)
                                 .font(.system(size: 14, weight: .bold))
                                 .foregroundColor(Color("PrimaryBlue"))
@@ -371,6 +371,9 @@ struct FiltersView: View {
         }
         
     }
+    func roundNumber(_ value: Double, toNearest: Double) -> Double {
+        return round(value / toNearest) * toNearest
+    }
 }
 
 extension Text {
@@ -399,6 +402,7 @@ extension Text {
             )
                 
     }
+    
 }
 
 extension Label {

@@ -7,9 +7,10 @@
 
 import SwiftUI
 import MapKit
-
+import CoreData
 struct SettingsView: View {
     @EnvironmentObject var loginVM: LoginViewModel
+    @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
     @StateObject var locationManager: LocationManager = .init()
     @Binding var showingMenu: Bool
@@ -98,9 +99,21 @@ struct SettingsView: View {
         defaults.removeObject(forKey: "jsonwebtoken")
         defaults.removeObject(forKey: "searchFilters")
         defaults.removeObject(forKey: "userid")
+        deleteAll()
         loginVM.currentUser = nil
         loginVM.isAuthenticated = false
     }
+    
+    func deleteAll() {
+        let fetchRequest1: NSFetchRequest<NSFetchRequestResult> = PropertyView.fetchRequest()
+        let fetchRequest2: NSFetchRequest<NSFetchRequestResult> = ImplicitRating.fetchRequest()
+        let batchDeleteRequest1 = NSBatchDeleteRequest(fetchRequest: fetchRequest1)
+        let batchDeleteRequest2 = NSBatchDeleteRequest(fetchRequest: fetchRequest2)
+        _ = try? moc.execute(batchDeleteRequest1)
+        _ = try? moc.execute(batchDeleteRequest2)
+        try? moc.save()
+    }
+    
 }
 
 struct SettingsView_Previews: PreviewProvider {

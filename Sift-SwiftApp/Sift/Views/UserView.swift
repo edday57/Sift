@@ -26,7 +26,7 @@ struct UserView: View {
                         VStack(alignment: .leading, spacing: 6) {
                             HStack {
                                 Text(user.name)
-                                    .font(.system(size: 20, weight: .bold))
+                                    .font(.system(size: 20, weight: .black))
                                 Spacer()
                                 Button {
                                     showingSettings.toggle()
@@ -60,7 +60,7 @@ struct UserView: View {
                         
                     }
                     .padding(.horizontal, 20)
-                    .padding(.top, 20)
+                    .padding(.vertical, 12)
                     
                     Divider()
                         .padding(.horizontal, 20)
@@ -174,14 +174,18 @@ struct UserView: View {
                             NavigationLink{
                                 ListingView(viewModel: PropertyCardModel(property: property, currentUser: user))
                             } label: {
-                                LazyVStack{
+                                LazyVStack(spacing:0){
                                     CardListComponent(viewModel: PropertyCardModel(property: property, currentUser: user))
                                         .onAppear(){
                                             loadMore(currentListing: property)
                                         }
+                                    Divider()
+                                        .padding(.horizontal, 20)
+                                        .offset(y: -5)
                                 }
                                 
                             }
+                            
                             
                         }
                     }

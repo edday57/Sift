@@ -8,97 +8,6 @@
 import SwiftUI
 import Kingfisher
 import MapKit
-struct CardLargeComponent: View {
-    @ObservedObject var viewModel: PropertyCardModel
-    
-    init(viewModel: PropertyCardModel){
-        self.viewModel = viewModel
-    }
-    var body: some View {
-        let formattedPrice = String(format: "£%.0f pcm", viewModel.property.price)
-        
-        ZStack {
-            RoundedRectangle(cornerRadius: 30)
-                .frame(width: 290, height: 320)
-                .foregroundColor(.white)
-                .shadow(color: .black.opacity(0.1),radius: 5)
-            
-            VStack(alignment: .center){
-                
-                KFImage(URL(string: viewModel.property.images[0]))
-                    .resizable()
-                    .scaledToFill()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 276, height: 165)
-                    .clipShape(RoundedRectangle(cornerRadius: 24))
-                    .padding(7)
-                    .shadow(color: .black.opacity(0.1), radius: 10, y:4)
-                    .overlay{
-                        
-                        HStack(spacing:0){
-                            Text("\(viewModel.property.bedrooms) ")
-                            Image(systemName: "bed.double.fill").font(.system(size: 12))
-                            Divider().frame(width: 1.3, height:16)
-                                .background(Color.white).padding(3)
-                            Text("\(viewModel.property.bathrooms) ")
-                            Image(systemName: "shower.fill").font(.system(size: 12))
-                        }
-                        
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 2)
-                            .background{
-                                Capsule()
-                                    .foregroundColor(Color("PrimaryBlue"))
-                            }
-                            .position(x:60, y:27)
-                    }
-                    
-                HStack{
-                    Text(formattedPrice)
-                        .foregroundColor(Color("TextGreyLight"))
-                        .font(.system(size: 14, weight: .medium))
-                    Spacer()
-                    Text("Listed \(viewModel.property.date_added.formatDate())")
-                        .foregroundColor(Color("TextGreyLight"))
-                    
-                        .font(.system(size: 14, weight: .medium))
-                }
-                .frame(width: 270)
-                .padding(.top, 6)
-                
-                Text("\(viewModel.property.address)")
-                    .lineLimit(2)
-                    .font(.system(size: 18, weight: .bold))
-                    .frame(width: 270, alignment: .leading)
-                    .multilineTextAlignment(.leading)
-                    .padding(.leading, 10)
-                    .padding(.trailing, 10)
-                    .padding(.top, 2)
-                    .foregroundColor(.black)
-                Spacer()
-                HStack{
-                    if let agent = viewModel.agent{
-                        ProfileImageComponent(size: 30, image: agent.image!)
-                        Text(agent.name)
-                            .foregroundColor(Color("TextGreyLight"))
-                            .lineLimit(1)
-                            .multilineTextAlignment(.leading)
-                            .font(.system(size: 14, weight: .medium))
-                    }
-                    Spacer()
-                    Text("...")
-                        .foregroundColor(Color("TextGreyLight"))
-                    
-                        .font(.system(size: 14))
-                }
-                .frame(width: 262)
-                .padding(.bottom, 12)
-                //Spacer()
-            }
-        }
-    }
-}
 
 struct CardLargeComponentNew: View {
     @ObservedObject var viewModel: PropertyCardModel
@@ -221,27 +130,40 @@ struct CardListComponent: View {
             VStack(alignment: .leading){
                 HStack {
                     Text(formattedPrice)
-                        .foregroundColor(Color("TextGreyLight"))
-                        .font(.system(size: 12, weight: .medium))
+                        .foregroundColor(Color("PrimaryBlue"))
+                        .font(.system(size: 14, weight: .bold))
                     Spacer()
-                    Text(bedbath)
-                        .foregroundColor(Color("TextGreyLight"))
-                        .font(.system(size: 12, weight: .medium))
+                    HStack(spacing:0){
+                        Text("\(viewModel.property.bedrooms) ")
+                            .font(.system(size: 12, weight: .heavy))
+                        Image(systemName: "bed.double.fill").font(.system(size: 12))
+                        Divider().frame(width: 1.4, height:12)
+                            .background(Color.white).padding(3)
+                        Text("\(viewModel.property.bathrooms) ")
+                            .font(.system(size: 12, weight: .heavy))
+                        Image(systemName: "shower.fill").font(.system(size: 12))
+                    }
+                    .foregroundColor(Color("SecondaryText"))
                 }
                 Spacer()
                 Text(viewModel.property.address).bold()
-                    .lineLimit(2)
+                    .lineLimit(1)
+                    .font(.system(size: 16, weight: .black))
+                    .foregroundColor(Color("PrimaryText"))
                     .foregroundColor(.black)
-                    .multilineTextAlignment(.leading)
                 Spacer()
                 HStack{
                     if let agent = viewModel.agent{
-                        ProfileImageComponent(size: 30, image: agent.image!)
+                        KFImage(URL(string: agent.image ?? ""))
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 30, height: 30)
+                            .cornerRadius(8)
                         Text(agent.name)
-                            .foregroundColor(Color("TextGreyLight"))
+                            .foregroundColor(Color("SecondaryText"))
                             .lineLimit(1)
                             .multilineTextAlignment(.leading)
-                            .font(.system(size: 12, weight: .medium))
+                            .font(.system(size: 14, weight: .semibold))
                     }
                     Spacer()
 //                    Text("...")
@@ -252,21 +174,26 @@ struct CardListComponent: View {
                 //.frame(width: 262)
                 //.padding(.bottom, 12)
             }
-            .padding(12)
+            .padding(.vertical, 12)
             Spacer()
-            KFImage(URL(string: viewModel.property.images[0]))
-                .resizable()
-                .scaledToFill()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 135, height: 125)
-                .clipShape(RoundedRectangle(cornerRadius: 19))
-                .padding(4)
-                .shadow(color: .black.opacity(0.1), radius: 10, y:4)
+            ZStack{
+                RoundedRectangle(cornerRadius: 15)
+                    .foregroundColor(.white)
+                    .frame(width: 135, height: 125)
+                    .shadow(color: .black.opacity(0.1), radius: 2, y:4)
+                KFImage(URL(string: viewModel.property.images[0]))
+                    .resizable()
+                    .scaledToFill()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 131, height: 121)
+                    .clipShape(RoundedRectangle(cornerRadius: 14))
+                    .padding(4)
+            }
+            //.padding(.horizontal)
         }
-        .background(Color(.white))
-        .cornerRadius(20)
-        .padding(20)
-        .shadow(color: .black.opacity(0.1),radius: 5)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 16)
+        //.shadow(color: .black.opacity(0.1),radius: 5)
         
     }
 }

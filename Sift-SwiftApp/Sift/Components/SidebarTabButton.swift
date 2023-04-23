@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
-
+import CoreData
 struct SidebarTabButton: View {
     var image: String
     var title: String
     @EnvironmentObject var loginVM: LoginViewModel
+    @Environment(\.managedObjectContext) var moc
     @Binding var selectedTab: String
     var animation: Namespace.ID
     var body: some View {
@@ -56,8 +57,18 @@ struct SidebarTabButton: View {
         defaults.removeObject(forKey: "jsonwebtoken")
         defaults.removeObject(forKey: "searchFilters")
         defaults.removeObject(forKey: "userid")
+        deleteAll()
         loginVM.currentUser = nil
         loginVM.isAuthenticated = false
+    }
+    func deleteAll() {
+        let fetchRequest1: NSFetchRequest<NSFetchRequestResult> = PropertyView.fetchRequest()
+        let fetchRequest2: NSFetchRequest<NSFetchRequestResult> = ImplicitRating.fetchRequest()
+        let batchDeleteRequest1 = NSBatchDeleteRequest(fetchRequest: fetchRequest1)
+        let batchDeleteRequest2 = NSBatchDeleteRequest(fetchRequest: fetchRequest2)
+        _ = try? moc.execute(batchDeleteRequest1)
+        _ = try? moc.execute(batchDeleteRequest2)
+        try? moc.save()
     }
 }
 

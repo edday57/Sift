@@ -81,8 +81,8 @@ struct DiscoverResponse: Codable{
 }
 
 class WebService{
-    //let hostname = "159.65.51.173"
-    let hostname = "localhost"
+    let hostname = "159.65.51.173"
+    //let hostname = "localhost"
     //Auth Functions
     func login(email: String, password: String, completion: @escaping (Result<LoginResponse, AuthenticationError>)-> Void){
         guard let url = URL(string: "http://\(hostname):5000/api/user/login") else{
@@ -433,7 +433,6 @@ class WebService{
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        let encoder = JSONEncoder()
         //encoder.dateEncodingStrategy = .secondsSince1970
         request.httpBody = try? JSONEncoder().encode(views)
         URLSession.shared.dataTask(with: request) { data, response, error in
